@@ -30,8 +30,7 @@ public class DemonControl : MonoBehaviour
         if (isGrounded == true) {
             rb.velocity = new Vector2(direction * movementSpeed, rb.velocity.y);
             if (!Physics2D.OverlapCircle(groundCheckPos.position, checkRadius, groundLayer)) {
-                direction *= -1;
-                transform.eulerAngles = (direction > 0 ) ? new Vector3(0, 180, 0) : new Vector3(0,0,0);
+                turnAround();
             }
         }
         else {
@@ -42,10 +41,11 @@ public class DemonControl : MonoBehaviour
         if (other.collider.gameObject.tag == "Bone") {
             die();
         }
-        if (other.collider.gameObject.tag == "Walls") {
-            direction *= -1;
-            transform.eulerAngles = (direction > 0 ) ? new Vector3(0, 180, 0) : new Vector3(0,0,0);
-        }
+    }
+
+    public void turnAround() {
+        direction *= -1;
+        transform.eulerAngles = (direction > 0 ) ? new Vector3(0, 180, 0) : new Vector3(0,0,0);
     }
     public void die () {
         Instantiate (deathParticlePrefab, transform.position, Quaternion.identity);
