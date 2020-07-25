@@ -713,5 +713,10 @@ PrefabInstance:
       propertyPath: m_CompositePaths.m_Paths.Array.data[1].Array.data[3].y
       value: -5
       objectReference: {fileID: 0}
+    - target: {fileID: 9020511013501796686, guid: 66ccd29e142d9034f96ec38e157ef213,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 66ccd29e142d9034f96ec38e157ef213, type: 3}
