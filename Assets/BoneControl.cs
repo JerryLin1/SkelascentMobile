@@ -7,6 +7,7 @@ public class BoneControl : MonoBehaviour
     Rigidbody2D rb;
     Collider2D col;
     float boneXVelocity = 10;
+    public GameObject deathParticlePrefab;
     void Awake() {
         col = GetComponent<Collider2D>();
         rb = GetComponent<Rigidbody2D>();
@@ -30,6 +31,7 @@ public class BoneControl : MonoBehaviour
         }
     }
     void OnCollisionEnter2D(Collision2D other) {
+        Instantiate (deathParticlePrefab, transform.position, Quaternion.identity);
         Destroy(gameObject);
     }
     public Collider2D GetCollider2D() {

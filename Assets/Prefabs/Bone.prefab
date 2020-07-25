@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2526942072201926323}
   - component: {fileID: 2526942072201926332}
   - component: {fileID: 2526942072201926333}
-  - component: {fileID: 2526942072201926334}
+  - component: {fileID: 7375521141028396119}
   m_Layer: 10
   m_Name: Bone
   m_TagString: Bone
@@ -46,6 +46,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b58a97c9401dd23409693cb366a5b636, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  deathParticlePrefab: {fileID: 2764721609776275128, guid: 28dc7b745ff5edc41b3cda930851a216,
+    type: 3}
 --- !u!212 &2526942072201926332
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -115,10 +117,10 @@ Rigidbody2D:
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 0
---- !u!58 &2526942072201926334
-CircleCollider2D:
+--- !u!60 &7375521141028396119
+PolygonCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -131,5 +133,18 @@ CircleCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 0.5
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1, y: 1}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: -0.2337094, y: 0.47579175}
+      - {x: -0.4806334, y: 0.22932297}
+      - {x: 0.23370948, y: -0.48063344}
+      - {x: 0.47579175, y: -0.23593032}

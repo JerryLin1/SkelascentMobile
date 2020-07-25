@@ -8,6 +8,7 @@ public class DemonControl : MonoBehaviour
     bool isGrounded;
     float checkRadius = 0.3f;
     public LayerMask groundLayer;
+    public GameObject deathParticlePrefab;
     Rigidbody2D rb;
     Animator animator;
     Transform feetPos;
@@ -43,6 +44,7 @@ public class DemonControl : MonoBehaviour
         }
     }
     public void die () {
+        Instantiate (deathParticlePrefab, transform.position, Quaternion.identity);
         Destroy(gameObject);
     }
 }
