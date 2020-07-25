@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5951755338937740298}
   - component: {fileID: 4064143691458382264}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Point
   m_TagString: Untagged
   m_Icon: {fileID: 7174288486110832750, guid: 0000000000000000d000000000000000, type: 0}
@@ -57,7 +57,7 @@ GameObject:
   - component: {fileID: 7597077570798794279}
   - component: {fileID: 4146954224492527997}
   - component: {fileID: 9046857090403069113}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Platform (1)
   m_TagString: Platform
   m_Icon: {fileID: 0}
@@ -295,9 +295,23 @@ CompositeCollider2D:
   m_GeometryType: 0
   m_GenerationType: 0
   m_EdgeRadius: 0
-  m_ColliderPaths: []
+  m_ColliderPaths:
+  - m_Collider: {fileID: 9046857090403069113}
+    m_ColliderPaths:
+    - - X: -5000000
+        Y: 3750000
+      - X: 5000000
+        Y: 3750000
+      - X: 5000000
+        Y: 5000000
+      - X: -5000000
+        Y: 5000000
   m_CompositePaths:
-    m_Paths: []
+    m_Paths:
+    - - {x: 0.4999707, y: 0.375}
+      - {x: 0.4999707, y: 0.5}
+      - {x: -0.5, y: 0.4999707}
+      - {x: -0.4999707, y: 0.375}
   m_VertexDistance: 0.0005
   m_OffsetDistance: 0.00005
 --- !u!19719996 &9046857090403069113
@@ -312,7 +326,7 @@ TilemapCollider2D:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_UsedByEffector: 0
-  m_UsedByComposite: 0
+  m_UsedByComposite: 1
   m_Offset: {x: 0, y: 0}
   m_MaximumTileChangeCount: 1000
   m_ExtrusionFactor: 0.00001
@@ -330,7 +344,7 @@ GameObject:
   - component: {fileID: 7928403649865190867}
   - component: {fileID: 8645444100296890048}
   - component: {fileID: 8111194300600594783}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Platform (2)
   m_TagString: Platform
   m_Icon: {fileID: 0}
@@ -577,9 +591,23 @@ CompositeCollider2D:
   m_GeometryType: 0
   m_GenerationType: 0
   m_EdgeRadius: 0
-  m_ColliderPaths: []
+  m_ColliderPaths:
+  - m_Collider: {fileID: 8111194300600594783}
+    m_ColliderPaths:
+    - - X: -5000000
+        Y: 3750000
+      - X: 5000000
+        Y: 3750000
+      - X: 5000000
+        Y: 5000000
+      - X: -5000000
+        Y: 5000000
   m_CompositePaths:
-    m_Paths: []
+    m_Paths:
+    - - {x: 0.4999707, y: 0.375}
+      - {x: 0.4999707, y: 0.5}
+      - {x: -0.5, y: 0.4999707}
+      - {x: -0.4999707, y: 0.375}
   m_VertexDistance: 0.0005
   m_OffsetDistance: 0.00005
 --- !u!19719996 &8111194300600594783
@@ -594,7 +622,7 @@ TilemapCollider2D:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_UsedByEffector: 0
-  m_UsedByComposite: 0
+  m_UsedByComposite: 1
   m_Offset: {x: 0, y: 0}
   m_MaximumTileChangeCount: 1000
   m_ExtrusionFactor: 0.00001
@@ -608,7 +636,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6078243268879337383}
   - component: {fileID: 5928953676390271278}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Point
   m_TagString: Untagged
   m_Icon: {fileID: 7174288486110832750, guid: 0000000000000000d000000000000000, type: 0}
@@ -650,7 +678,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8712382150854570904}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Platforms
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1633,7 +1661,7 @@ GameObject:
   - component: {fileID: 8676846939020138056}
   - component: {fileID: 8676846939020138057}
   - component: {fileID: 8676846939020138062}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: EntryPlatform
   m_TagString: Platform
   m_Icon: {fileID: 0}
@@ -1839,7 +1867,9 @@ CompositeCollider2D:
   m_GeometryType: 0
   m_GenerationType: 0
   m_EdgeRadius: 0
-  m_ColliderPaths: []
+  m_ColliderPaths:
+  - m_Collider: {fileID: 8676846939020138062}
+    m_ColliderPaths: []
   m_CompositePaths:
     m_Paths: []
   m_VertexDistance: 0.0005
@@ -1856,7 +1886,7 @@ TilemapCollider2D:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_UsedByEffector: 0
-  m_UsedByComposite: 0
+  m_UsedByComposite: 1
   m_Offset: {x: 0, y: 0}
   m_MaximumTileChangeCount: 1000
   m_ExtrusionFactor: 0.00001
@@ -1870,7 +1900,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8676846939092440701}
   - component: {fileID: 8676846939092440700}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Point
   m_TagString: Untagged
   m_Icon: {fileID: 7174288486110832750, guid: 0000000000000000d000000000000000, type: 0}
