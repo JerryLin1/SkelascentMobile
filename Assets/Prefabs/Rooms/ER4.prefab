@@ -300,7 +300,7 @@ GameObject:
   - component: {fileID: 1091718427327378188}
   - component: {fileID: 1091718427327378189}
   - component: {fileID: 1091718427327378186}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Walls
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1307,7 +1307,7 @@ GameObject:
   - component: {fileID: 7175680316594003390}
   - component: {fileID: 7175680316594003361}
   - component: {fileID: 7175680316594003360}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Backdrop
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -44,6 +44,7 @@ public class SpawnNextRoom : MonoBehaviour
 
         // Spawn room
         int rand = Random.Range(0, rooms.Length);
+        Debug.Log(roomSize + " " + newRoomOffset.y);
         newRoom = Instantiate(rooms[rand], transform.position + new Vector3(0,roomSize,0) + newRoomOffset, Quaternion.identity);
         newRoom.transform.SetParent(GameObject.Find("Grid").transform);
         
