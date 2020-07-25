@@ -60,10 +60,7 @@ public class SpawnNextRoom : MonoBehaviour
         }
 
         // Move camera to next room, spawn player on entry point, and delete old room
-        if (leavingRoom && !leftRoom) {
-            GameObject camera = GameObject.Find("Main Camera");
-            camera.transform.position = new Vector3(camera.transform.position.x, camera.transform.position.y + newRoomOffset.y + roomSize, camera.transform.position.z);
-            
+        if (leavingRoom && !leftRoom) {         
             player.position = newRoom.transform.Find("Platforms/EntryPlatform/Point").transform.position + new Vector3(0,1,0);
             leftRoom = true;
             Destroy(gameObject);
