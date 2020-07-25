@@ -13,6 +13,7 @@ public class PlayerControl : MonoBehaviour
     Transform boneSourcePos;
     float checkRadius = 0.1f;
     public LayerMask groundLayer;
+    public LayerMask enemyLayer;
     public GameObject bonePrefab;
     private float jumpTimeCounter;
     private bool isJumping;
@@ -20,6 +21,8 @@ public class PlayerControl : MonoBehaviour
     float hAxis;
     float normalGravity = 5f;
     float fallingGravity = 8f;
+    float boneCd = 1f;
+    float boneCdTimer;
     Animator animator;
     void Start()
     {
@@ -39,7 +42,8 @@ public class PlayerControl : MonoBehaviour
     void Update()
     {
         isGrounded = Physics2D.OverlapCircle(feetPos.position, checkRadius, groundLayer);
-        if (isGrounded == true) {
+        if (isGrounded == true)
+        {
             rb.gravityScale = normalGravity;
             animator.SetFloat("yVelocity", 0);
         }
@@ -79,11 +83,21 @@ public class PlayerControl : MonoBehaviour
             isJumping = false;
             rb.gravityScale = fallingGravity;
         }
-        if (Input.GetKeyDown(KeyCode.Space)) {
+        if (Input.GetKeyDown(KeyCode.Space) && boneCdTimer <= 0)
+        {
             GameObject boneInstance = Instantiate(bonePrefab, boneSourcePos.position, Quaternion.identity);
             Physics2D.IgnoreCollision(col, boneInstance.GetComponent<BoneControl>().GetCollider2D(), true);
-            boneInstance.GetComponent<BoneControl>().initialVelocity(transform.rotation.y);
+            boneInstance.GetComponent<BoneControl>().initialVelocity(transform.eulerAngles.y);
+            boneCdTimer = boneCd;
+        }
+        boneCdTimer -= Time.deltaTime;
+
+    }
+    void OnCollisionEnter2D(Collision2D col)
+    {
+        if (col.gameObject.tag == "Enemy")
+        {
+            Debug.Log("die");
         }
     }
-
 }

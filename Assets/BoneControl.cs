@@ -22,7 +22,7 @@ public class BoneControl : MonoBehaviour
         
     }
     public void initialVelocity (float playerRotation) {
-        if (playerRotation == -1) {
+        if (playerRotation == 180) {
             rb.velocity = new Vector2(boneXVelocity, 30);
         }
         else if (playerRotation == 0) {

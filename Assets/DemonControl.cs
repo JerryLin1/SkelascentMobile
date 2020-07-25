@@ -37,9 +37,12 @@ public class DemonControl : MonoBehaviour
             rb.velocity = new Vector2(0, rb.velocity.y);
         }
     }
-    void OnCollisionEnter2D(Collision2D col) {
-        if (col.gameObject.tag == "Player") {
-            Debug.Log("DIED :(");
+    void OnCollisionEnter2D(Collision2D other) {
+        if (other.collider.gameObject.tag == "Bone") {
+            die();
         }
+    }
+    public void die () {
+        Destroy(gameObject);
     }
 }
