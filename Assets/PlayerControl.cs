@@ -26,7 +26,7 @@ public class PlayerControl : MonoBehaviour
     float boneCdTimer;
     int bones = 0;
     bool landed = true;
-    float coyoteTime = 0.2f;
+    float coyoteTime = 0.1f;
     float coyoteTimeTimer;
     Animator animator;
     void Start()
@@ -84,6 +84,7 @@ public class PlayerControl : MonoBehaviour
             isJumping = true;
             jumpTimeCounter = jumpTime;
             rb.velocity = Vector2.up * jumpForce;
+            coyoteTimeTimer = 0;
         }
         if ((Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow)) && isJumping == true)
         {
