@@ -15,6 +15,7 @@ public class PlayerControl : MonoBehaviour
     public LayerMask groundLayer;
     public LayerMask enemyLayer;
     public GameObject bonePrefab;
+    public GameObject impactParticlePrefab;
     private float jumpTimeCounter;
     private bool isJumping;
     float jumpTime = 0.15f;
@@ -23,6 +24,7 @@ public class PlayerControl : MonoBehaviour
     float fallingGravity = 8f;
     float boneCd = 1f;
     float boneCdTimer;
+    bool landed = true;
     Animator animator;
     void Start()
     {
@@ -44,10 +46,20 @@ public class PlayerControl : MonoBehaviour
         isGrounded = Physics2D.OverlapCircle(feetPos.position, checkRadius, groundLayer);
         if (isGrounded == true)
         {
+            if (landed == false)
+            {
+                GameObject impactInstance = Instantiate(impactParticlePrefab, feetPos.position, Quaternion.identity);
+                impactInstance.transform.Rotate(10f, 0, 0, Space.Self);
+                landed = true;
+            }
             rb.gravityScale = normalGravity;
             animator.SetFloat("yVelocity", 0);
         }
-        else animator.SetFloat("yVelocity", rb.velocity.y);
+        else
+        {
+            landed = false;
+            animator.SetFloat("yVelocity", rb.velocity.y);
+        }
         if (hAxis != 0)
         {
             transform.eulerAngles = (hAxis > 0) ? new Vector3(0, 180, 0) : new Vector3(0, 0, 0);
@@ -60,6 +72,8 @@ public class PlayerControl : MonoBehaviour
 
         if (isGrounded == true && (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow)))
         {
+            GameObject impactInstance = Instantiate(impactParticlePrefab, feetPos.position, Quaternion.identity);
+            impactInstance.transform.Rotate(10f, 0, 0, Space.Self);
             isJumping = true;
             jumpTimeCounter = jumpTime;
             rb.velocity = Vector2.up * jumpForce;

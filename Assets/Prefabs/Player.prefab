@@ -183,7 +183,12 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 257
+  enemyLayer:
+    serializedVersion: 2
+    m_Bits: 0
   bonePrefab: {fileID: 2526942072201926335, guid: 6ee43b84c0cc98c4cbf18d872b597682,
+    type: 3}
+  landParticlePrefab: {fileID: 2764721609776275128, guid: 28dc7b745ff5edc41b3cda930851a216,
     type: 3}
 --- !u!50 &3948465236358836112
 Rigidbody2D:
