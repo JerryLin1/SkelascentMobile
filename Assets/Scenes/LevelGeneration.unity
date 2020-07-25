@@ -265,6 +265,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   easyRooms:
   - {fileID: 7832801103375699640, guid: 66ccd29e142d9034f96ec38e157ef213, type: 3}
+  - {fileID: 8676846939827091490, guid: f4758798d1f56d84294356aab88ee376, type: 3}
+  - {fileID: 4317391016649018727, guid: 36a4b3527ba711744af9cb7ecb68ff16, type: 3}
+  - {fileID: 1091718427969785718, guid: c00dd9d0ea8b3e24fb2ed50a5cdb1552, type: 3}
   mediumRooms: []
   hardRooms: []
   easySize: 5

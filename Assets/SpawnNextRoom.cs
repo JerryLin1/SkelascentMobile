@@ -19,6 +19,8 @@ public class SpawnNextRoom : MonoBehaviour
     public bool leavingRoom = false;
     private bool leftRoom = false;
 
+    private GameObject newRoom;
+
     void Spawn() {
         roomSize = transform.Find("Backdrop").GetComponent<TilemapRenderer>().bounds.size.y / 2;
         templates = GameObject.Find("RoomTemplates").GetComponent<RoomTemplates>();
@@ -29,6 +31,7 @@ public class SpawnNextRoom : MonoBehaviour
         difficulty = 0;
         GameObject[] rooms;
 
+        // Get room from list depending on difficulty
         if (difficulty == 0) {
             rooms = templates.easyRooms;
             newRoomOffset = new Vector3(0, templates.easySize, 0);
@@ -40,8 +43,8 @@ public class SpawnNextRoom : MonoBehaviour
             newRoomOffset = new Vector3(0, templates.hardSize, 0);
         }
 
-        GameObject newRoom;
-        int rand = Random.Range(0, rooms.Length-1);
+        // Spawn room
+        int rand = Random.Range(0, rooms.Length);
         newRoom = Instantiate(rooms[rand], transform.position + new Vector3(0,roomSize,0) + newRoomOffset, Quaternion.identity);
         newRoom.transform.SetParent(GameObject.Find("Grid").transform);
         
@@ -56,15 +59,17 @@ public class SpawnNextRoom : MonoBehaviour
             spawnedNextRoom = true;
         }
 
-        // Move camera to next room
+        // Move camera to next room, spawn player on entry point, and delete old room
         if (leavingRoom && !leftRoom) {
             GameObject camera = GameObject.Find("Main Camera");
             camera.transform.position = new Vector3(camera.transform.position.x, camera.transform.position.y + newRoomOffset.y + roomSize, camera.transform.position.z);
             
-            
-            
+            player.position = newRoom.transform.Find("Platforms/EntryPlatform/Point").transform.position + new Vector3(0,1,0);
             leftRoom = true;
+            Destroy(gameObject);
         }
+
+        
         
 
     }
