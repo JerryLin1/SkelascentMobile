@@ -70,4 +70,5 @@ public class PlayerControl : MonoBehaviour
             rb.gravityScale = fallingGravity;
         }
     }
+
 }
