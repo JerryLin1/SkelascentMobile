@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class BonePickupControl : MonoBehaviour
 {
-    public float degreesPerSecond = 15.0f;
-    public float amplitude = 0.5f;
+    public float amplitude = 0.2f;
     public float frequency = 1f;
  
     // Position Storage Variables
@@ -19,14 +18,19 @@ public class BonePickupControl : MonoBehaviour
     }
      
     // Update is called once per frame
-    void Update () {
-        // Spin object around Y-Axis
-        transform.Rotate(new Vector3(0f, Time.deltaTime * degreesPerSecond, 0f), Space.World);
- 
+    void Update () { 
         // Float up/down with a Sin()
         tempPos = posOffset;
         tempPos.y += Mathf.Sin (Time.fixedTime * Mathf.PI * frequency) * amplitude;
  
         transform.position = tempPos;
+    }
+    void OnTriggerEnter2D(Collider2D col)
+    {
+        if (col.gameObject.tag == "Player")
+        {
+            col.gameObject.GetComponent<PlayerControl>().addBone();
+            Destroy(gameObject);
+        }
     }
 }

@@ -24,6 +24,7 @@ public class PlayerControl : MonoBehaviour
     float fallingGravity = 8f;
     float boneCd = 1f;
     float boneCdTimer;
+    int bones = 0;
     bool landed = true;
     Animator animator;
     void Start()
@@ -97,12 +98,13 @@ public class PlayerControl : MonoBehaviour
             isJumping = false;
             rb.gravityScale = fallingGravity;
         }
-        if (Input.GetKeyDown(KeyCode.Space) && boneCdTimer <= 0)
+        if (Input.GetKeyDown(KeyCode.Space) && boneCdTimer <= 0 && bones > 0)
         {
             GameObject boneInstance = Instantiate(bonePrefab, boneSourcePos.position, Quaternion.identity);
             Physics2D.IgnoreCollision(col, boneInstance.GetComponent<BoneControl>().GetCollider2D(), true);
             boneInstance.GetComponent<BoneControl>().initialVelocity(transform.eulerAngles.y);
             boneCdTimer = boneCd;
+            bones--;
         }
         boneCdTimer -= Time.deltaTime;
 
@@ -113,5 +115,8 @@ public class PlayerControl : MonoBehaviour
         {
             Debug.Log("die");
         }
+    }
+    public void addBone() {
+        bones++;
     }
 }

@@ -7,7 +7,7 @@ TagManager:
   - Platform
   - Enemy
   - Bone
-  - Wall
+  - BonePickup
   layers:
   - Default
   - TransparentFX
