@@ -26,6 +26,8 @@ public class PlayerControl : MonoBehaviour
     float boneCdTimer;
     int bones = 0;
     bool landed = true;
+    float coyoteTime = 0.2f;
+    float coyoteTimeTimer;
     Animator animator;
     void Start()
     {
@@ -58,7 +60,11 @@ public class PlayerControl : MonoBehaviour
         }
         else
         {
-            landed = false;
+            if (landed == true)
+            {
+                landed = false;
+                coyoteTimeTimer = coyoteTime;
+            }
             animator.SetFloat("yVelocity", rb.velocity.y);
         }
         if (hAxis != 0)
@@ -71,7 +77,7 @@ public class PlayerControl : MonoBehaviour
             animator.SetBool("moving", false);
         }
 
-        if (isGrounded == true && (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow)))
+        if ((isGrounded == true || coyoteTimeTimer > 0) && (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow)))
         {
             GameObject impactInstance = Instantiate(impactParticlePrefab, feetPos.position, Quaternion.identity);
             impactInstance.transform.Rotate(10f, 0, 0, Space.Self);
@@ -107,7 +113,7 @@ public class PlayerControl : MonoBehaviour
             bones--;
         }
         boneCdTimer -= Time.deltaTime;
-
+        coyoteTimeTimer -= Time.deltaTime;
     }
     void OnCollisionEnter2D(Collision2D col)
     {
@@ -116,7 +122,8 @@ public class PlayerControl : MonoBehaviour
             Debug.Log("die");
         }
     }
-    public void addBone() {
+    public void addBone()
+    {
         bones++;
     }
 }
