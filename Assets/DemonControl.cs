@@ -42,6 +42,11 @@ public class DemonControl : MonoBehaviour
         if (other.collider.gameObject.tag == "Bone") {
             die();
         }
+
+        if (other.collider.gameObject.tag == "Wall") {
+            direction *= -1;
+            transform.eulerAngles = (direction > 0 ) ? new Vector3(0, 180, 0) : new Vector3(0,0,0);
+        }
     }
     public void die () {
         Instantiate (deathParticlePrefab, transform.position, Quaternion.identity);

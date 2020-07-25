@@ -17,7 +17,6 @@ public class SpawnNextRoom : MonoBehaviour
 
     private Vector3 newRoomOffset;
     public bool leavingRoom = false;
-    private bool leftRoom = false;
 
     private GameObject newRoom;
 
@@ -60,9 +59,7 @@ public class SpawnNextRoom : MonoBehaviour
         }
 
         // Move camera to next room, spawn player on entry point, and delete old room
-        if (leavingRoom && !leftRoom) {         
-            player.position = newRoom.transform.Find("Platforms/EntryPlatform/Point").transform.position + new Vector3(0,1,0);
-            leftRoom = true;
+        if (leavingRoom) {         
             Destroy(gameObject);
         }
 
