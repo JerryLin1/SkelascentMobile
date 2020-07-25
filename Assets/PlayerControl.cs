@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System;
 using UnityEngine;
 
 public class PlayerControl : MonoBehaviour
@@ -11,7 +12,7 @@ public class PlayerControl : MonoBehaviour
     bool isGrounded;
     Transform feetPos;
     Transform boneSourcePos;
-    float checkRadius = 0.1f;
+    float checkRadius = 0.05f;
     public LayerMask groundLayer;
     public LayerMask enemyLayer;
     public GameObject bonePrefab;
@@ -25,7 +26,6 @@ public class PlayerControl : MonoBehaviour
     float boneCd = 1f;
     float boneCdTimer;
     int bones = 0;
-    bool landed = true;
     float coyoteTime = 0.2f;
     float coyoteTimeTimer;
     Animator animator;
@@ -49,35 +49,25 @@ public class PlayerControl : MonoBehaviour
         isGrounded = Physics2D.OverlapCircle(feetPos.position, checkRadius, groundLayer);
         if (isGrounded == true)
         {
-            if (landed == false)
-            {
-                GameObject impactInstance = Instantiate(impactParticlePrefab, feetPos.position, Quaternion.identity);
-                impactInstance.transform.Rotate(10f, 0, 0, Space.Self);
-                landed = true;
-            }
             rb.gravityScale = normalGravity;
             animator.SetFloat("yVelocity", 0);
         }
         else
         {
-            if (landed == true)
-            {
-                landed = false;
-                coyoteTimeTimer = coyoteTime;
-            }
+            coyoteTimeTimer = coyoteTime;
             animator.SetFloat("yVelocity", rb.velocity.y);
         }
-        if (hAxis != 0)
-        {
+
+        // Rotate player and play right animation
+        if (hAxis != 0){
             transform.eulerAngles = (hAxis > 0) ? new Vector3(0, 180, 0) : new Vector3(0, 0, 0);
             animator.SetBool("moving", (!isGrounded) ? false : true);
-        }
-        else
-        {
+        } else {
             animator.SetBool("moving", false);
         }
 
-        if ((isGrounded == true || coyoteTimeTimer > 0) && (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow)))
+        // If player is on the ground and they jump
+        if (Math.Abs(rb.velocity.y) <= 0.01f && (isGrounded == true || coyoteTimeTimer > 0) && (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow)))
         {
             GameObject impactInstance = Instantiate(impactParticlePrefab, feetPos.position, Quaternion.identity);
             impactInstance.transform.Rotate(10f, 0, 0, Space.Self);
@@ -85,7 +75,9 @@ public class PlayerControl : MonoBehaviour
             jumpTimeCounter = jumpTime;
             rb.velocity = Vector2.up * jumpForce;
         }
-        if ((Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow)) && isJumping == true)
+
+        // While player is in middle of jump
+        if (isJumping == true)
         {
 
             if (jumpTimeCounter > 0)
@@ -99,6 +91,8 @@ public class PlayerControl : MonoBehaviour
                 rb.gravityScale = fallingGravity;
             }
         }
+
+        // After player hits jump
         if (Input.GetKeyUp(KeyCode.W) || Input.GetKeyUp(KeyCode.UpArrow))
         {
             isJumping = false;
@@ -121,6 +115,12 @@ public class PlayerControl : MonoBehaviour
         {
             Debug.Log("die");
         }
+
+        if (col.gameObject.tag == "Platform") {
+            Instantiate(impactParticlePrefab, feetPos.position, Quaternion.identity);
+
+        }
+
     }
     public void addBone()
     {
