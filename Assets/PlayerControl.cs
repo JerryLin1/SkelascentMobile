@@ -5,12 +5,15 @@ using UnityEngine;
 public class PlayerControl : MonoBehaviour
 {
     Rigidbody2D rb;
+    Collider2D col;
     float movementSpeed = 7f;
     float jumpForce = 15f;
     bool isGrounded;
     Transform feetPos;
-    float checkRadius = 0.3f;
+    Transform boneSourcePos;
+    float checkRadius = 0.1f;
     public LayerMask groundLayer;
+    public GameObject bonePrefab;
     private float jumpTimeCounter;
     private bool isJumping;
     float jumpTime = 0.15f;
@@ -20,8 +23,10 @@ public class PlayerControl : MonoBehaviour
     Animator animator;
     void Start()
     {
-        rb = transform.GetComponent<Rigidbody2D>();
+        rb = GetComponent<Rigidbody2D>();
+        col = GetComponent<Collider2D>();
         feetPos = transform.Find("Feet");
+        boneSourcePos = transform.Find("BoneSource");
         animator = transform.Find("Sprite").GetComponent<Animator>();
     }
 
@@ -73,6 +78,11 @@ public class PlayerControl : MonoBehaviour
         {
             isJumping = false;
             rb.gravityScale = fallingGravity;
+        }
+        if (Input.GetKeyDown(KeyCode.Space)) {
+            GameObject boneInstance = Instantiate(bonePrefab, boneSourcePos.position, Quaternion.identity);
+            Physics2D.IgnoreCollision(col, boneInstance.GetComponent<BoneControl>().GetCollider2D(), true);
+            boneInstance.GetComponent<BoneControl>().initialVelocity(transform.rotation.y);
         }
     }
 
