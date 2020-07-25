@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerControl : MonoBehaviour
 {
     Rigidbody2D rb;
-    float movementSpeed = 10f;
+    float movementSpeed = 7f;
     float jumpForce = 15f;
     bool isGrounded;
     Transform feetPos;
@@ -35,17 +35,11 @@ public class PlayerControl : MonoBehaviour
     {
         isGrounded = Physics2D.OverlapCircle(feetPos.position, checkRadius, groundLayer);
         if (isGrounded == true) rb.gravityScale = normalGravity;
-        if (hAxis > 0)
+        if (hAxis != 0)
         {
-            transform.eulerAngles = new Vector3(0, 180, 0);
-            animator.SetBool("moving", true);
-        }
-        else if (hAxis < 0)
-        {
-            transform.eulerAngles = new Vector3(0, 0, 0);
-            animator.SetBool("moving", true);
-        }
-        else {
+            transform.eulerAngles = (hAxis > 0 ) ? new Vector3(0, 180, 0) : new Vector3(0,0,0);
+            animator.SetBool("moving", (isJumping) ? false : true);
+        } else {
             animator.SetBool("moving", false);
         }
 
@@ -54,10 +48,11 @@ public class PlayerControl : MonoBehaviour
             isJumping = true;
             jumpTimeCounter = jumpTime;
             rb.velocity = Vector2.up * jumpForce;
+            animator.SetTrigger("jumping");
         }
         if ((Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow)) && isJumping == true)
         {
-            animator.SetTrigger("jumping");
+            
             if (jumpTimeCounter > 0)
             {
                 rb.AddForce(new Vector2(0, jumpForce*0.025f), ForceMode2D.Impulse);
