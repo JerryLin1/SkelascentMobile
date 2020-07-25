@@ -18,7 +18,6 @@ public class PlatformCollisionHandler : MonoBehaviour
     {
         if (player.Find("Feet").transform.position.y < transform.position.y) {
             Physics2D.IgnoreCollision(player.GetComponent<Collider2D>(), GetComponentInParent<TilemapCollider2D>());
-            Debug.Log("asdasd");
         } else {
             Physics2D.IgnoreCollision(player.GetComponent<Collider2D>(), GetComponentInParent<TilemapCollider2D>(), false);
         }

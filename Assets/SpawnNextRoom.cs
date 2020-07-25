@@ -7,22 +7,20 @@ public class SpawnNextRoom : MonoBehaviour
 {
     // Start is called before the first frame update
 
-    private Transform player;
+    public bool spawnNextRoom = false;
+
     private float roomSize;
+    private bool spawnedNextRoom = false;
+    private Transform player;
     private int difficulty;
     private RoomTemplates templates;
-    
 
-    void Start()
-    {
-        Invoke("Spawn", 0.5f);
-        // float nextRoomSize = newRoom.transform.Find("Walls").GetComponent<TilemapRenderer>().bounds.size.y / 2;
-        // newRoom.transform.position = new Vector3(newRoom.transform.position.x, newRoom.transform.position.y + nextRoomSize, newRoom.transform.position.z);
-        
-    }
+    private Vector3 newRoomOffset;
+    public bool leavingRoom = false;
+    private bool leftRoom = false;
 
     void Spawn() {
-        roomSize = transform.Find("Walls").GetComponent<TilemapRenderer>().bounds.size.y / 2;
+        roomSize = transform.Find("Backdrop").GetComponent<TilemapRenderer>().bounds.size.y / 2;
         templates = GameObject.Find("RoomTemplates").GetComponent<RoomTemplates>();
         player = GameObject.Find("Player").transform;
 
@@ -33,27 +31,41 @@ public class SpawnNextRoom : MonoBehaviour
 
         if (difficulty == 0) {
             rooms = templates.easyRooms;
+            newRoomOffset = new Vector3(0, templates.easySize, 0);
         } else if (difficulty == 1) {
             rooms = templates.mediumRooms;
+            newRoomOffset = new Vector3(0, templates.mediumSize, 0);
         } else {
             rooms = templates.hardRooms;
+            newRoomOffset = new Vector3(0, templates.hardSize, 0);
         }
 
         GameObject newRoom;
         int rand = Random.Range(0, rooms.Length-1);
-        newRoom = Instantiate(rooms[rand], transform.position, Quaternion.identity);
+        newRoom = Instantiate(rooms[rand], transform.position + new Vector3(0,roomSize,0) + newRoomOffset, Quaternion.identity);
         newRoom.transform.SetParent(GameObject.Find("Grid").transform);
+        
         
     }
 
     void Update()
     {
-        
-        if (player.position.y > transform.position.y + roomSize) {
-            // Move camera and go to next room
-
-            // Add points
+        // Spawn new room above when entering a room
+        if (spawnNextRoom && !spawnedNextRoom) {
+            Spawn();
+            spawnedNextRoom = true;
         }
+
+        // Move camera to next room
+        if (leavingRoom && !leftRoom) {
+            GameObject camera = GameObject.Find("Main Camera");
+            camera.transform.position = new Vector3(camera.transform.position.x, camera.transform.position.y + newRoomOffset.y + roomSize, camera.transform.position.z);
+            
+            
+            
+            leftRoom = true;
+        }
+        
 
     }
 }
