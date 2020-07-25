@@ -34,12 +34,18 @@ public class PlayerControl : MonoBehaviour
     void Update()
     {
         isGrounded = Physics2D.OverlapCircle(feetPos.position, checkRadius, groundLayer);
-        if (isGrounded == true) rb.gravityScale = normalGravity;
+        if (isGrounded == true) {
+            rb.gravityScale = normalGravity;
+            animator.SetFloat("yVelocity", 0);
+        }
+        else animator.SetFloat("yVelocity", rb.velocity.y);
         if (hAxis != 0)
         {
-            transform.eulerAngles = (hAxis > 0 ) ? new Vector3(0, 180, 0) : new Vector3(0,0,0);
-            animator.SetBool("moving", (isJumping) ? false : true);
-        } else {
+            transform.eulerAngles = (hAxis > 0) ? new Vector3(0, 180, 0) : new Vector3(0, 0, 0);
+            animator.SetBool("moving", (!isGrounded) ? false : true);
+        }
+        else
+        {
             animator.SetBool("moving", false);
         }
 
@@ -48,14 +54,13 @@ public class PlayerControl : MonoBehaviour
             isJumping = true;
             jumpTimeCounter = jumpTime;
             rb.velocity = Vector2.up * jumpForce;
-            animator.SetTrigger("jumping");
         }
         if ((Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow)) && isJumping == true)
         {
-            
+
             if (jumpTimeCounter > 0)
             {
-                rb.AddForce(new Vector2(0, jumpForce*0.025f), ForceMode2D.Impulse);
+                rb.AddForce(new Vector2(0, jumpForce * 0.025f), ForceMode2D.Impulse);
                 jumpTimeCounter -= Time.deltaTime;
             }
             else
