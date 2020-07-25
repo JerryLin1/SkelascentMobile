@@ -17,10 +17,10 @@ public class PlatformCollisionHandler : MonoBehaviour
     void Update()
     {
         if (player.Find("Feet").transform.position.y < transform.position.y) {
-            Physics2D.IgnoreCollision(player.GetComponent<Collider2D>(), GetComponentInParent<Collider2D>());
+            Physics2D.IgnoreCollision(player.GetComponent<Collider2D>(), GetComponentInParent<TilemapCollider2D>());
+            Debug.Log("asdasd");
         } else {
-            Debug.Log("Above");
-            Physics2D.IgnoreCollision(player.GetComponent<Collider2D>(), GetComponentInParent<Collider2D>(), false);
+            Physics2D.IgnoreCollision(player.GetComponent<Collider2D>(), GetComponentInParent<TilemapCollider2D>(), false);
         }
     }
 
