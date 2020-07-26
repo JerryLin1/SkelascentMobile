@@ -58,6 +58,8 @@ MonoBehaviour:
     type: 3}
   impactParticlePrefab: {fileID: 2764721609776275128, guid: feda37bf2f89e09448423809e131707d,
     type: 3}
+  deathParticlePrefab: {fileID: 2764721609776275128, guid: 28dc7b745ff5edc41b3cda930851a216,
+    type: 3}
 --- !u!50 &7173213619296683097
 Rigidbody2D:
   serializedVersion: 4
@@ -159,7 +161,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7173213620980481531}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.53, z: 0}
+  m_LocalPosition: {x: 0, y: -0.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 7173213619296683099}
@@ -254,7 +256,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: -5146776979616254503, guid: f4ef7b4dfff31d640b5a746f99a939cf,
     type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

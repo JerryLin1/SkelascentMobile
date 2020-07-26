@@ -8,7 +8,7 @@ public class PlayerControl : MonoBehaviour
     Rigidbody2D rb;
     Collider2D col;
     float movementSpeed = 5f;
-    float jumpForce = 18f;
+    float jumpForce = 15f;
     bool isGrounded;
     Transform feetPos;
     Transform boneSourcePos;
@@ -20,14 +20,14 @@ public class PlayerControl : MonoBehaviour
     public GameObject deathParticlePrefab;
     private float jumpTimeCounter;
     private bool isJumping;
-    float jumpTime = 0.18f;
+    float jumpTime = 0.2f;
     float hAxis;
     float normalGravity = 5f;
     float fallingGravity = 8f;
     float boneCd = 1f;
     float boneCdTimer;
     int bones = 0;
-    float coyoteTime = 0.2f;
+    float coyoteTime = 0.3f;
     float coyoteTimeTimer;
     Animator animator;
     int bonusScore = 0;
@@ -138,7 +138,9 @@ public class PlayerControl : MonoBehaviour
         bones++;
         addScore(20);
     }
+    public int getBones() {return bones;}
     public void addScore(int score) {
+        StartCoroutine(Camera.main.GetComponent<CameraControl>().cameraShake(0.1f, 0.5f));
         bonusScore += score;
     }
     public int getScore() {
