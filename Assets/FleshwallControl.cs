@@ -10,7 +10,9 @@ public class FleshwallControl : MonoBehaviour
     public float rbSpeed = 5f;
     public float acceleration = 0.5f;
     public float maxSpeed = 5f;
+    public GameObject player;
     Rigidbody2D rb;
+    bool stopped = false;
     void Start()
     {
         sprite = transform.Find("Sprite");
@@ -20,17 +22,35 @@ public class FleshwallControl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        float x = Random.Range(-1f, 1f) * xShake;
-        float y = Random.Range(-1f, 1f) * yShake;
+        if (stopped == false)
+        {
+            float x = Random.Range(-1f, 1f) * xShake;
+            float y = Random.Range(-1f, 1f) * yShake;
 
-        sprite.position = new Vector3(transform.position.x + x, transform.position.y + y, transform.position.z);
+            sprite.position = new Vector3(transform.position.x + x, transform.position.y + y, transform.position.z);
 
-        rb.velocity = new Vector2(0, rbSpeed);
-        if (rbSpeed <= maxSpeed) {
-            rbSpeed += acceleration * Time.deltaTime;
+            rb.velocity = new Vector2(0, rbSpeed);
+            if (rbSpeed <= maxSpeed)
+            {
+                rbSpeed += acceleration * Time.deltaTime;
+            }
+        }
+        if ((int)transform.position.y <= (int)player.transform.position.y)
+        {
+            stopped = true;
         }
     }
-    public void teleport(float y) {
-        transform.position = new Vector3(transform.position.x, y, transform.position.z);
+    public void catchUp(float y)
+    {
+        if (transform.position.y < y)
+            transform.position = new Vector3(transform.position.x, y, transform.position.z);
+    }
+    void OnTriggerEnter2D(Collider2D col)
+    {
+        if (col.gameObject.tag == "Player")
+        {
+            Debug.Log("DEATH BY WOF");
+            // die
+        }
     }
 }

@@ -67,12 +67,13 @@ public class SpawnNextRoom : MonoBehaviour
         if (player.position.y > transform.position.y + roomSize && !leftRoom) {         
             templates.offScreenRooms.Add(gameObject);
             leftRoom = true;
-            if (templates.offScreenRooms.Count > 1) {
+            if (templates.offScreenRooms.Count > 2) {
                 GameObject roomToDelete = templates.offScreenRooms[0];
                 templates.offScreenRooms.RemoveAt(0);
                 foreach (Transform spawner in roomToDelete.transform.Find("Spawners").transform) {
                     Destroy(spawner.GetComponent<SpawnerControl>().entity);
                 }
+                GameObject.Find("FleshWall").GetComponent<FleshwallControl>().catchUp(roomToDelete.transform.position.y);
                 Destroy(roomToDelete);
             }
             
