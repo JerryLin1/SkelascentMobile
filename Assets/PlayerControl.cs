@@ -19,7 +19,7 @@ public class PlayerControl : MonoBehaviour
     public GameObject impactParticlePrefab;
     private float jumpTimeCounter;
     private bool isJumping;
-    float jumpTime = 0.15f;
+    float jumpTime = 0.18f;
     float hAxis;
     float normalGravity = 5f;
     float fallingGravity = 8f;
