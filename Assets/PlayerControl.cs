@@ -8,7 +8,7 @@ public class PlayerControl : MonoBehaviour
     Rigidbody2D rb;
     Collider2D col;
     float movementSpeed = 5f;
-    float jumpForce = 18f;
+    float jumpForce = 15f;
     bool isGrounded;
     Transform feetPos;
     Transform boneSourcePos;
@@ -33,6 +33,9 @@ public class PlayerControl : MonoBehaviour
     int bonusScore = 0;
     int maxScore = 0;
     bool gameOver = false;
+    int killCount = 0;
+    int bonesThrownCount = 0;
+    int bonesCollectedCount = 0;
     AudioManager audioManager;
 
     void Start()
@@ -48,7 +51,8 @@ public class PlayerControl : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        if (!gameOver) {
+        if (!gameOver)
+        {
             hAxis = Input.GetAxisRaw("Horizontal");
             rb.velocity = new Vector2(hAxis * movementSpeed, rb.velocity.y);
         }
@@ -58,7 +62,8 @@ public class PlayerControl : MonoBehaviour
         if (!gameOver) Move();
     }
 
-    void Move() {
+    void Move()
+    {
         isGrounded = Physics2D.OverlapCircle(feetPos.position, checkRadius, groundLayer);
         if (isGrounded == true)
         {
@@ -72,10 +77,13 @@ public class PlayerControl : MonoBehaviour
         }
 
         // Rotate player and play right animation
-        if (hAxis != 0){
+        if (hAxis != 0)
+        {
             transform.eulerAngles = (hAxis > 0) ? new Vector3(0, 180, 0) : new Vector3(0, 0, 0);
             animator.SetBool("moving", (!isGrounded) ? false : true);
-        } else {
+        }
+        else
+        {
             animator.SetBool("moving", false);
         }
 
@@ -115,6 +123,7 @@ public class PlayerControl : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.Space) && boneCdTimer <= 0 && bones > 0)
         {
+            bonesThrownCount++;
             audioManager.Play("ThrowBone");
             GameObject boneInstance = Instantiate(bonePrefab, boneSourcePos.position, Quaternion.identity);
             Physics2D.IgnoreCollision(col, boneInstance.GetComponent<BoneControl>().GetCollider2D(), true);
@@ -132,36 +141,62 @@ public class PlayerControl : MonoBehaviour
             Die();
         }
 
-        if (col.gameObject.tag == "Platform") {
+        if (col.gameObject.tag == "Platform")
+        {
             Instantiate(impactParticlePrefab, feetPos.position, Quaternion.identity);
 
         }
     }
     public void addBone()
     {
+        bonesCollectedCount++;
         audioManager.Play("PickupBone");
         bones++;
         addScore(20);
     }
-    public int getBones() {return bones;}
-    public void demonKilled() {
+    public int getBones() { return bones; }
+    public void demonKilled()
+    {
         audioManager.Play("KillDemon");
+        killCount++;
+        addScore(50);
     }
-    public void addScore(int score) {
+    public void boneImpact()
+    {
+        audioManager.Play("BoneImpact");
+    }
+    public void addScore(int score)
+    {
         StartCoroutine(Camera.main.GetComponent<CameraControl>().cameraShake(0.1f, 0.5f));
         bonusScore += score;
     }
-    public int getScore() {
-        if ((int) transform.position.y > maxScore) {
-            maxScore = (int) transform.position.y;
+    public int getBonesCollected() { return bonesCollectedCount; }
+    public int getKillCount() { return killCount; }
+    public int getAccuracy()
+    {
+        if (bonesThrownCount == 0) {
+            return 0;
+        }
+        float inaccuracy = (bonesThrownCount - killCount) / (float)bonesThrownCount;
+        inaccuracy*=100;
+        inaccuracy = 100 - inaccuracy;
+        int accuracy = (int) inaccuracy;
+        return accuracy;
+    }
+    public int getScore()
+    {
+        if ((int)transform.position.y > maxScore)
+        {
+            maxScore = (int)transform.position.y;
         }
         return maxScore + bonusScore;
     }
-    public void Die() {
+    public void Die()
+    {
         audioManager.Play("GameOver");
         // reset position
         // transform.position = new Vector3(0, -3, 0);
-        Instantiate (deathParticlePrefab, transform.position, Quaternion.identity);
+        Instantiate(deathParticlePrefab, transform.position, Quaternion.identity);
         gameOver = true;
         transform.GetComponent<Collider2D>().enabled = false;
         transform.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeAll;
@@ -174,9 +209,10 @@ public class PlayerControl : MonoBehaviour
         StartCoroutine(GameOver());
     }
 
-    public IEnumerator GameOver() {
+    public IEnumerator GameOver()
+    {
         yield return new WaitForSeconds(2f);
         Debug.Log("Game over");
-        // Transition to game over screen
+        GameObject.Find("Ui").GetComponent<hudControl>().enableGameOverScreen();
     }
 }

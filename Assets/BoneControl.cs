@@ -32,6 +32,7 @@ public class BoneControl : MonoBehaviour
         }
     }
     void OnCollisionEnter2D(Collision2D other) {
+        GameObject.Find("Player").GetComponent<PlayerControl>().boneImpact();
         Instantiate (deathParticlePrefab, transform.position, Quaternion.identity);
         Destroy(gameObject);
     }
