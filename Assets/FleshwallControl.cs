@@ -50,8 +50,7 @@ public class FleshwallControl : MonoBehaviour
     {
         if (col.gameObject.tag == "Player")
         {
-            Debug.Log("DEATH BY WOF");
-            // die
+            col.transform.GetComponent<PlayerControl>().Die();
         }
     }
     public bool isStopped() {

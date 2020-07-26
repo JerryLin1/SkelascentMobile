@@ -1520,6 +1520,15 @@ Tilemap:
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
       m_AllTileFlags: 1073741825
+  - first: {x: 0, y: 0, z: 0}
+    second:
+      serializedVersion: 2
+      m_TileIndex: 5
+      m_TileSpriteIndex: 5
+      m_TileMatrixIndex: 1
+      m_TileColorIndex: 0
+      m_TileObjectToInstantiateIndex: 65535
+      m_AllTileFlags: 1073741825
   m_AnimatedTiles: {}
   m_TileAssetArray:
   - m_RefCount: 0
@@ -1532,7 +1541,7 @@ Tilemap:
     m_Data: {fileID: 0}
   - m_RefCount: 1
     m_Data: {fileID: 11400000, guid: b7f93ea762453614ab79cfd82d5c06f2, type: 2}
-  - m_RefCount: 1
+  - m_RefCount: 2
     m_Data: {fileID: 11400000, guid: 4e1ecf2212ffbd84d9201b7a70bc8ecd, type: 2}
   m_TileSpriteArray:
   - m_RefCount: 0
@@ -1546,7 +1555,7 @@ Tilemap:
   - m_RefCount: 1
     m_Data: {fileID: -6943741494004083652, guid: a1b2e40c49a2522499ce86ba91422101,
       type: 3}
-  - m_RefCount: 1
+  - m_RefCount: 2
     m_Data: {fileID: -8647835678496758353, guid: a1b2e40c49a2522499ce86ba91422101,
       type: 3}
   m_TileMatrixArray:
@@ -1568,7 +1577,7 @@ Tilemap:
       e31: 0
       e32: 0
       e33: 1
-  - m_RefCount: 1
+  - m_RefCount: 2
     m_Data:
       e00: 1
       e01: 0
@@ -1587,7 +1596,7 @@ Tilemap:
       e32: 0
       e33: 1
   m_TileColorArray:
-  - m_RefCount: 2
+  - m_RefCount: 3
     m_Data: {r: 1, g: 1, b: 1, a: 1}
   m_TileObjectToInstantiateArray: []
   m_AnimationFrameRate: 1
@@ -1701,18 +1710,34 @@ CompositeCollider2D:
   m_ColliderPaths:
   - m_Collider: {fileID: 5961420231182930542}
     m_ColliderPaths:
-    - - X: -20000000
-        Y: 8750000
-      - X: 0
-        Y: 8750000
-      - X: 0
+    - - X: 10000100
+        Y: 8749959
+      - X: 10000100
+        Y: 10000041
+      - X: 10000041
+        Y: 10000100
+      - X: -41
+        Y: 10000100
+      - X: -100
+        Y: 10000041
+      - X: -100
         Y: 10000000
       - X: -20000000
         Y: 10000000
+      - X: -20000000
+        Y: 8750000
+      - X: -100
+        Y: 8750000
+      - X: -100
+        Y: 8749959
+      - X: -41
+        Y: 8749900
+      - X: 10000041
+        Y: 8749900
   m_CompositePaths:
     m_Paths:
-    - - {x: -0.000029300001, y: 0.875}
-      - {x: -0.000029300001, y: 1}
+    - - {x: 0.9999748, y: 0.87499}
+      - {x: 0.9999748, y: 1.00001}
       - {x: -2, y: 0.99997073}
       - {x: -1.9999708, y: 0.875}
   m_VertexDistance: 0.0005
