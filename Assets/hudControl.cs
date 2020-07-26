@@ -15,6 +15,6 @@ public class hudControl : MonoBehaviour
     }
     void Update() {
         score = pc.getScore();
-        scoreDisplay.text = score.ToString();
+        scoreDisplay.text = "Score: " + score.ToString();
     }
 }

@@ -17,6 +17,7 @@ public class PlayerControl : MonoBehaviour
     public LayerMask enemyLayer;
     public GameObject bonePrefab;
     public GameObject impactParticlePrefab;
+    public GameObject deathParticlePrefab;
     private float jumpTimeCounter;
     private bool isJumping;
     float jumpTime = 0.18f;
@@ -30,6 +31,9 @@ public class PlayerControl : MonoBehaviour
     float coyoteTimeTimer;
     Animator animator;
     int bonusScore = 0;
+    int maxScore = 0;
+    bool gameOver = false;
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -42,11 +46,17 @@ public class PlayerControl : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        hAxis = Input.GetAxisRaw("Horizontal");
-        rb.velocity = new Vector2(hAxis * movementSpeed, rb.velocity.y);
+        if (!gameOver) {
+            hAxis = Input.GetAxisRaw("Horizontal");
+            rb.velocity = new Vector2(hAxis * movementSpeed, rb.velocity.y);
+        }
     }
     void Update()
     {
+        if (!gameOver) Move();
+    }
+
+    void Move() {
         isGrounded = Physics2D.OverlapCircle(feetPos.position, checkRadius, groundLayer);
         if (isGrounded == true)
         {
@@ -115,7 +125,7 @@ public class PlayerControl : MonoBehaviour
     {
         if (col.gameObject.tag == "Enemy")
         {
-            Debug.Log("demon kil u");
+            Die();
         }
 
         if (col.gameObject.tag == "Platform") {
@@ -132,8 +142,30 @@ public class PlayerControl : MonoBehaviour
         bonusScore += score;
     }
     public int getScore() {
-        int totalScore = (int) transform.position.y;
-        totalScore += bonusScore;
-        return totalScore;
+        if ((int) transform.position.y > maxScore) {
+            maxScore = (int) transform.position.y;
+        }
+        return maxScore + bonusScore;
+    }
+    public void Die() {
+        // reset position
+        // transform.position = new Vector3(0, -3, 0);
+        Instantiate (deathParticlePrefab, transform.position, Quaternion.identity);
+        gameOver = true;
+        transform.GetComponent<Collider2D>().enabled = false;
+        transform.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeAll;
+        animator.SetBool("moving", false);
+        animator.SetFloat("yVelocity", 0);
+        animator.SetBool("death", true);
+
+        // reset player variables
+        bones = 0;
+        StartCoroutine(GameOver());
+    }
+
+    public IEnumerator GameOver() {
+        yield return new WaitForSeconds(2f);
+        Debug.Log("Game over");
+        // Transition to game over screen
     }
 }

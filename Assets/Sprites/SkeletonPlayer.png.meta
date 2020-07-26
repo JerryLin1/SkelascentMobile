@@ -38,6 +38,57 @@ TextureImporter:
   - first:
       213: 4550941474672370472
     second: SkeletonPlayer_11
+  - first:
+      213: -7998495019789705915
+    second: SkeletonPlayer_0
+  - first:
+      213: -2696196732175694332
+    second: SkeletonPlayer_1
+  - first:
+      213: 1650476453911429099
+    second: SkeletonPlayer_2
+  - first:
+      213: 6757416477222345978
+    second: SkeletonPlayer_3
+  - first:
+      213: -3844715119931171463
+    second: SkeletonPlayer_12
+  - first:
+      213: -6518563715084803254
+    second: SkeletonPlayer_4
+  - first:
+      213: -7801871068534168578
+    second: SkeletonPlayer_5
+  - first:
+      213: -4035108023896949788
+    second: SkeletonPlayer_6
+  - first:
+      213: 3382769370502646004
+    second: SkeletonPlayer_7
+  - first:
+      213: -97846497174496356
+    second: SkeletonPlayer_8
+  - first:
+      213: 7905299991691091454
+    second: SkeletonPlayer_9
+  - first:
+      213: 7136087865740953940
+    second: SkeletonPlayer_10
+  - first:
+      213: -4891191817357344850
+    second: SkeletonPlayer_11
+  - first:
+      213: 2656922402858545259
+    second: SkeletonPlayer_12
+  - first:
+      213: -700646745832039603
+    second: SkeletonPlayer_13
+  - first:
+      213: 1134229181199821519
+    second: SkeletonPlayer_14
+  - first:
+      213: 8818880946721487050
+    second: SkeletonPlayer_15
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -127,6 +178,258 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
+        y: 24
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 54d14b74823aff090800000000000000
+      internalID: -7998495019789705915
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkeletonPlayer_1
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 24
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 406491e6b5f259ad0800000000000000
+      internalID: -2696196732175694332
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkeletonPlayer_2
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 24
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bef7989179ba7e610800000000000000
+      internalID: 1650476453911429099
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkeletonPlayer_3
+      rect:
+        serializedVersion: 2
+        x: 24
+        y: 24
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: afc9534db7a27cd50800000000000000
+      internalID: 6757416477222345978
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkeletonPlayer_4
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 16
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a43ae9486d86985a0800000000000000
+      internalID: -6518563715084803254
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkeletonPlayer_5
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 16
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ef3af98699f2ab390800000000000000
+      internalID: -7801871068534168578
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkeletonPlayer_6
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 16
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4eb3b4591aa6008c0800000000000000
+      internalID: -4035108023896949788
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkeletonPlayer_7
+      rect:
+        serializedVersion: 2
+        x: 24
+        y: 16
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4f8c1edd1d202fe20800000000000000
+      internalID: 3382769370502646004
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkeletonPlayer_8
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 8
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c9bd565112164aef0800000000000000
+      internalID: -97846497174496356
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkeletonPlayer_9
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 8
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: efd55a7557445bd60800000000000000
+      internalID: 7905299991691091454
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkeletonPlayer_10
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 8
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4590773fa1a780360800000000000000
+      internalID: 7136087865740953940
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkeletonPlayer_11
+      rect:
+        serializedVersion: 2
+        x: 24
+        y: 8
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: eaf3e1ee4fefe1cb0800000000000000
+      internalID: -4891191817357344850
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkeletonPlayer_12
+      rect:
+        serializedVersion: 2
+        x: 0
         y: 0
         width: 8
         height: 8
@@ -137,14 +440,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e72bd9fda1eb02040800000000000000
-      internalID: 4620902240312210046
+      spriteID: b60392239d84fd420800000000000000
+      internalID: 2656922402858545259
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SkeletonPlayer_1
+      name: SkeletonPlayer_13
       rect:
         serializedVersion: 2
         x: 8
@@ -158,14 +461,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: dd4d0ae770d486220800000000000000
-      internalID: 2479316289452037341
+      spriteID: d4bd5a13f7dc646f0800000000000000
+      internalID: -700646745832039603
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SkeletonPlayer_2
+      name: SkeletonPlayer_14
       rect:
         serializedVersion: 2
         x: 16
@@ -179,14 +482,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ee2ba9ec2e21be4e0800000000000000
-      internalID: -1951445248196824338
+      spriteID: fca2c4f4e679dbf00800000000000000
+      internalID: 1134229181199821519
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SkeletonPlayer_3
+      name: SkeletonPlayer_15
       rect:
         serializedVersion: 2
         x: 24
@@ -200,113 +503,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9d5b0d71b99f298b0800000000000000
-      internalID: -5146776979616254503
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: SkeletonPlayer_4
-      rect:
-        serializedVersion: 2
-        x: 32
-        y: 0
-        width: 8
-        height: 8
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: b9b99c390b4793990800000000000000
-      internalID: -7405759810491540581
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: SkeletonPlayer_5
-      rect:
-        serializedVersion: 2
-        x: 40
-        y: 0
-        width: 8
-        height: 8
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 7a65c9b45c4df6900800000000000000
-      internalID: 679996012598417063
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: SkeletonPlayer_6
-      rect:
-        serializedVersion: 2
-        x: 48
-        y: 0
-        width: 8
-        height: 8
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 8572e9c86020a8c60800000000000000
-      internalID: 7821065930034521944
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: SkeletonPlayer_7
-      rect:
-        serializedVersion: 2
-        x: 56
-        y: 0
-        width: 8
-        height: 8
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 7bd6de85760385f30800000000000000
-      internalID: 4564451442771717559
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: SkeletonPlayer_8
-      rect:
-        serializedVersion: 2
-        x: 64
-        y: 0
-        width: 8
-        height: 8
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 6c4b7fd2121007d80800000000000000
-      internalID: -8255096874953362234
+      spriteID: ac87bc12f75f26a70800000000000000
+      internalID: 8818880946721487050
       vertices: []
       indices: 
       edges: []
