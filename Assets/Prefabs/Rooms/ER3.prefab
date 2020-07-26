@@ -383,7 +383,7 @@ GameObject:
   - component: {fileID: 4317391015673098525}
   - component: {fileID: 4317391015673098524}
   - component: {fileID: 4317391015673098523}
-  m_Layer: 8
+  m_Layer: 11
   m_Name: Walls
   m_TagString: Walls
   m_Icon: {fileID: 0}
@@ -1658,7 +1658,7 @@ GameObject:
   - component: {fileID: 6294281151345975215}
   - component: {fileID: 6294281151345975216}
   - component: {fileID: 6294281151345975217}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Backdrop
   m_TagString: Untagged
   m_Icon: {fileID: 0}

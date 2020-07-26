@@ -8,7 +8,7 @@ public class PlayerControl : MonoBehaviour
     Rigidbody2D rb;
     Collider2D col;
     float movementSpeed = 5f;
-    float jumpForce = 15f;
+    float jumpForce = 22f;
     bool isGrounded;
     Transform feetPos;
     Transform boneSourcePos;
@@ -67,7 +67,7 @@ public class PlayerControl : MonoBehaviour
         }
 
         // If player is on the ground and they jump
-        if (Math.Abs(rb.velocity.y) <= 0.01f && (isGrounded == true || coyoteTimeTimer > 0) && (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow)))
+        if (Math.Abs(rb.velocity.y) <= 0.1f && (isGrounded == true || coyoteTimeTimer > 0) && (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow)))
         {
             GameObject impactInstance = Instantiate(impactParticlePrefab, feetPos.position, Quaternion.identity);
             impactInstance.transform.Rotate(10f, 0, 0, Space.Self);

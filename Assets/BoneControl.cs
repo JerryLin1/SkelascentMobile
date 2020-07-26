@@ -6,8 +6,8 @@ public class BoneControl : MonoBehaviour
 {
     Rigidbody2D rb;
     Collider2D col;
-    float boneXVelocity = 20;
-    float boneYVelocity = 15;
+    float boneXVelocity = 15;
+    float boneYVelocity = 20;
     public GameObject deathParticlePrefab;
     void Awake() {
         col = GetComponent<Collider2D>();
@@ -16,6 +16,7 @@ public class BoneControl : MonoBehaviour
     void Start()
     {
         rb.angularVelocity = 500f;
+        Physics2D.IgnoreLayerCollision(gameObject.layer, 8);
     }
 
     // Update is called once per frame

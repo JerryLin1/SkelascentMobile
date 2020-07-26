@@ -50,7 +50,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   groundLayer:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 2304
   enemyLayer:
     serializedVersion: 2
     m_Bits: 512

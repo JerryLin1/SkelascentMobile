@@ -6,6 +6,7 @@ using UnityEngine.Tilemaps;
 public class PlatformCollisionHandler : MonoBehaviour
 {
     private Transform player;
+    private Transform bonePrefab;
 
     // Start is called before the first frame update
     void Start()
@@ -21,6 +22,7 @@ public class PlatformCollisionHandler : MonoBehaviour
         } else {
             Physics2D.IgnoreCollision(player.GetComponent<Collider2D>(), GetComponentInParent<CompositeCollider2D>(), false);
         }
+        
     }
 
     
