@@ -11,4 +11,6 @@ public class RoomTemplates : MonoBehaviour
     public float easySize = 5f;
     public float mediumSize = 8f;
     public float hardSize = 11f;
+
+    public List<GameObject> offScreenRooms;
 }

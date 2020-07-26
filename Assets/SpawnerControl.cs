@@ -8,11 +8,12 @@ public class SpawnerControl : MonoBehaviour
     public bool spawnsPickups;
     public List<GameObject> possibleEnemySpawns;
     public List<GameObject> possiblePickupSpawns;
+    public GameObject entity = null;
     List<GameObject> totalSpawns = new List<GameObject>();
+    
 
     void Start()
     {
-        totalSpawns.Add(new GameObject());
         if (spawnsEnemies)
         {
             totalSpawns.AddRange(possibleEnemySpawns);
@@ -22,7 +23,14 @@ public class SpawnerControl : MonoBehaviour
             totalSpawns.AddRange(possiblePickupSpawns);
         }
         if (totalSpawns.Count != 0) {
-            Instantiate(totalSpawns[Random.Range (0, totalSpawns.Count)], transform.position, Quaternion.identity);
+            int rand = Random.Range (0, totalSpawns.Count + 2);
+            if (rand == totalSpawns.Count + 1) {
+                Destroy(entity);
+            } else {
+                entity = Instantiate(totalSpawns[Random.Range (0, totalSpawns.Count)], transform.position, Quaternion.identity);
+
+            }
+            // else Destroy(entity);
         }
     }
 }

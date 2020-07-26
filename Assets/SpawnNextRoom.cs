@@ -17,13 +17,17 @@ public class SpawnNextRoom : MonoBehaviour
 
     private Vector3 newRoomOffset;
     public bool leavingRoom = false;
+    private bool leftRoom = false;
 
     private GameObject newRoom;
 
-    void Spawn() {
+    void Start() {
         roomSize = transform.Find("Backdrop").GetComponent<TilemapRenderer>().bounds.size.y / 2;
-        templates = GameObject.Find("RoomTemplates").GetComponent<RoomTemplates>();
         player = GameObject.Find("Player").transform;
+
+    }
+    void Spawn() {
+        templates = GameObject.Find("RoomTemplates").GetComponent<RoomTemplates>();
 
         // eventually set difficulty to some value based off score
         // 0 easy, 1 medium, 2 hard
@@ -60,8 +64,18 @@ public class SpawnNextRoom : MonoBehaviour
         }
 
         // Move camera to next room, spawn player on entry point, and delete old room
-        if (leavingRoom) {         
-            // Destroy(gameObject);
+        if (player.position.y > transform.position.y + roomSize && !leftRoom) {         
+            templates.offScreenRooms.Add(gameObject);
+            leftRoom = true;
+            if (templates.offScreenRooms.Count > 1) {
+                GameObject roomToDelete = templates.offScreenRooms[0];
+                templates.offScreenRooms.RemoveAt(0);
+                foreach (Transform spawner in roomToDelete.transform.Find("Spawners").transform) {
+                    Destroy(spawner.GetComponent<SpawnerControl>().entity);
+                }
+                Destroy(roomToDelete);
+            }
+            
         }
 
         
