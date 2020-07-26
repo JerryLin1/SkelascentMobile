@@ -6,7 +6,8 @@ public class BoneControl : MonoBehaviour
 {
     Rigidbody2D rb;
     Collider2D col;
-    float boneXVelocity = 10;
+    float boneXVelocity = 20;
+    float boneYVelocity = 15;
     public GameObject deathParticlePrefab;
     void Awake() {
         col = GetComponent<Collider2D>();
@@ -24,10 +25,10 @@ public class BoneControl : MonoBehaviour
     }
     public void initialVelocity (float playerRotation) {
         if (playerRotation == 180) {
-            rb.velocity = new Vector2(boneXVelocity, 30);
+            rb.velocity = new Vector2(boneXVelocity, boneYVelocity);
         }
         else if (playerRotation == 0) {
-            rb.velocity = new Vector2(-boneXVelocity, 30);
+            rb.velocity = new Vector2(-boneXVelocity, boneYVelocity);
         }
     }
     void OnCollisionEnter2D(Collision2D other) {

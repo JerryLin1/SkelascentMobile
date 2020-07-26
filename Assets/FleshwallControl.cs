@@ -35,9 +35,10 @@ public class FleshwallControl : MonoBehaviour
                 rbSpeed += acceleration * Time.deltaTime;
             }
         }
-        if ((int)transform.position.y <= (int)player.transform.position.y)
+        if (player.transform.position.y - transform.transform.position.y <= -2)
         {
             stopped = true;
+            rb.velocity = new Vector2(0, 0);
         }
     }
     public void catchUp(float y)
@@ -52,5 +53,8 @@ public class FleshwallControl : MonoBehaviour
             Debug.Log("DEATH BY WOF");
             // die
         }
+    }
+    public bool isStopped() {
+        return stopped;
     }
 }
