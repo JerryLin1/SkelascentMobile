@@ -8,7 +8,7 @@ public class PlayerControl : MonoBehaviour
     Rigidbody2D rb;
     Collider2D col;
     float movementSpeed = 5f;
-    float jumpForce = 15f;
+    float jumpForce = 18f;
     bool isGrounded;
     Transform feetPos;
     Transform boneSourcePos;
@@ -33,6 +33,7 @@ public class PlayerControl : MonoBehaviour
     int bonusScore = 0;
     int maxScore = 0;
     bool gameOver = false;
+    AudioManager audioManager;
 
     void Start()
     {
@@ -41,6 +42,7 @@ public class PlayerControl : MonoBehaviour
         feetPos = transform.Find("Feet");
         boneSourcePos = transform.Find("BoneSource");
         animator = transform.Find("Sprite").GetComponent<Animator>();
+        audioManager = GetComponent<AudioManager>();
     }
 
     // Update is called once per frame
@@ -80,6 +82,7 @@ public class PlayerControl : MonoBehaviour
         // If player is on the ground and they jump
         if (Math.Abs(rb.velocity.y) <= 0.1f && (isGrounded == true || coyoteTimeTimer > 0) && (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow)))
         {
+            audioManager.Play("Jump");
             GameObject impactInstance = Instantiate(impactParticlePrefab, feetPos.position, Quaternion.identity);
             impactInstance.transform.Rotate(10f, 0, 0, Space.Self);
             isJumping = true;
@@ -112,6 +115,7 @@ public class PlayerControl : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.Space) && boneCdTimer <= 0 && bones > 0)
         {
+            audioManager.Play("ThrowBone");
             GameObject boneInstance = Instantiate(bonePrefab, boneSourcePos.position, Quaternion.identity);
             Physics2D.IgnoreCollision(col, boneInstance.GetComponent<BoneControl>().GetCollider2D(), true);
             boneInstance.GetComponent<BoneControl>().initialVelocity(transform.eulerAngles.y);
@@ -135,10 +139,14 @@ public class PlayerControl : MonoBehaviour
     }
     public void addBone()
     {
+        audioManager.Play("PickupBone");
         bones++;
         addScore(20);
     }
     public int getBones() {return bones;}
+    public void demonKilled() {
+        audioManager.Play("KillDemon");
+    }
     public void addScore(int score) {
         StartCoroutine(Camera.main.GetComponent<CameraControl>().cameraShake(0.1f, 0.5f));
         bonusScore += score;
@@ -150,6 +158,7 @@ public class PlayerControl : MonoBehaviour
         return maxScore + bonusScore;
     }
     public void Die() {
+        audioManager.Play("GameOver");
         // reset position
         // transform.position = new Vector3(0, -3, 0);
         Instantiate (deathParticlePrefab, transform.position, Quaternion.identity);

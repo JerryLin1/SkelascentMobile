@@ -14,6 +14,7 @@ public class DemonControl : MonoBehaviour
     Transform feetPos;
     Transform groundCheckPos;
     int direction;
+    AudioManager audioManager;
     void Start()
     {
         animator = GetComponent<Animator>();
@@ -23,6 +24,7 @@ public class DemonControl : MonoBehaviour
         direction = Random.Range(0, 1);
         if (direction == 0) direction = -1;
         transform.eulerAngles = (direction > 0 ) ? new Vector3(0, 180, 0) : new Vector3(0,0,0);
+        audioManager = GetComponent<AudioManager>();
     }
     void Update()
     {
@@ -39,7 +41,7 @@ public class DemonControl : MonoBehaviour
     }
     void OnCollisionEnter2D(Collision2D other) {
         if (other.collider.gameObject.tag == "Bone") {
-            GameObject.Find("Player").GetComponent<PlayerControl>().addScore(50);
+            GameObject.Find("Player").GetComponent<PlayerControl>().demonKilled();
             die();
         }
     }
@@ -48,7 +50,7 @@ public class DemonControl : MonoBehaviour
         direction *= -1;
         transform.eulerAngles = (direction > 0 ) ? new Vector3(0, 180, 0) : new Vector3(0,0,0);
     }
-    public void die () {
+    public void die () {        
         Instantiate (deathParticlePrefab, transform.position, Quaternion.identity);
         Destroy(gameObject);
     }
