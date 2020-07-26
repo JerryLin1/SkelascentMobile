@@ -60,6 +60,7 @@ public class PlayerControl : MonoBehaviour
     void Update()
     {
         if (!gameOver) Move();
+        else if (Input.GetKeyDown(KeyCode.Space)) GameObject.Find("Ui").GetComponent<hudControl>().restart();   
     }
 
     void Move()

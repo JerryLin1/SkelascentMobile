@@ -62,4 +62,7 @@ public class hudControl : MonoBehaviour
         gameOverStats.transform.Find("Accuracy").GetComponent<TextMeshProUGUI>().text = "<color=#3A5339>Bone accuracy: "+ accuracy +"%</color>";
         gameOverStats.transform.Find("Score").GetComponent<TextMeshProUGUI>().text = "<color=#323866>Score: "+ score +"</color>";
     }
+    public void restart() {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
 }
