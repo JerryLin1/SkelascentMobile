@@ -87,6 +87,6 @@ public class hudControl : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
     public void returnToMenu() {
-        //TODO: GO TO MENU!! :D
+        SceneManager.LoadScene("MainMenu");
     }
 }
