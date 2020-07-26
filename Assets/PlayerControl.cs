@@ -7,12 +7,12 @@ public class PlayerControl : MonoBehaviour
 {
     Rigidbody2D rb;
     Collider2D col;
-    float movementSpeed = 7f;
-    float jumpForce = 20f;
+    float movementSpeed = 5f;
+    float jumpForce = 15f;
     bool isGrounded;
     Transform feetPos;
     Transform boneSourcePos;
-    float checkRadius = 0.05f;
+    float checkRadius = 0.1f;
     public LayerMask groundLayer;
     public LayerMask enemyLayer;
     public GameObject bonePrefab;
