@@ -18,14 +18,14 @@ public class CameraControl : MonoBehaviour
         if (fleshWall.GetComponent<FleshwallControl>().isStopped() == false)
         {
             Camera.main.transform.position = new Vector3(player.transform.position.x, player.transform.position.y, transform.position.z);
-            playerFleshDist = player.transform.position.y - fleshWall.transform.position.y;
-            float magnitude;
-            if (playerFleshDist >= 1) magnitude = 1 / playerFleshDist;
-            else magnitude = 1;
-            float x = Random.Range(-1f, 1f) * magnitude;
-            float y = Random.Range(-1f, 1f) * magnitude;
+            // playerFleshDist = player.transform.position.y - fleshWall.transform.position.y;
+            // float magnitude;
+            // if (playerFleshDist >= 1) magnitude = 1 / playerFleshDist;
+            // else magnitude = 1;
+            // float x = Random.Range(-1f, 1f) * magnitude;
+            // float y = Random.Range(-1f, 1f) * magnitude;
 
-            transform.position = new Vector3(transform.position.x + x, transform.position.y + y, transform.position.z);
+            // transform.position = new Vector3(transform.position.x + x, transform.position.y + y, transform.position.z);
         }
     }
     public IEnumerator cameraShake(float duration, float magnitude)

@@ -8,7 +8,7 @@ public class PlayerControl : MonoBehaviour
     Rigidbody2D rb;
     Collider2D col;
     float movementSpeed = 5f;
-    float jumpForce = 15f;
+    float jumpForce = 18f;
     bool isGrounded;
     Transform feetPos;
     Transform boneSourcePos;
