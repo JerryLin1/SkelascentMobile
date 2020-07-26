@@ -12,16 +12,22 @@ public class hudControl : MonoBehaviour
     GameObject boneCounter;
     GameObject gameOverScreen;
     GameObject gameOverStats;
+    GameObject pauseMenu;
+    GameObject darkener;
     int score;
     int playerBones = 0;
     int updatedBones;
     void Start()
     {
+        Time.timeScale = 1;
         gameOverScreen = transform.Find("GameOver").gameObject;
         gameOverStats = gameOverScreen.transform.Find("Stats").gameObject;
         gameOverScreen.SetActive(false);
         scoreDisplay = transform.Find("Score").Find("Text").GetComponent<TextMeshProUGUI>();
         boneCounter = transform.Find("Bone Counter").gameObject;
+        darkener = transform.Find("Darkener").gameObject;
+        pauseMenu = transform.Find("PauseMenu").gameObject;
+        pauseMenu.SetActive(false);
         updateBoneCount(playerBones);
     }
     void Update()
@@ -33,6 +39,10 @@ public class hudControl : MonoBehaviour
         {
             updateBoneCount(updatedBones);
             playerBones = updatedBones;
+        }
+        if (gameOverScreen.activeSelf == false && (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.P))) {
+            if (pauseMenu.activeSelf == false) pause();
+            else unpause();
         }
     }
     public void updateBoneCount(int bones)
@@ -54,6 +64,7 @@ public class hudControl : MonoBehaviour
     }
     public void enableGameOverScreen() {
         gameOverScreen.SetActive(true);
+        darkener.SetActive(true);
         int bonesCollected = pc.getBonesCollected();
         gameOverStats.transform.Find("BonesCollected").GetComponent<TextMeshProUGUI>().text = "<color=#616161>Bones collected: "+ bonesCollected +"</color>";
         int killCount = pc.getKillCount();
@@ -62,7 +73,20 @@ public class hudControl : MonoBehaviour
         gameOverStats.transform.Find("Accuracy").GetComponent<TextMeshProUGUI>().text = "<color=#3A5339>Bone accuracy: "+ accuracy +"%</color>";
         gameOverStats.transform.Find("Score").GetComponent<TextMeshProUGUI>().text = "<color=#323866>Score: "+ score +"</color>";
     }
+    public void pause() {
+        Time.timeScale = 0;
+        darkener.SetActive(true);
+        pauseMenu.SetActive(true);
+    }
+    public void unpause() {
+        Time.timeScale = 1;
+        darkener.SetActive(false);
+        pauseMenu.SetActive(false);
+    }
     public void restart() {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+    public void returnToMenu() {
+        //TODO: GO TO MENU!! :D
     }
 }
