@@ -8,15 +8,19 @@ using TMPro;
 public class hudControl : MonoBehaviour
 {
     public PlayerControl pc;
+
     TextMeshProUGUI scoreDisplay;
     GameObject boneCounter;
     GameObject gameOverScreen;
     GameObject gameOverStats;
     GameObject pauseMenu;
     GameObject darkener;
+    TextMeshProUGUI highScoreDisplay;
     int score;
     int playerBones = 0;
     int updatedBones;
+    int highScore = ScoreKeeper.highScore;
+
     void Start()
     {
         Time.timeScale = 1;
@@ -24,6 +28,7 @@ public class hudControl : MonoBehaviour
         gameOverStats = gameOverScreen.transform.Find("Stats").gameObject;
         gameOverScreen.SetActive(false);
         scoreDisplay = transform.Find("Score").Find("Text").GetComponent<TextMeshProUGUI>();
+        highScoreDisplay = transform.Find("High Score").Find("Text").GetComponent<TextMeshProUGUI>();
         boneCounter = transform.Find("Bone Counter").gameObject;
         darkener = transform.Find("Darkener").gameObject;
         pauseMenu = transform.Find("PauseMenu").gameObject;
@@ -34,6 +39,13 @@ public class hudControl : MonoBehaviour
     {
         score = pc.getScore();
         scoreDisplay.text = "<color=#EEEEEE>Score: " + score.ToString() + "</color>";
+        if (score > highScore) {
+            highScoreDisplay.text = "<color=#EEEEEE>High Score: " + score.ToString() + "</color>";
+            ScoreKeeper.highScore = score;
+        } else {
+            highScoreDisplay.text = "<color=#EEEEEE>High Score: " + highScore.ToString()+ "</color>";
+        }
+        
         updatedBones = pc.getBones();
         if (playerBones != updatedBones)
         {
@@ -85,8 +97,10 @@ public class hudControl : MonoBehaviour
     }
     public void restart() {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+
     }
     public void returnToMenu() {
         SceneManager.LoadScene("MainMenu");
     }
+
 }

@@ -8,7 +8,7 @@ public class PlayerControl : MonoBehaviour
     Rigidbody2D rb;
     Collider2D col;
     float movementSpeed = 5f;
-    float jumpForce = 20f;
+    float jumpForce = 18f;
     bool isGrounded;
     Transform feetPos;
     Transform boneSourcePos;
@@ -36,6 +36,8 @@ public class PlayerControl : MonoBehaviour
     int killCount = 0;
     int bonesThrownCount = 0;
     int bonesCollectedCount = 0;
+    Vector2 direction;
+    Vector3 mousePos;
     AudioManager audioManager;
 
     void Start()
@@ -55,6 +57,7 @@ public class PlayerControl : MonoBehaviour
         {
             hAxis = Input.GetAxisRaw("Horizontal");
             rb.velocity = new Vector2(hAxis * movementSpeed, rb.velocity.y);
+    
         }
     }
     void Update()
@@ -122,13 +125,16 @@ public class PlayerControl : MonoBehaviour
             isJumping = false;
             rb.gravityScale = fallingGravity;
         }
-        if (Input.GetKeyDown(KeyCode.Space) && boneCdTimer <= 0 && bones > 0)
+        if (Input.GetMouseButton(0) && boneCdTimer <= 0 && bones > 0)
         {
+            mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            direction = new Vector2(mousePos.x - transform.position.x, mousePos.y - transform.position.y);
+            direction.Normalize();
             bonesThrownCount++;
             audioManager.Play("ThrowBone");
             GameObject boneInstance = Instantiate(bonePrefab, boneSourcePos.position, Quaternion.identity);
             Physics2D.IgnoreCollision(col, boneInstance.GetComponent<BoneControl>().GetCollider2D(), true);
-            boneInstance.GetComponent<BoneControl>().initialVelocity(transform.eulerAngles.y);
+            boneInstance.GetComponent<BoneControl>().initialVelocity(direction);
             boneCdTimer = boneCd;
             bones--;
         }
