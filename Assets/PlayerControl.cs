@@ -114,14 +114,13 @@ public class PlayerControl : MonoBehaviour
     {
         if (col.gameObject.tag == "Enemy")
         {
-            Debug.Log("die");
+            Debug.Log("demon kil u");
         }
 
         if (col.gameObject.tag == "Platform") {
             Instantiate(impactParticlePrefab, feetPos.position, Quaternion.identity);
 
         }
-
     }
     public void addBone()
     {
