@@ -13,17 +13,5 @@ public class EnteringNewRoom : MonoBehaviour
         }
     }
 
-    void OnTriggerExit2D(Collider2D other) {
-        if (other.name == "Player") {
-
-            if (other.transform.GetComponent<Rigidbody2D>().velocity.y < 0) {
-                // Game over, bring to score screen 
-            } else {
-                transform.parent.GetComponent<SpawnNextRoom>().leavingRoom = true;
-
-            }
-
-        }
-    }
 
 }
