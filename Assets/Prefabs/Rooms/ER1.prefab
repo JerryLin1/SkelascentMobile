@@ -181,7 +181,7 @@ Tilemap:
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
       m_AllTileFlags: 1073741825
-  - first: {x: -1, y: 0, z: 0}
+  - first: {x: -1, y: -1, z: 0}
     second:
       serializedVersion: 2
       m_TileIndex: 1
@@ -190,7 +190,7 @@ Tilemap:
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
       m_AllTileFlags: 1073741825
-  - first: {x: 0, y: 0, z: 0}
+  - first: {x: 0, y: -1, z: 0}
     second:
       serializedVersion: 2
       m_TileIndex: 1
@@ -199,7 +199,7 @@ Tilemap:
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
       m_AllTileFlags: 1073741825
-  - first: {x: 1, y: 0, z: 0}
+  - first: {x: 1, y: -1, z: 0}
     second:
       serializedVersion: 2
       m_TileIndex: 0
@@ -373,14 +373,22 @@ CompositeCollider2D:
   m_ColliderPaths:
   - m_Collider: {fileID: 7226352666817038277}
     m_ColliderPaths:
-    - - X: 20000000
-        Y: 10000000
-      - X: -10000000
-        Y: 10000000
-      - X: -10000000
-        Y: 8750000
-      - X: 20000000
-        Y: 8750000
+    - - X: 20000100
+        Y: -1250041
+      - X: 20000100
+        Y: 41
+      - X: 20000041
+        Y: 100
+      - X: -10000041
+        Y: 100
+      - X: -10000100
+        Y: 41
+      - X: -10000100
+        Y: -1250041
+      - X: -10000041
+        Y: -1250100
+      - X: 20000041
+        Y: -1250100
     - - X: 10000000
         Y: -40000000
       - X: -10000000
@@ -391,10 +399,10 @@ CompositeCollider2D:
         Y: -41250000
   m_CompositePaths:
     m_Paths:
-    - - {x: 1.9999708, y: 0.875}
-      - {x: 1.9999708, y: 1}
-      - {x: -1, y: 0.99997073}
-      - {x: -0.99997073, y: 0.875}
+    - - {x: 1.9999748, y: -0.12501}
+      - {x: 1.9999748, y: 0.00001}
+      - {x: -1.00001, y: -0.0000252}
+      - {x: -0.9999748, y: -0.12501}
     - - {x: 0.99997073, y: -4.125}
       - {x: 0.99997073, y: -4}
       - {x: -1, y: -4.000029}
@@ -732,7 +740,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6128307651159534877}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1, y: 1, z: 0}
+  m_LocalPosition: {x: 0.62, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1655682858951167060}
