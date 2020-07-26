@@ -14,13 +14,12 @@ public class BoneControl : MonoBehaviour
     }
     void Start()
     {
-        rb.angularVelocity = 10000f;
+        rb.angularVelocity = 500f;
     }
 
     // Update is called once per frame
     void Update()
     {
-        
     }
     public void initialVelocity (float playerRotation) {
         if (playerRotation == 180) {
