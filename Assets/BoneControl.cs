@@ -9,27 +9,28 @@ public class BoneControl : MonoBehaviour
     float boneXVelocity = 15;
     float boneYVelocity = 20;
     public GameObject deathParticlePrefab;
+    Vector3 mousePos;
+    Vector2 direction;
+
+
     void Awake() {
         col = GetComponent<Collider2D>();
         rb = GetComponent<Rigidbody2D>();
     }
     void Start()
     {
-        rb.angularVelocity = 500f;
+        rb.angularVelocity = 200f;
         Physics2D.IgnoreLayerCollision(gameObject.layer, 8);
     }
+    
 
     // Update is called once per frame
     void Update()
     {
+
     }
-    public void initialVelocity (float playerRotation) {
-        if (playerRotation == 180) {
-            rb.velocity = new Vector2(boneXVelocity, boneYVelocity);
-        }
-        else if (playerRotation == 0) {
-            rb.velocity = new Vector2(-boneXVelocity, boneYVelocity);
-        }
+    public void initialVelocity (Vector2 direction) {
+        rb.velocity = direction * 20f;
     }
     void OnCollisionEnter2D(Collision2D other) {
         GameObject.Find("Player").GetComponent<PlayerControl>().boneImpact();
