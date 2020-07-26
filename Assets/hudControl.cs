@@ -7,7 +7,7 @@ using TMPro;
 
 public class hudControl : MonoBehaviour
 {
-    public PlayerControl pc;
+    public PlayerControl pc; 
 
     TextMeshProUGUI scoreDisplay;
     GameObject boneCounter;
@@ -20,6 +20,9 @@ public class hudControl : MonoBehaviour
     int playerBones = 0;
     int updatedBones;
     int highScore = ScoreKeeper.highScore;
+
+    float noBonesEmphasisTimer = 0;
+    float noBonesEmphasisDuration = 0.1f;
 
     void Start()
     {
@@ -37,6 +40,11 @@ public class hudControl : MonoBehaviour
     }
     void Update()
     {
+        if (noBonesEmphasisTimer > 0) {
+            noBonesEmphasisTimer -= Time.deltaTime;
+            if (noBonesEmphasisTimer <= 0) boneCounter.transform.Find("Out of Bones").gameObject.GetComponent<TextMeshProUGUI>().fontSize -= 5;
+        }
+
         score = pc.getScore();
         scoreDisplay.text = "<color=#EEEEEE>Score: " + score.ToString() + "</color>";
         if (score > highScore) {
@@ -47,6 +55,12 @@ public class hudControl : MonoBehaviour
         }
         
         updatedBones = pc.getBones();
+        if (updatedBones > 0) {
+            boneCounter.transform.Find("Out of Bones").gameObject.SetActive(false);
+        } else {
+            boneCounter.transform.Find("Out of Bones").gameObject.SetActive(true);
+
+        }
         if (playerBones != updatedBones)
         {
             updateBoneCount(updatedBones);
@@ -59,18 +73,19 @@ public class hudControl : MonoBehaviour
     }
     public void updateBoneCount(int bones)
     {
-        for (int i = 0; i < 6; i++)
+        for (int i = 0; i < 7; i++)
         {
             boneCounter.transform.GetChild(i).gameObject.SetActive(false);
         }
-        for (int i = 0; i < bones; i++)
+        
+        for (int i = 1; i < bones+1; i++)
         {
             if (i > 4)
             {
-                boneCounter.transform.GetChild(5).gameObject.SetActive(true);
-                boneCounter.transform.GetChild(5).GetComponent<TextMeshProUGUI>().text = "+" + (bones - 5);
+                boneCounter.transform.GetChild(6).gameObject.SetActive(true);
+                boneCounter.transform.GetChild(6).GetComponent<TextMeshProUGUI>().text = "+" + (bones - 5);
             }
-            else
+            else 
                 boneCounter.transform.GetChild(i).gameObject.SetActive(true);
         }
     }
@@ -101,6 +116,11 @@ public class hudControl : MonoBehaviour
     }
     public void returnToMenu() {
         SceneManager.LoadScene("MainMenu");
+    }
+
+    public void outOfBones() {
+        boneCounter.transform.Find("Out of Bones").gameObject.GetComponent<TextMeshProUGUI>().fontSize += 5;
+        noBonesEmphasisTimer = noBonesEmphasisDuration;
     }
 
 }

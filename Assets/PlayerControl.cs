@@ -125,7 +125,7 @@ public class PlayerControl : MonoBehaviour
             isJumping = false;
             rb.gravityScale = fallingGravity;
         }
-        if (Input.GetMouseButton(0) && boneCdTimer <= 0 && bones > 0)
+        if (Input.GetMouseButtonDown(0) && boneCdTimer <= 0 && bones > 0)
         {
             mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             direction = new Vector2(mousePos.x - transform.position.x, mousePos.y - transform.position.y);
@@ -137,6 +137,10 @@ public class PlayerControl : MonoBehaviour
             boneInstance.GetComponent<BoneControl>().initialVelocity(direction);
             boneCdTimer = boneCd;
             bones--;
+        } else if (Input.GetMouseButtonDown(0) && boneCdTimer <= 0 && bones == 0) {
+            audioManager.Play("OutofBones");
+            boneCdTimer = boneCd;
+            GameObject.Find("Ui").GetComponent<hudControl>().outOfBones();
         }
         boneCdTimer -= Time.deltaTime;
         coyoteTimeTimer -= Time.deltaTime;

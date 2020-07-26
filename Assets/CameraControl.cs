@@ -28,6 +28,8 @@ public class CameraControl : MonoBehaviour
                 float y = Random.Range(-1f, 1f) * magnitude;
 
                 transform.position = new Vector3(transform.position.x + x, transform.position.y + y, transform.position.z);
+
+                GameObject.Find("Player").GetComponent<AudioManager>().Play("BoneImpact");
             }
         }
     }
