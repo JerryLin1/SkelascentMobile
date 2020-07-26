@@ -29,6 +29,7 @@ public class PlayerControl : MonoBehaviour
     float coyoteTime = 0.2f;
     float coyoteTimeTimer;
     Animator animator;
+    int bonusScore = 0;
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -125,5 +126,14 @@ public class PlayerControl : MonoBehaviour
     public void addBone()
     {
         bones++;
+        addScore(20);
+    }
+    public void addScore(int score) {
+        bonusScore += score;
+    }
+    public int getScore() {
+        int totalScore = (int) transform.position.y;
+        totalScore += bonusScore;
+        return totalScore;
     }
 }
