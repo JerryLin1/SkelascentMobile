@@ -115,6 +115,7 @@ public class hudControl : MonoBehaviour
 
     }
     public void returnToMenu() {
+        Time.timeScale = 1;
         SceneManager.LoadScene("MainMenu");
     }
 

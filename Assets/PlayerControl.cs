@@ -125,7 +125,7 @@ public class PlayerControl : MonoBehaviour
             isJumping = false;
             rb.gravityScale = fallingGravity;
         }
-        if (Input.GetMouseButtonDown(0) && boneCdTimer <= 0 && bones > 0)
+        if (Input.GetMouseButtonDown(0) && boneCdTimer <= 0 && bones > 0 && Time.timeScale == 1)
         {
             mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             direction = new Vector2(mousePos.x - transform.position.x, mousePos.y - transform.position.y);
@@ -207,8 +207,6 @@ public class PlayerControl : MonoBehaviour
     {
         audioManager.Play("GameOver");
         StartCoroutine(Camera.main.GetComponent<CameraControl>().cameraShake(0.2f, 1f));
-        // reset position
-        // transform.position = new Vector3(0, -3, 0);
         Instantiate(deathParticlePrefab, transform.position, Quaternion.identity);
         gameOver = true;
         transform.GetComponent<Collider2D>().enabled = false;
@@ -216,9 +214,6 @@ public class PlayerControl : MonoBehaviour
         animator.SetBool("moving", false);
         animator.SetFloat("yVelocity", 0);
         animator.SetBool("death", true);
-
-        // reset player variables
-        bones = 0;
         StartCoroutine(GameOver());
     }
 
