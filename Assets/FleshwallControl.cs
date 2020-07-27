@@ -14,7 +14,7 @@ public class FleshwallControl : MonoBehaviour
     AudioManager audioManager;
     Rigidbody2D rb;
     bool stopped = false;
-    float roarCd = 2f;
+    float roarCd = 0f;
     void Start()
     {
         sprite = transform.Find("Sprite");
