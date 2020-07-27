@@ -15,6 +15,7 @@ public class CameraControl : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+        
         if (fleshWall.GetComponent<FleshwallControl>().isStopped() == false)
         {
             Camera.main.transform.position = new Vector3(player.transform.position.x, player.transform.position.y, transform.position.z);
