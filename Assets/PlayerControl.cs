@@ -24,7 +24,7 @@ public class PlayerControl : MonoBehaviour
     float hAxis;
     float normalGravity = 5f;
     float fallingGravity = 8f;
-    float boneCd = 1f;
+    float boneCd = 0.25f;
     float boneCdTimer;
     int bones = 0;
     float coyoteTime = 0.3f;
@@ -138,7 +138,7 @@ public class PlayerControl : MonoBehaviour
             boneInstance.GetComponent<BoneControl>().initialVelocity(direction);
             boneCdTimer = boneCd;
             bones--;
-        } else if (Input.GetMouseButtonDown(0) && boneCdTimer <= 0 && bones == 0) {
+        } else if (Input.GetMouseButtonDown(0) && boneCdTimer <= 0 && bones == 0 && Time.timeScale == 1) {
             audioManager.Play("OutofBones");
             boneCdTimer = boneCd;
             GameObject.Find("Ui").GetComponent<hudControl>().outOfBones();
