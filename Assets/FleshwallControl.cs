@@ -11,12 +11,15 @@ public class FleshwallControl : MonoBehaviour
     public float acceleration = 0.5f;
     public float maxSpeed = 5f;
     public GameObject player;
+    AudioManager audioManager;
     Rigidbody2D rb;
     bool stopped = false;
+    float roarCd = 2f;
     void Start()
     {
         sprite = transform.Find("Sprite");
         rb = GetComponent<Rigidbody2D>();
+        audioManager = GetComponent<AudioManager>();
     }
 
     // Update is called once per frame
@@ -39,6 +42,22 @@ public class FleshwallControl : MonoBehaviour
         {
             stopped = true;
             rb.velocity = new Vector2(0, 0);
+        }
+        roarCd -= Time.deltaTime;
+    }
+    public void roar(float dist) {
+        float vol;
+        if (dist/10 > 1) vol = 1;
+        else vol = dist/10;
+        audioManager.sounds[0].source.volume = vol;
+        Debug.Log(audioManager.sounds[0].source.volume);
+        audioManager.Play("Flesh");
+        StartCoroutine(Camera.main.GetComponent<CameraControl>().cameraShake(0.5f, vol*0.6f));
+    }
+    public void roarIfCan(float dist) {
+        if (roarCd <= 0) {
+            roar(dist);
+            roarCd = Random.Range(10f, 20f);
         }
     }
     public void catchUp(float y)

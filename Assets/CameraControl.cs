@@ -21,6 +21,7 @@ public class CameraControl : MonoBehaviour
             playerFleshDist = player.transform.position.y - fleshWall.transform.position.y;
             if (playerFleshDist - 5 <= 10)
             {
+                fleshWall.GetComponent<FleshwallControl>().roarIfCan(playerFleshDist);
                 float magnitude;
                 if (playerFleshDist >= 1) magnitude = 1 / playerFleshDist;
                 else magnitude = 1;
@@ -28,8 +29,6 @@ public class CameraControl : MonoBehaviour
                 float y = Random.Range(-1f, 1f) * magnitude;
 
                 transform.position = new Vector3(transform.position.x + x, transform.position.y + y, transform.position.z);
-
-                GameObject.Find("Player").GetComponent<AudioManager>().Play("BoneImpact");
             }
         }
     }
