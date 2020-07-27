@@ -26,7 +26,7 @@ public class PlayerControl : MonoBehaviour
     float fallingGravity = 8f;
     float boneCd = 1f;
     float boneCdTimer;
-    int bones = 0;
+    int bones = 123;
     float coyoteTime = 0.3f;
     float coyoteTimeTimer;
     Animator animator;
@@ -45,7 +45,7 @@ public class PlayerControl : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         col = GetComponent<Collider2D>();
         feetPos = transform.Find("Feet");
-        boneSourcePos = transform.Find("BoneSource");
+        boneSourcePos = transform.Find("BoneSource").Find("Source");
         animator = transform.Find("Sprite").GetComponent<Animator>();
         audioManager = GetComponent<AudioManager>();
     }
@@ -130,7 +130,7 @@ public class PlayerControl : MonoBehaviour
             mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             direction = new Vector2(mousePos.x - transform.position.x, mousePos.y - transform.position.y);
             direction.Normalize();
-            transform.eulerAngles = (mousePos.x > transform.position.x) ? new Vector3(0, 180, 0) : new Vector3(0, 0, 0);
+            transform.Find("BoneSource").transform.up = direction;
             bonesThrownCount++;
             audioManager.Play("ThrowBone");
             GameObject boneInstance = Instantiate(bonePrefab, boneSourcePos.position, Quaternion.identity);
