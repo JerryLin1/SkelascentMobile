@@ -9,7 +9,6 @@ public class EnteringNewRoom : MonoBehaviour
     void OnTriggerEnter2D(Collider2D other) {
         if (other.name == "Player") {
             transform.parent.GetComponent<SpawnNextRoom>().spawnNextRoom = true;
-            
         }
     }
 

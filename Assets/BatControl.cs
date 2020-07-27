@@ -49,7 +49,7 @@ public class BatControl : MonoBehaviour
     }
 
     void OnCollisionEnter2D(Collision2D other) {
-        if (other.gameObject.name == "Player") {
+        if (other.gameObject.name == "Player" && other.gameObject.GetComponent<PlayerControl>() != null) {
             other.gameObject.GetComponent<PlayerControl>().Die();
         }
         if (other.collider.gameObject.tag == "Bone") {

@@ -10,7 +10,7 @@ public class FleshwallControl : MonoBehaviour
     public float rbSpeed = 5f;
     public float acceleration = 0.5f;
     public float maxSpeed = 5f;
-    public GameObject player;
+    private GameObject player;
     AudioManager audioManager;
     Rigidbody2D rb;
     bool stopped = false;
@@ -20,6 +20,7 @@ public class FleshwallControl : MonoBehaviour
         sprite = transform.Find("Sprite");
         rb = GetComponent<Rigidbody2D>();
         audioManager = GetComponent<AudioManager>();
+        player = GameObject.Find("Player");
     }
 
     // Update is called once per frame
@@ -38,24 +39,27 @@ public class FleshwallControl : MonoBehaviour
                 rbSpeed += acceleration * Time.deltaTime;
             }
         }
-        if (player.transform.position.y - transform.transform.position.y <= -2)
+        if (player.transform.position.y - transform.position.y <= -2)
         {
             stopped = true;
             rb.velocity = new Vector2(0, 0);
         }
         roarCd -= Time.deltaTime;
     }
-    public void roar(float dist) {
+    public void roar(float dist)
+    {
         float vol;
-        if (dist/10 > 1) vol = 1;
-        else vol = dist/10;
+        if (dist / 10 > 1) vol = 1;
+        else vol = dist / 10;
         audioManager.sounds[0].source.volume = vol;
         Debug.Log(audioManager.sounds[0].source.volume);
         audioManager.Play("Flesh");
-        StartCoroutine(Camera.main.GetComponent<CameraControl>().cameraShake(0.5f, vol*0.6f));
+        StartCoroutine(Camera.main.GetComponent<CameraControl>().cameraShake(0.5f, vol * 0.6f));
     }
-    public void roarIfCan(float dist) {
-        if (roarCd <= 0) {
+    public void roarIfCan(float dist)
+    {
+        if (roarCd <= 0)
+        {
             roar(dist);
             roarCd = Random.Range(10f, 20f);
         }
@@ -72,7 +76,8 @@ public class FleshwallControl : MonoBehaviour
             col.transform.GetComponent<PlayerControl>().Die();
         }
     }
-    public bool isStopped() {
+    public bool isStopped()
+    {
         return stopped;
     }
 }

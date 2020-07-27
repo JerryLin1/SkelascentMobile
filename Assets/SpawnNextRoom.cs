@@ -24,10 +24,11 @@ public class SpawnNextRoom : MonoBehaviour
     void Start() {
         roomSize = transform.Find("Backdrop").GetComponent<TilemapRenderer>().bounds.size.y / 2;
         player = GameObject.Find("Player").transform;
+        templates = GameObject.Find("RoomTemplates").GetComponent<RoomTemplates>();
+
 
     }
     void Spawn() {
-        templates = GameObject.Find("RoomTemplates").GetComponent<RoomTemplates>();
 
         // eventually set difficulty to some value based off score
         // 0 easy, 1 medium, 2 hard
@@ -48,7 +49,6 @@ public class SpawnNextRoom : MonoBehaviour
 
         // Spawn room
         int rand = Random.Range(0, rooms.Length);
-        Debug.Log(roomSize + " " + newRoomOffset.y);
         newRoom = Instantiate(rooms[rand], transform.position + new Vector3(0,roomSize,0) + newRoomOffset, Quaternion.identity);
         newRoom.transform.SetParent(GameObject.Find("Grid").transform);
         
@@ -64,7 +64,7 @@ public class SpawnNextRoom : MonoBehaviour
         }
 
         // Move camera to next room, spawn player on entry point, and delete old room
-        if (player.position.y > transform.position.y + roomSize && !leftRoom) {         
+        if (player.position.y > transform.position.y + roomSize && !leftRoom) {    
             templates.offScreenRooms.Add(gameObject);
             leftRoom = true;
             if (templates.offScreenRooms.Count > 2) {
