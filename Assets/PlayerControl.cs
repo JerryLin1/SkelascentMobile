@@ -130,6 +130,7 @@ public class PlayerControl : MonoBehaviour
             mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             direction = new Vector2(mousePos.x - transform.position.x, mousePos.y - transform.position.y);
             direction.Normalize();
+            transform.eulerAngles = (mousePos.x > transform.position.x) ? new Vector3(0, 180, 0) : new Vector3(0, 0, 0);
             bonesThrownCount++;
             audioManager.Play("ThrowBone");
             GameObject boneInstance = Instantiate(bonePrefab, boneSourcePos.position, Quaternion.identity);
