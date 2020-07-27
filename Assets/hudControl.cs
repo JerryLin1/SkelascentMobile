@@ -80,7 +80,7 @@ public class hudControl : MonoBehaviour
         
         for (int i = 1; i < bones+1; i++)
         {
-            if (i > 4)
+            if (i > 5)
             {
                 boneCounter.transform.GetChild(6).gameObject.SetActive(true);
                 boneCounter.transform.GetChild(6).GetComponent<TextMeshProUGUI>().text = "+" + (bones - 5);
