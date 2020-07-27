@@ -9,6 +9,7 @@ public class LoadNextLevel : MonoBehaviour
     public Animator transition; 
 
     public void nextLevel() {
+        Time.timeScale = 1;
         if (SceneManager.GetActiveScene().name == "LevelGeneration") {
             StartCoroutine(fade("MainMenu"));
         } else {
