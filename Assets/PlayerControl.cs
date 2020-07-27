@@ -225,7 +225,6 @@ public class PlayerControl : MonoBehaviour
     public IEnumerator GameOver()
     {
         yield return new WaitForSeconds(2f);
-        Debug.Log("Game over");
         GameObject.Find("Ui").GetComponent<hudControl>().enableGameOverScreen();
     }
 }

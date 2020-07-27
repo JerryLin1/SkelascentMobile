@@ -10,13 +10,14 @@ public class FleshwallControl : MonoBehaviour
     public float rbSpeed = 5f;
     public float acceleration = 0.5f;
     public float maxSpeed = 5f;
-    public GameObject player;
+    private GameObject player;
     Rigidbody2D rb;
     bool stopped = false;
     void Start()
     {
         sprite = transform.Find("Sprite");
         rb = GetComponent<Rigidbody2D>();
+        player = GameObject.Find("Player");
     }
 
     // Update is called once per frame
@@ -35,7 +36,7 @@ public class FleshwallControl : MonoBehaviour
                 rbSpeed += acceleration * Time.deltaTime;
             }
         }
-        if (player.transform.position.y - transform.transform.position.y <= -2)
+        if (player.transform.position.y - transform.position.y <= -2)
         {
             stopped = true;
             rb.velocity = new Vector2(0, 0);
