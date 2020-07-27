@@ -1783,6 +1783,7 @@ GameObject:
   - component: {fileID: 1553668915}
   - component: {fileID: 1553668914}
   - component: {fileID: 1553668916}
+  - component: {fileID: 1553668917}
   m_Layer: 0
   m_Name: Player
   m_TagString: MainCamera
@@ -1914,6 +1915,26 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &1553668917
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1553668910}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a160d838ff8b4b4693ac20007e008c7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_AssetsPPU: 8
+  m_RefResolutionX: 128
+  m_RefResolutionY: 80
+  m_UpscaleRT: 0
+  m_PixelSnapping: 0
+  m_CropFrameX: 1
+  m_CropFrameY: 1
+  m_StretchFill: 0
 --- !u!4 &1663327242 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7832801103375699591, guid: 66ccd29e142d9034f96ec38e157ef213,
