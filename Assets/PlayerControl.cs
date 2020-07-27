@@ -26,7 +26,7 @@ public class PlayerControl : MonoBehaviour
     float fallingGravity = 8f;
     float boneCd = 1f;
     float boneCdTimer;
-    int bones = 123;
+    int bones = 0;
     float coyoteTime = 0.3f;
     float coyoteTimeTimer;
     Animator animator;
@@ -206,6 +206,7 @@ public class PlayerControl : MonoBehaviour
     public void Die()
     {
         audioManager.Play("GameOver");
+        StartCoroutine(Camera.main.GetComponent<CameraControl>().cameraShake(0.2f, 1f));
         // reset position
         // transform.position = new Vector3(0, -3, 0);
         Instantiate(deathParticlePrefab, transform.position, Quaternion.identity);
