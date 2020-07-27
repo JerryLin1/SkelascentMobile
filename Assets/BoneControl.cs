@@ -19,7 +19,7 @@ public class BoneControl : MonoBehaviour
     }
     void Start()
     {
-        rb.angularVelocity = 200f;
+        rb.angularVelocity = 1000f;
         Physics2D.IgnoreLayerCollision(gameObject.layer, 8);
     }
     

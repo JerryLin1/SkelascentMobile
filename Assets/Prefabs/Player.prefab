@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 7173213619296683100}
   - component: {fileID: 7173213619296683097}
   - component: {fileID: 7173213619296683098}
+  - component: {fileID: 339369587}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -107,6 +108,61 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.63, y: 0.75609815}
   m_EdgeRadius: 0
+--- !u!114 &339369587
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7173213619296683101}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b4ad1b6012d70048b733236544e4f27, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sounds:
+  - name: Jump
+    clip: {fileID: 8300000, guid: 66ec28c3d42668846a63d453f15dfc83, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: ThrowBone
+    clip: {fileID: 8300000, guid: 08b948602c80da84e903682d03b93758, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: PickupBone
+    clip: {fileID: 8300000, guid: 9eff04a0374bfc041b3cfb480c9b88fb, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: GameOver
+    clip: {fileID: 8300000, guid: c86877050431e2548a2c02350fcb1264, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: KillDemon
+    clip: {fileID: 8300000, guid: 692ef908825ebc849a1e95a5aba8fc5a, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: BoneImpact
+    clip: {fileID: 8300000, guid: e23c5b941ab63a84bb3dd0305f0cea40, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: OutofBones
+    clip: {fileID: 8300000, guid: 7e697e6a16f29cf4e95d79e3a5f6c501, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
 --- !u!1 &7173213620015100204
 GameObject:
   m_ObjectHideFlags: 0

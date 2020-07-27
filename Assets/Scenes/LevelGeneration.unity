@@ -1026,61 +1026,6 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 498765804}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &339369587
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 339369586}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8b4ad1b6012d70048b733236544e4f27, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sounds:
-  - name: Jump
-    clip: {fileID: 8300000, guid: 66ec28c3d42668846a63d453f15dfc83, type: 3}
-    volume: 1
-    pitch: 1
-    loop: 0
-    source: {fileID: 0}
-  - name: ThrowBone
-    clip: {fileID: 8300000, guid: 08b948602c80da84e903682d03b93758, type: 3}
-    volume: 1
-    pitch: 1
-    loop: 0
-    source: {fileID: 0}
-  - name: PickupBone
-    clip: {fileID: 8300000, guid: 9eff04a0374bfc041b3cfb480c9b88fb, type: 3}
-    volume: 1
-    pitch: 1
-    loop: 0
-    source: {fileID: 0}
-  - name: GameOver
-    clip: {fileID: 8300000, guid: c86877050431e2548a2c02350fcb1264, type: 3}
-    volume: 1
-    pitch: 1
-    loop: 0
-    source: {fileID: 0}
-  - name: KillDemon
-    clip: {fileID: 8300000, guid: 692ef908825ebc849a1e95a5aba8fc5a, type: 3}
-    volume: 1
-    pitch: 1
-    loop: 0
-    source: {fileID: 0}
-  - name: BoneImpact
-    clip: {fileID: 8300000, guid: e23c5b941ab63a84bb3dd0305f0cea40, type: 3}
-    volume: 1
-    pitch: 1
-    loop: 0
-    source: {fileID: 0}
-  - name: OutofBones
-    clip: {fileID: 8300000, guid: 7e697e6a16f29cf4e95d79e3a5f6c501, type: 3}
-    volume: 1
-    pitch: 1
-    loop: 0
-    source: {fileID: 0}
 --- !u!114 &339369589 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7173213619296683100, guid: 3506552df9758ee40a167c3251db9bae,
@@ -2201,56 +2146,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 643614058}
   m_CullTransparentMesh: 0
---- !u!1 &677563557
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 677563559}
-  - component: {fileID: 677563558}
-  m_Layer: 0
-  m_Name: Audio Manager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &677563558
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 677563557}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8b4ad1b6012d70048b733236544e4f27, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sounds:
-  - name: 
-    clip: {fileID: 0}
-    volume: 0
-    pitch: 0
-    loop: 0
-    source: {fileID: 0}
---- !u!4 &677563559
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 677563557}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.6309499, y: -0.91331756, z: -10}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 8
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &705183823
 GameObject:
   m_ObjectHideFlags: 0
@@ -6488,6 +6383,75 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1001 &6375585656484833632
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 6375585657153676741, guid: 9199e21e5092b324c944c0fe07bce010,
+        type: 3}
+      propertyPath: m_Name
+      value: GameAudioManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 6375585657153676743, guid: 9199e21e5092b324c944c0fe07bce010,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -1.6309499
+      objectReference: {fileID: 0}
+    - target: {fileID: 6375585657153676743, guid: 9199e21e5092b324c944c0fe07bce010,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.91331756
+      objectReference: {fileID: 0}
+    - target: {fileID: 6375585657153676743, guid: 9199e21e5092b324c944c0fe07bce010,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -10
+      objectReference: {fileID: 0}
+    - target: {fileID: 6375585657153676743, guid: 9199e21e5092b324c944c0fe07bce010,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6375585657153676743, guid: 9199e21e5092b324c944c0fe07bce010,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6375585657153676743, guid: 9199e21e5092b324c944c0fe07bce010,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6375585657153676743, guid: 9199e21e5092b324c944c0fe07bce010,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6375585657153676743, guid: 9199e21e5092b324c944c0fe07bce010,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 6375585657153676743, guid: 9199e21e5092b324c944c0fe07bce010,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6375585657153676743, guid: 9199e21e5092b324c944c0fe07bce010,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6375585657153676743, guid: 9199e21e5092b324c944c0fe07bce010,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 9199e21e5092b324c944c0fe07bce010, type: 3}
 --- !u!66 &7143589519007070016
 CompositeCollider2D:
   m_ObjectHideFlags: 0
