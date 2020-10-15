@@ -57,13 +57,28 @@ public class PlayerControl : MonoBehaviour
         {
             hAxis = Input.GetAxisRaw("Horizontal");
             rb.velocity = new Vector2(hAxis * movementSpeed, rb.velocity.y);
-    
+            // While player is in middle of jump
+            if (isJumping == true)
+            {
+
+                if (jumpTimeCounter > 0)
+                {
+                    rb.AddForce(new Vector2(0, jumpForce * 0.025f), ForceMode2D.Impulse);
+                    jumpTimeCounter -= Time.deltaTime;
+                }
+                else
+                {
+                    isJumping = false;
+                    rb.gravityScale = fallingGravity;
+                }
+            }
+
         }
     }
     void Update()
     {
         if (!gameOver) Move();
-        else if (Input.GetKeyDown(KeyCode.Space)) GameObject.Find("Ui").GetComponent<hudControl>().restart();   
+        else if (Input.GetKeyDown(KeyCode.Space)) GameObject.Find("Ui").GetComponent<hudControl>().restart();
     }
 
     void Move()
@@ -103,22 +118,6 @@ public class PlayerControl : MonoBehaviour
             coyoteTimeTimer = 0;
         }
 
-        // While player is in middle of jump
-        if (isJumping == true)
-        {
-
-            if (jumpTimeCounter > 0)
-            {
-                rb.AddForce(new Vector2(0, jumpForce * 0.025f), ForceMode2D.Impulse);
-                jumpTimeCounter -= Time.deltaTime;
-            }
-            else
-            {
-                isJumping = false;
-                rb.gravityScale = fallingGravity;
-            }
-        }
-
         // After player hits jump
         if (Input.GetKeyUp(KeyCode.W) || Input.GetKeyUp(KeyCode.UpArrow))
         {
@@ -138,7 +137,9 @@ public class PlayerControl : MonoBehaviour
             boneInstance.GetComponent<BoneControl>().initialVelocity(direction);
             boneCdTimer = boneCd;
             bones--;
-        } else if (Input.GetMouseButtonDown(0) && boneCdTimer <= 0 && bones == 0 && Time.timeScale == 1) {
+        }
+        else if (Input.GetMouseButtonDown(0) && boneCdTimer <= 0 && bones == 0 && Time.timeScale == 1)
+        {
             audioManager.Play("OutofBones");
             boneCdTimer = boneCd;
             GameObject.Find("Ui").GetComponent<hudControl>().outOfBones();
@@ -186,13 +187,14 @@ public class PlayerControl : MonoBehaviour
     public int getKillCount() { return killCount; }
     public int getAccuracy()
     {
-        if (bonesThrownCount == 0) {
+        if (bonesThrownCount == 0)
+        {
             return 0;
         }
         float inaccuracy = (bonesThrownCount - killCount) / (float)bonesThrownCount;
-        inaccuracy*=100;
+        inaccuracy *= 100;
         inaccuracy = 100 - inaccuracy;
-        int accuracy = (int) inaccuracy;
+        int accuracy = (int)inaccuracy;
         return accuracy;
     }
     public int getScore()
