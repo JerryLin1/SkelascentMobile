@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System;
 using UnityEngine;
+using Lean.Gui;
 
 public class PlayerControl : MonoBehaviour
 {
@@ -39,6 +40,9 @@ public class PlayerControl : MonoBehaviour
     Vector2 direction;
     Vector3 mousePos;
     AudioManager audioManager;
+    hudControl hudControl;
+    LeanJoystick joystickMove;
+    
 
     void Start()
     {
@@ -48,6 +52,8 @@ public class PlayerControl : MonoBehaviour
         boneSourcePos = transform.Find("BoneSource").Find("Source");
         animator = transform.Find("Sprite").GetComponent<Animator>();
         audioManager = GetComponent<AudioManager>();
+        hudControl = GameObject.Find("Ui").GetComponent<hudControl>();
+        joystickMove = GameObject.Find("Ui").transform.Find("Mobile Controls").transform.Find("Horizontal Joystick").GetComponent<LeanJoystick>();
     }
 
     // Update is called once per frame
@@ -55,7 +61,9 @@ public class PlayerControl : MonoBehaviour
     {
         if (!gameOver)
         {
-            hAxis = Input.GetAxisRaw("Horizontal");
+            if (joystickMove.ScaledValue.x > 0) hAxis = 1;
+            else if (joystickMove.ScaledValue.x < 0) hAxis = -1;
+            else hAxis = 0;
             rb.velocity = new Vector2(hAxis * movementSpeed, rb.velocity.y);
             // While player is in middle of jump
             if (isJumping == true)
@@ -78,7 +86,7 @@ public class PlayerControl : MonoBehaviour
     void Update()
     {
         if (!gameOver) Move();
-        else if (Input.GetKeyDown(KeyCode.Space)) GameObject.Find("Ui").GetComponent<hudControl>().restart();
+        else if (Input.GetKeyDown(KeyCode.Space)) hudControl.restart();
     }
 
     void Move()
@@ -142,7 +150,7 @@ public class PlayerControl : MonoBehaviour
         {
             audioManager.Play("OutofBones");
             boneCdTimer = boneCd;
-            GameObject.Find("Ui").GetComponent<hudControl>().outOfBones();
+            hudControl.outOfBones();
         }
         boneCdTimer -= Time.deltaTime;
         coyoteTimeTimer -= Time.deltaTime;
@@ -222,6 +230,6 @@ public class PlayerControl : MonoBehaviour
     public IEnumerator GameOver()
     {
         yield return new WaitForSeconds(2f);
-        GameObject.Find("Ui").GetComponent<hudControl>().enableGameOverScreen();
+        hudControl.enableGameOverScreen();
     }
 }
