@@ -42,7 +42,7 @@ public class PlayerControl : MonoBehaviour
     AudioManager audioManager;
     hudControl hudControl;
     LeanJoystick joystickMove;
-    
+    bool jumpButtonDown = false;
 
     void Start()
     {
@@ -115,23 +115,23 @@ public class PlayerControl : MonoBehaviour
         }
 
         // If player is on the ground and they jump
-        if (Math.Abs(rb.velocity.y) <= 0.1f && (isGrounded == true || coyoteTimeTimer > 0) && (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow)))
-        {
-            audioManager.Play("Jump");
-            GameObject impactInstance = Instantiate(impactParticlePrefab, feetPos.position, Quaternion.identity);
-            impactInstance.transform.Rotate(10f, 0, 0, Space.Self);
-            isJumping = true;
-            jumpTimeCounter = jumpTime;
-            rb.velocity = Vector2.up * jumpForce;
-            coyoteTimeTimer = 0;
-        }
+        // if (Math.Abs(rb.velocity.y) <= 0.1f && (isGrounded == true || coyoteTimeTimer > 0) && (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow)))
+        // {
+        //     audioManager.Play("Jump");
+        //     GameObject impactInstance = Instantiate(impactParticlePrefab, feetPos.position, Quaternion.identity);
+        //     impactInstance.transform.Rotate(10f, 0, 0, Space.Self);
+        //     isJumping = true;
+        //     jumpTimeCounter = jumpTime;
+        //     rb.velocity = Vector2.up * jumpForce;
+        //     coyoteTimeTimer = 0;
+        // }
 
-        // After player hits jump
-        if (Input.GetKeyUp(KeyCode.W) || Input.GetKeyUp(KeyCode.UpArrow))
-        {
-            isJumping = false;
-            rb.gravityScale = fallingGravity;
-        }
+        // // After player hits jump
+        // if (Input.GetKeyUp(KeyCode.W) || Input.GetKeyUp(KeyCode.UpArrow))
+        // {
+        //     isJumping = false;
+        //     rb.gravityScale = fallingGravity;
+        // }
         if (Input.GetMouseButtonDown(0) && boneCdTimer <= 0 && bones > 0 && Time.timeScale == 1)
         {
             mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -231,5 +231,24 @@ public class PlayerControl : MonoBehaviour
     {
         yield return new WaitForSeconds(2f);
         hudControl.enableGameOverScreen();
+    }
+
+    public void JumpButtonDown()
+    {
+        if (Math.Abs(rb.velocity.y) <= 0.1f && (isGrounded == true || coyoteTimeTimer > 0))
+        {
+            audioManager.Play("Jump");
+            GameObject impactInstance = Instantiate(impactParticlePrefab, feetPos.position, Quaternion.identity);
+            impactInstance.transform.Rotate(10f, 0, 0, Space.Self);
+            isJumping = true;
+            jumpTimeCounter = jumpTime;
+            rb.velocity = Vector2.up * jumpForce;
+            coyoteTimeTimer = 0;
+        }
+    }
+    public void JumpButtonRelease()
+    {
+        isJumping = false;
+        rb.gravityScale = fallingGravity;
     }
 }
