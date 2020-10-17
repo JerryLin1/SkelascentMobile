@@ -42,6 +42,7 @@ public class PlayerControl : MonoBehaviour
     AudioManager audioManager;
     hudControl hudControl;
     LeanJoystick joystickMove;
+    LeanJoystick joystickAim;
     bool jumpButtonDown = false;
 
     void Start()
@@ -53,7 +54,8 @@ public class PlayerControl : MonoBehaviour
         animator = transform.Find("Sprite").GetComponent<Animator>();
         audioManager = GetComponent<AudioManager>();
         hudControl = GameObject.Find("Ui").GetComponent<hudControl>();
-        joystickMove = GameObject.Find("Ui").transform.Find("Mobile Controls").transform.Find("Horizontal Joystick").GetComponent<LeanJoystick>();
+        joystickMove = GameObject.Find("Ui").transform.Find("Mobile Controls").transform.Find("Movement Joystick").GetComponent<LeanJoystick>();
+        joystickAim = GameObject.Find("Ui").transform.Find("Mobile Controls").transform.Find("Aim Joystick").GetComponent<LeanJoystick>();
     }
 
     // Update is called once per frame
@@ -132,26 +134,26 @@ public class PlayerControl : MonoBehaviour
         //     isJumping = false;
         //     rb.gravityScale = fallingGravity;
         // }
-        if (Input.GetMouseButtonDown(0) && boneCdTimer <= 0 && bones > 0 && Time.timeScale == 1)
-        {
-            mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            direction = new Vector2(mousePos.x - transform.position.x, mousePos.y - transform.position.y);
-            direction.Normalize();
-            transform.Find("BoneSource").transform.up = direction;
-            bonesThrownCount++;
-            audioManager.Play("ThrowBone");
-            GameObject boneInstance = Instantiate(bonePrefab, boneSourcePos.position, Quaternion.identity);
-            Physics2D.IgnoreCollision(col, boneInstance.GetComponent<BoneControl>().GetCollider2D(), true);
-            boneInstance.GetComponent<BoneControl>().initialVelocity(direction);
-            boneCdTimer = boneCd;
-            bones--;
-        }
-        else if (Input.GetMouseButtonDown(0) && boneCdTimer <= 0 && bones == 0 && Time.timeScale == 1)
-        {
-            audioManager.Play("OutofBones");
-            boneCdTimer = boneCd;
-            hudControl.outOfBones();
-        }
+        // if (Input.GetMouseButtonDown(0) && boneCdTimer <= 0 && bones > 0 && Time.timeScale == 1)
+        // {
+        //     mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        //     direction = new Vector2(mousePos.x - transform.position.x, mousePos.y - transform.position.y);
+        //     direction.Normalize();
+        //     transform.Find("BoneSource").transform.up = direction;
+        //     bonesThrownCount++;
+        //     audioManager.Play("ThrowBone");
+        //     GameObject boneInstance = Instantiate(bonePrefab, boneSourcePos.position, Quaternion.identity);
+        //     Physics2D.IgnoreCollision(col, boneInstance.GetComponent<BoneControl>().GetCollider2D(), true);
+        //     boneInstance.GetComponent<BoneControl>().initialVelocity(direction);
+        //     boneCdTimer = boneCd;
+        //     bones--;
+        // }
+        // else if (Input.GetMouseButtonDown(0) && boneCdTimer <= 0 && bones == 0 && Time.timeScale == 1)
+        // {
+        //     audioManager.Play("OutofBones");
+        //     boneCdTimer = boneCd;
+        //     hudControl.outOfBones();
+        // }
         boneCdTimer -= Time.deltaTime;
         coyoteTimeTimer -= Time.deltaTime;
     }
@@ -250,5 +252,26 @@ public class PlayerControl : MonoBehaviour
     {
         isJumping = false;
         rb.gravityScale = fallingGravity;
+    }
+    public void FireBone() {
+        if (boneCdTimer <= 0 && bones > 0 && Time.timeScale == 1)
+        {
+            direction = joystickAim.ScaledValue;
+            direction.Normalize();
+            transform.Find("BoneSource").transform.up = direction;
+            bonesThrownCount++;
+            audioManager.Play("ThrowBone");
+            GameObject boneInstance = Instantiate(bonePrefab, boneSourcePos.position, Quaternion.identity);
+            Physics2D.IgnoreCollision(col, boneInstance.GetComponent<BoneControl>().GetCollider2D(), true);
+            boneInstance.GetComponent<BoneControl>().initialVelocity(direction);
+            boneCdTimer = boneCd;
+            bones--;
+        }
+        else if (boneCdTimer <= 0 && bones == 0 && Time.timeScale == 1)
+        {
+            audioManager.Play("OutofBones");
+            boneCdTimer = boneCd;
+            hudControl.outOfBones();
+        }
     }
 }
