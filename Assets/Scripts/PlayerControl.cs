@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System;
 using UnityEngine;
 using Lean.Gui;
+using UnityEngine.UI;
 
 public class PlayerControl : MonoBehaviour
 {
@@ -44,6 +45,9 @@ public class PlayerControl : MonoBehaviour
     LeanJoystick joystickMove;
     LeanJoystick joystickAim;
     bool jumpButtonDown = false;
+    Sprite spriteJumpButtonDown;
+    Sprite spriteJumpButtonUp;
+    Image imageJumpbutton;
 
     void Start()
     {
@@ -56,6 +60,9 @@ public class PlayerControl : MonoBehaviour
         hudControl = GameObject.Find("Ui").GetComponent<hudControl>();
         joystickMove = GameObject.Find("Ui").transform.Find("Mobile Controls").transform.Find("Movement Joystick").GetComponent<LeanJoystick>();
         joystickAim = GameObject.Find("Ui").transform.Find("Mobile Controls").transform.Find("Aim Joystick").GetComponent<LeanJoystick>();
+        imageJumpbutton = GameObject.Find("Ui").transform.Find("Mobile Controls").transform.Find("Jump Button").GetComponent<Image>();
+        spriteJumpButtonUp = imageJumpbutton.sprite;
+        spriteJumpButtonDown = imageJumpbutton.transform.Find("Down").GetComponent<Image>().sprite;
     }
 
     // Update is called once per frame
@@ -247,11 +254,13 @@ public class PlayerControl : MonoBehaviour
             rb.velocity = Vector2.up * jumpForce;
             coyoteTimeTimer = 0;
         }
+        imageJumpbutton.sprite = spriteJumpButtonDown;
     }
     public void JumpButtonRelease()
     {
         isJumping = false;
         rb.gravityScale = fallingGravity;
+        imageJumpbutton.sprite = spriteJumpButtonUp;
     }
     public void StartAimBone() {
         // enable line?
