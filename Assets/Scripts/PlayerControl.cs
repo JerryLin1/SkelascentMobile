@@ -69,7 +69,7 @@ public class PlayerControl : MonoBehaviour
         imageJumpbutton = mobileControls.transform.Find("Jump Button").GetComponent<Image>();
         spriteJumpButtonUp = imageJumpbutton.sprite;
         spriteJumpButtonDown = imageJumpbutton.transform.Find("Down").GetComponent<Image>().sprite;
-        // line = transform.Find("BoneSource").Find("AimLine").GetComponent<LineRenderer>();
+        line = transform.Find("BoneSource").Find("AimLine").GetComponent<LineRenderer>();
     }
 
     // Update is called once per frame
@@ -257,7 +257,6 @@ public class PlayerControl : MonoBehaviour
     }
     public void FireBone() {
         // disable line
-        line.positionCount = 1;
         if (boneCdTimer <= 0 && bones > 0 && Time.timeScale == 1)
         {
             direction = joystickAim.ScaledValue;
