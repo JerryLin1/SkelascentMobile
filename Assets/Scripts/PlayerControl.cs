@@ -69,7 +69,7 @@ public class PlayerControl : MonoBehaviour
         imageJumpbutton = mobileControls.transform.Find("Jump Button").GetComponent<Image>();
         spriteJumpButtonUp = imageJumpbutton.sprite;
         spriteJumpButtonDown = imageJumpbutton.transform.Find("Down").GetComponent<Image>().sprite;
-        line = transform.Find("BoneSource").Find("AimLine").GetComponent<LineRenderer>();
+        line = transform.Find("AimLine").GetComponent<LineRenderer>();
     }
 
     // Update is called once per frame
@@ -80,7 +80,6 @@ public class PlayerControl : MonoBehaviour
             if (joystickMove.ScaledValue.x > 0.5) hAxis = 1;
             else if (joystickMove.ScaledValue.x < -0.5) hAxis = -1;
             else hAxis = 0;
-            // line.transform.eulerAngles = (hAxis < 0) ? new Vector3(0, 180, 0) : new Vector3(0, 0, 0);
 
             rb.velocity = new Vector2(hAxis * movementSpeed, rb.velocity.y);
             // While player is in middle of jump
@@ -124,7 +123,9 @@ public class PlayerControl : MonoBehaviour
         // Rotate player and play right animation
         if (hAxis != 0)
         {
-            transform.eulerAngles = (hAxis > 0) ? new Vector3(0, 180, 0) : new Vector3(0, 0, 0);
+            transform.localRotation = (hAxis > 0) ? Quaternion.Euler(0, 180, 0) : Quaternion.Euler(0, 0, 0);
+            line.transform.localRotation = (hAxis > 0) ? Quaternion.Euler(0, 180, 0) : Quaternion.Euler(0, 0, 0);
+
             animator.SetBool("moving", (!isGrounded) ? false : true);
         }
         else
