@@ -28,7 +28,7 @@ public class PlayerControl : MonoBehaviour
     float fallingGravity = 8f;
     float boneCd = 0.25f;
     float boneCdTimer;
-    int bones = 0;
+    int bones = 123;
     float coyoteTime = 0.3f;
     float coyoteTimeTimer;
     Animator animator;
@@ -48,6 +48,8 @@ public class PlayerControl : MonoBehaviour
     Sprite spriteJumpButtonDown;
     Sprite spriteJumpButtonUp;
     Image imageJumpbutton;
+    LineRenderer line;
+
 
     void Start()
     {
@@ -63,6 +65,7 @@ public class PlayerControl : MonoBehaviour
         imageJumpbutton = GameObject.Find("Ui").transform.Find("Mobile Controls").transform.Find("Jump Button").GetComponent<Image>();
         spriteJumpButtonUp = imageJumpbutton.sprite;
         spriteJumpButtonDown = imageJumpbutton.transform.Find("Down").GetComponent<Image>().sprite;
+        line = transform.Find("BoneSource").Find("AimLine").GetComponent<LineRenderer>();
     }
 
     // Update is called once per frame
@@ -73,6 +76,8 @@ public class PlayerControl : MonoBehaviour
             if (joystickMove.ScaledValue.x > 0) hAxis = 1;
             else if (joystickMove.ScaledValue.x < 0) hAxis = -1;
             else hAxis = 0;
+            line.transform.eulerAngles = (hAxis < 0) ? new Vector3(0, 180, 0) : new Vector3(0, 0, 0);
+
             rb.velocity = new Vector2(hAxis * movementSpeed, rb.velocity.y);
             // While player is in middle of jump
             if (isJumping == true)
@@ -123,44 +128,7 @@ public class PlayerControl : MonoBehaviour
             animator.SetBool("moving", false);
         }
 
-        // If player is on the ground and they jump
-        // if (Math.Abs(rb.velocity.y) <= 0.1f && (isGrounded == true || coyoteTimeTimer > 0) && (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow)))
-        // {
-        //     audioManager.Play("Jump");
-        //     GameObject impactInstance = Instantiate(impactParticlePrefab, feetPos.position, Quaternion.identity);
-        //     impactInstance.transform.Rotate(10f, 0, 0, Space.Self);
-        //     isJumping = true;
-        //     jumpTimeCounter = jumpTime;
-        //     rb.velocity = Vector2.up * jumpForce;
-        //     coyoteTimeTimer = 0;
-        // }
 
-        // // After player hits jump
-        // if (Input.GetKeyUp(KeyCode.W) || Input.GetKeyUp(KeyCode.UpArrow))
-        // {
-        //     isJumping = false;
-        //     rb.gravityScale = fallingGravity;
-        // }
-        // if (Input.GetMouseButtonDown(0) && boneCdTimer <= 0 && bones > 0 && Time.timeScale == 1)
-        // {
-        //     mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        //     direction = new Vector2(mousePos.x - transform.position.x, mousePos.y - transform.position.y);
-        //     direction.Normalize();
-        //     transform.Find("BoneSource").transform.up = direction;
-        //     bonesThrownCount++;
-        //     audioManager.Play("ThrowBone");
-        //     GameObject boneInstance = Instantiate(bonePrefab, boneSourcePos.position, Quaternion.identity);
-        //     Physics2D.IgnoreCollision(col, boneInstance.GetComponent<BoneControl>().GetCollider2D(), true);
-        //     boneInstance.GetComponent<BoneControl>().initialVelocity(direction);
-        //     boneCdTimer = boneCd;
-        //     bones--;
-        // }
-        // else if (Input.GetMouseButtonDown(0) && boneCdTimer <= 0 && bones == 0 && Time.timeScale == 1)
-        // {
-        //     audioManager.Play("OutofBones");
-        //     boneCdTimer = boneCd;
-        //     hudControl.outOfBones();
-        // }
         boneCdTimer -= Time.deltaTime;
         coyoteTimeTimer -= Time.deltaTime;
     }
@@ -262,23 +230,33 @@ public class PlayerControl : MonoBehaviour
         rb.gravityScale = fallingGravity;
         imageJumpbutton.sprite = spriteJumpButtonUp;
     }
+
     public void StartAimBone() {
         // enable line?
-        // send raycast/line in joystick direction
-        // joystick direction = joystickAim.ScaledValue;
+        // line.positionCount = 1;
+        // line.SetPosition(0, boneSourcePos.position);
+        // Vector2 direction = joystickAim.ScaledValue.normalized;
+        // RaycastHit2D rayInfo = Physics2D.Raycast(boneSourcePos.position, direction);
+        // line.positionCount++;
+        // line.SetPosition(line.positionCount-1, rayInfo.point);
     }
     
     // this function being called while joystick is being used
     public void AimBone() {
         // update line/raycast
+        line.positionCount = 2;
+        Vector2 direction = joystickAim.ScaledValue.normalized;
+        transform.Find("BoneSource").transform.up = direction;
+
+        line.SetPosition(1, direction*7);
     }
     public void FireBone() {
         // disable line
+        line.positionCount = 1;
         if (boneCdTimer <= 0 && bones > 0 && Time.timeScale == 1)
         {
             direction = joystickAim.ScaledValue;
             direction.Normalize();
-            transform.Find("BoneSource").transform.up = direction;
             bonesThrownCount++;
             audioManager.Play("ThrowBone");
             GameObject boneInstance = Instantiate(bonePrefab, boneSourcePos.position, Quaternion.identity);
