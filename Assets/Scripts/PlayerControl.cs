@@ -42,6 +42,7 @@ public class PlayerControl : MonoBehaviour
     Vector3 mousePos;
     AudioManager audioManager;
     hudControl hudControl;
+    GameObject mobileControls;
     LeanJoystick joystickMove;
     LeanJoystick joystickAim;
     bool jumpButtonDown = false;
@@ -60,9 +61,12 @@ public class PlayerControl : MonoBehaviour
         animator = transform.Find("Sprite").GetComponent<Animator>();
         audioManager = GetComponent<AudioManager>();
         hudControl = GameObject.Find("Ui").GetComponent<hudControl>();
-        joystickMove = GameObject.Find("Ui").transform.Find("Mobile Controls").transform.Find("Movement Joystick").GetComponent<LeanJoystick>();
-        joystickAim = GameObject.Find("Ui").transform.Find("Mobile Controls").transform.Find("Aim Joystick").GetComponent<LeanJoystick>();
-        imageJumpbutton = GameObject.Find("Ui").transform.Find("Mobile Controls").transform.Find("Jump Button").GetComponent<Image>();
+
+        // Find mobile controls
+        mobileControls = GameObject.Find("Ui").transform.Find("Mobile Controls").gameObject;
+        joystickMove = mobileControls.transform.Find("Movement Joystick").GetComponent<LeanJoystick>();
+        joystickAim = mobileControls.transform.Find("Aim Joystick").GetComponent<LeanJoystick>();
+        imageJumpbutton = mobileControls.transform.Find("Jump Button").GetComponent<Image>();
         spriteJumpButtonUp = imageJumpbutton.sprite;
         spriteJumpButtonDown = imageJumpbutton.transform.Find("Down").GetComponent<Image>().sprite;
         line = transform.Find("BoneSource").Find("AimLine").GetComponent<LineRenderer>();
@@ -73,8 +77,8 @@ public class PlayerControl : MonoBehaviour
     {
         if (!gameOver)
         {
-            if (joystickMove.ScaledValue.x > 0) hAxis = 1;
-            else if (joystickMove.ScaledValue.x < 0) hAxis = -1;
+            if (joystickMove.ScaledValue.x > 0.5) hAxis = 1;
+            else if (joystickMove.ScaledValue.x < -0.5) hAxis = -1;
             else hAxis = 0;
             line.transform.eulerAngles = (hAxis < 0) ? new Vector3(0, 180, 0) : new Vector3(0, 0, 0);
 
@@ -208,6 +212,7 @@ public class PlayerControl : MonoBehaviour
     {
         yield return new WaitForSeconds(2f);
         hudControl.enableGameOverScreen();
+        mobileControls.SetActive(false);
     }
 
     public void JumpButtonDown()

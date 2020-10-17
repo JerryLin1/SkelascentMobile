@@ -39,7 +39,7 @@ public class FleshwallControl : MonoBehaviour
                 rbSpeed += acceleration * Time.deltaTime;
             }
         }
-        if (player.transform.position.y - transform.position.y <= -2)
+        if (player.transform.position.y - transform.position.y <= -18)
         {
             stopped = true;
             rb.velocity = new Vector2(0, 0);
