@@ -253,7 +253,18 @@ public class PlayerControl : MonoBehaviour
         isJumping = false;
         rb.gravityScale = fallingGravity;
     }
+    public void StartAimBone() {
+        // enable line?
+        // send raycast/line in joystick direction
+        // joystick direction = joystickAim.ScaledValue;
+    }
+    
+    // this function being called while joystick is being used
+    public void AimBone() {
+        // update line/raycast
+    }
     public void FireBone() {
+        // disable line
         if (boneCdTimer <= 0 && bones > 0 && Time.timeScale == 1)
         {
             direction = joystickAim.ScaledValue;
