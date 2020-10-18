@@ -3,9 +3,6 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using Lean.Common;
 using Lean.Transition;
-#if UNITY_EDITOR
-using UnityEditor;
-#endif
 
 namespace Lean.Gui
 {
@@ -66,8 +63,10 @@ namespace Lean.Gui
 }
 
 #if UNITY_EDITOR
-namespace Lean.Gui
+namespace Lean.Gui.Inspector
 {
+	using UnityEditor;
+
 	[CanEditMultipleObjects]
 	[CustomEditor(typeof(LeanSelection))]
 	public class LeanSelection_Inspector : LeanInspector<LeanSelection>

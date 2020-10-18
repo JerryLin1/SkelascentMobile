@@ -28,7 +28,7 @@ namespace Lean.Transition
 		{
 			public Transform Root { set { root = value; } get { return root; } } [SerializeField] private Transform root;
 
-			public float Speed { set { speed = value; } get { return speed; } } [SerializeField] private float speed;
+			public float Speed { set { speed = value; } get { return speed; } } [SerializeField] private float speed = -1.0f;
 
 			public List<Alias> Aliases { get { if (aliases == null) aliases = new List<Alias>(); return aliases; } } [SerializeField] private List<Alias> aliases;
 

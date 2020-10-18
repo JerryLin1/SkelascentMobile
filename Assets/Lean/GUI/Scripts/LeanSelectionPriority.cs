@@ -1,9 +1,5 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
-using Lean.Common;
-#if UNITY_EDITOR
-using UnityEditor;
-#endif
 
 namespace Lean.Gui
 {
@@ -20,11 +16,13 @@ namespace Lean.Gui
 }
 
 #if UNITY_EDITOR
-namespace Lean.Gui
+namespace Lean.Gui.Inspector
 {
+	using UnityEditor;
+
 	[CanEditMultipleObjects]
 	[CustomEditor(typeof(LeanSelectionPriority))]
-	public class LeanSelectionPriority_Inspector : LeanInspector<LeanSelectionPriority>
+	public class LeanSelectionPriority_Inspector : Lean.Common.LeanInspector<LeanSelectionPriority>
 	{
 		protected override void DrawInspector()
 		{

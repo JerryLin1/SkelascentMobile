@@ -15,12 +15,12 @@ namespace Lean.Transition.Method
 
 		public static LeanState Register(float fillAmount, float duration, LeanEase ease = LeanEase.Smooth)
 		{
-			var data = LeanTransition.Register(State.Pool, duration);
+			var state = LeanTransition.Spawn(State.Pool);
 
-			data.TimeScale = fillAmount;
-			data.Ease       = ease;
+			state.TimeScale = fillAmount;
+			state.Ease       = ease;
 
-			return data;
+			return LeanTransition.Register(state, duration);
 		}
 
 		[System.Serializable]

@@ -20,12 +20,12 @@ namespace Lean.Transition.Method
 
 		public static LeanState Register(RectTransform target, Vector2 anchorMax, float duration, LeanEase ease = LeanEase.Smooth)
 		{
-			var data = LeanTransition.RegisterWithTarget(State.Pool, duration, target);
+			var state = LeanTransition.SpawnWithTarget(State.Pool, target);
 
-			data.AnchorMax = anchorMax;
-			data.Ease      = ease;
+			state.AnchorMax = anchorMax;
+			state.Ease      = ease;
 
-			return data;
+			return LeanTransition.Register(state, duration);
 		}
 
 		[System.Serializable]

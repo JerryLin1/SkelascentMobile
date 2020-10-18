@@ -20,11 +20,11 @@ namespace Lean.Transition.Method
 
 		public static LeanState Register(GameObject target, bool active, float duration)
 		{
-			var data = LeanTransition.RegisterWithTarget(State.Pool, duration, target);
+			var state = LeanTransition.SpawnWithTarget(State.Pool, target);
 
-			data.Active = active;
+			state.Active = active;
 
-			return data;
+			return LeanTransition.Register(state, duration);
 		}
 
 		[System.Serializable]

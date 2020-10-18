@@ -3,9 +3,6 @@ using UnityEngine.Events;
 using System.Collections.Generic;
 using Lean.Transition;
 using Lean.Common;
-#if UNITY_EDITOR
-using UnityEditor;
-#endif
 
 namespace Lean.Gui
 {
@@ -101,11 +98,13 @@ namespace Lean.Gui
 }
 
 #if UNITY_EDITOR
-namespace Lean.Gui
+namespace Lean.Gui.Inspector
 {
+	using UnityEditor;
+
 	[CanEditMultipleObjects]
 	[CustomEditor(typeof(LeanSwitch))]
-	public class LeanSwitch_Editor : LeanInspector<LeanSwitch>
+	public class LeanSwitch_Inspector : LeanInspector<LeanSwitch>
 	{
 		private static bool expandAdvanced;
 

@@ -1,11 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.Events;
 using System.Collections.Generic;
-using Lean.Common;
 using Lean.Transition;
-#if UNITY_EDITOR
-using UnityEditor;
-#endif
 
 namespace Lean.Gui
 {
@@ -169,11 +165,13 @@ namespace Lean.Gui
 }
 
 #if UNITY_EDITOR
-namespace Lean.Gui
+namespace Lean.Gui.Inspector
 {
+	using UnityEditor;
+
 	[CanEditMultipleObjects]
 	[CustomEditor(typeof(LeanPulse))]
-	public class LeanPulse_Inspector : LeanInspector<LeanPulse>
+	public class LeanPulse_Inspector : Lean.Common.LeanInspector<LeanPulse>
 	{
 		protected override void DrawInspector()
 		{

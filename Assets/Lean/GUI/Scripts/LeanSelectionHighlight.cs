@@ -1,11 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
-using Lean.Common;
 using Lean.Transition;
-#if UNITY_EDITOR
-using UnityEditor;
-#endif
 
 namespace Lean.Gui
 {
@@ -180,11 +176,13 @@ namespace Lean.Gui
 }
 
 #if UNITY_EDITOR
-namespace Lean.Gui
+namespace Lean.Gui.Inspector
 {
+	using UnityEditor;
+
 	[CanEditMultipleObjects]
 	[CustomEditor(typeof(LeanSelectionHighlight))]
-	public class LeanSelectionHighlight_Inspector : LeanInspector<LeanSelectionHighlight>
+	public class LeanSelectionHighlight_Inspector : Lean.Common.LeanInspector<LeanSelectionHighlight>
 	{
 		protected override void DrawInspector()
 		{

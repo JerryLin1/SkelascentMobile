@@ -3,9 +3,6 @@ using UnityEngine.EventSystems;
 using UnityEngine.Events;
 using Lean.Common;
 using Lean.Transition;
-#if UNITY_EDITOR
-using UnityEditor;
-#endif
 
 namespace Lean.Gui
 {
@@ -137,11 +134,13 @@ namespace Lean.Gui
 }
 
 #if UNITY_EDITOR
-namespace Lean.Gui
+namespace Lean.Gui.Inspector
 {
+	using UnityEditor;
+
 	[CanEditMultipleObjects]
 	[CustomEditor(typeof(LeanSwipe))]
-	public class LeanSwipe_Editor : LeanInspector<LeanSwipe>
+	public class LeanSwipe_Inspector : LeanInspector<LeanSwipe>
 	{
 		protected override void DrawInspector()
 		{

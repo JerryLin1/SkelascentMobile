@@ -16,22 +16,22 @@ namespace Lean.Transition.Method
 
 		public static LeanState Register(System.Action action, float duration)
 		{
-			var data = LeanTransition.Register(State.Pool, duration);
+			var state = LeanTransition.Spawn(State.Pool);
 
-			data.Action = action;
-			data.Event  = null;
+			state.Action = action;
+			state.Event  = null;
 
-			return data;
+			return LeanTransition.Register(state, duration);
 		}
 
 		public static LeanState Register(UnityEvent action, float duration)
 		{
-			var data = LeanTransition.Register(State.Pool, duration);
+			var state = LeanTransition.Spawn(State.Pool);
 
-			data.Action = null;
-			data.Event  = action;
+			state.Action = null;
+			state.Event  = action;
 
-			return data;
+			return LeanTransition.Register(state, duration);
 		}
 
 		[System.Serializable]

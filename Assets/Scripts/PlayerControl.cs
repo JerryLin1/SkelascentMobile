@@ -46,9 +46,6 @@ public class PlayerControl : MonoBehaviour
     LeanJoystick joystickMove;
     LeanJoystick joystickAim;
     bool jumpButtonDown = false;
-    Sprite spriteJumpButtonDown;
-    Sprite spriteJumpButtonUp;
-    Image imageJumpbutton;
     LineRenderer line;
 
 
@@ -66,9 +63,6 @@ public class PlayerControl : MonoBehaviour
         mobileControls = GameObject.Find("Ui").transform.Find("Mobile Controls").gameObject;
         joystickMove = mobileControls.transform.Find("Movement Joystick").GetComponent<LeanJoystick>();
         joystickAim = mobileControls.transform.Find("Aim Joystick").GetComponent<LeanJoystick>();
-        imageJumpbutton = mobileControls.transform.Find("Jump Button").GetComponent<Image>();
-        spriteJumpButtonUp = imageJumpbutton.sprite;
-        spriteJumpButtonDown = imageJumpbutton.transform.Find("Down").GetComponent<Image>().sprite;
         line = transform.Find("AimLine").GetComponent<LineRenderer>();
     }
 
@@ -228,13 +222,11 @@ public class PlayerControl : MonoBehaviour
             rb.velocity = Vector2.up * jumpForce;
             coyoteTimeTimer = 0;
         }
-        imageJumpbutton.sprite = spriteJumpButtonDown;
     }
     public void JumpButtonRelease()
     {
         isJumping = false;
         rb.gravityScale = fallingGravity;
-        imageJumpbutton.sprite = spriteJumpButtonUp;
     }
 
     public void StartAimBone() {

@@ -20,13 +20,13 @@ namespace Lean.Transition.Method
 
 		public static LeanState Register(Material target, string property, float value, float duration, LeanEase ease = LeanEase.Smooth)
 		{
-			var data = LeanTransition.RegisterWithTarget(State.Pool, duration, target);
+			var state = LeanTransition.SpawnWithTarget(State.Pool, target);
 
-			data.Property = property;
-			data.Value    = value;
-			data.Ease     = ease;
+			state.Property = property;
+			state.Value    = value;
+			state.Ease     = ease;
 
-			return data;
+			return LeanTransition.Register(state, duration);
 		}
 
 		[System.Serializable]

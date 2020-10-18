@@ -3,9 +3,6 @@ using UnityEngine.Events;
 using System.Collections.Generic;
 using Lean.Common;
 using Lean.Transition;
-#if UNITY_EDITOR
-using UnityEditor;
-#endif
 
 namespace Lean.Gui
 {
@@ -285,11 +282,13 @@ namespace Lean.Gui
 }
 
 #if UNITY_EDITOR
-namespace Lean.Gui
+namespace Lean.Gui.Inspector
 {
+	using UnityEditor;
+
 	[CanEditMultipleObjects]
 	[CustomEditor(typeof(LeanToggle), true)]
-	public class LeanToggle_Editor : LeanInspector<LeanToggle>
+	public class LeanToggle_Inspector : LeanInspector<LeanToggle>
 	{
 		protected override void DrawInspector()
 		{

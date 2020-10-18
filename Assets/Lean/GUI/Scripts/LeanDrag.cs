@@ -2,11 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
-using Lean.Common;
 using Lean.Transition;
-#if UNITY_EDITOR
-using UnityEditor;
-#endif
 
 namespace Lean.Gui
 {
@@ -14,7 +10,7 @@ namespace Lean.Gui
 	[RequireComponent(typeof(RectTransform))]
 	[HelpURL(LeanGui.HelpUrlPrefix + "LeanDrag")]
 	[AddComponentMenu(LeanGui.ComponentMenuPrefix + "Drag")]
-	public class LeanDrag : Selectable, IBeginDragHandler, IDragHandler, IEndDragHandler
+	public class LeanDrag : LeanSelectable, IBeginDragHandler, IDragHandler, IEndDragHandler
 	{
 		/// <summary>If you want a different RectTransform to be moved while dragging on this UI element, then specify it here. This allows you to turn the current UI element into a drag handle.</summary>
 		public RectTransform Target { set { target = value; } get { return target; } } [SerializeField] private RectTransform target;
@@ -207,15 +203,20 @@ namespace Lean.Gui
 }
 
 #if UNITY_EDITOR
-namespace Lean.Gui
+namespace Lean.Gui.Inspector
 {
+	using UnityEditor;
+
 	[CanEditMultipleObjects]
 	[CustomEditor(typeof(LeanDrag))]
-	public class LeanDrag_Editor : LeanInspector<LeanDrag>
+	public class LeanDrag_Inspector : LeanSelectable_Inspector<LeanDrag>
 	{
 		protected override void DrawInspector()
 		{
-			Draw("m_Navigation");
+			base.DrawInspector();
+
+			EditorGUILayout.Separator();
+
 			Draw("target", "If you want a different RectTransform to be moved while dragging on this UI element, then specify it here. This allows you to turn the current UI element into a drag handle.");
 
 			EditorGUILayout.Separator();

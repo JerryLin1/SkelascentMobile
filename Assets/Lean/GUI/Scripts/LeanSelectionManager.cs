@@ -3,9 +3,6 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using System.Collections.Generic;
 using Lean.Common;
-#if UNITY_EDITOR
-using UnityEditor;
-#endif
 
 namespace Lean.Gui
 {
@@ -22,9 +19,11 @@ namespace Lean.Gui
 		public List<Selectable> SelectionHistory { get { if (selectionHistory == null) selectionHistory = new List<Selectable>(); return selectionHistory; } } [SerializeField] private List<Selectable> selectionHistory;
 
 		private static List<Selectable> tempSelectables = new List<Selectable>();
+
 #if UNITY_2019_1_OR_NEWER
 		private static Selectable[] tempSelectablesArray = new Selectable[1024];
 #endif
+
 		private bool CanSelect(Selectable selectable)
 		{
 			return selectable != null && selectable.IsInteractable() == true && selectable.isActiveAndEnabled == true && selectable.navigation.mode != Navigation.Mode.None;
@@ -35,13 +34,13 @@ namespace Lean.Gui
 		{
 			tempSelectables.Clear();
 
-			//var selectables = Selectable.allSelectables;Selectable.al
 #if UNITY_2019_1_OR_NEWER
 	#if UNITY_2019_1_0 || UNITY_2019_1_1 || UNITY_2019_1_2 || UNITY_2019_1_3 || UNITY_2019_1_4
 				var count = Selectable.AllSelectablesNoAlloc(ref tempSelectablesArray);
 	#else
 				var count = Selectable.AllSelectablesNoAlloc(tempSelectablesArray);
 	#endif
+
 				for (var i = 0; i < count; i++)
 				{
 					tempSelectables.Add(tempSelectablesArray[i]);
@@ -162,8 +161,10 @@ namespace Lean.Gui
 }
 
 #if UNITY_EDITOR
-namespace Lean.Gui
+namespace Lean.Gui.Inspector
 {
+	using UnityEditor;
+
 	[CanEditMultipleObjects]
 	[CustomEditor(typeof(LeanSelectionManager))]
 	public class LeanSelectionManager_Inspector : LeanInspector<LeanSelectionManager>

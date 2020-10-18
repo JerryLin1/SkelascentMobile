@@ -20,9 +20,9 @@ namespace Lean.Transition.Method
 
 		public static LeanState Register(RectTransform target, float duration)
 		{
-			var data = LeanTransition.RegisterWithTarget(State.Pool, duration, target);
+			var state = LeanTransition.SpawnWithTarget(State.Pool, target);
 
-			return data;
+			return LeanTransition.Register(state, duration);
 		}
 
 		[System.Serializable]
