@@ -207,7 +207,7 @@ public class PlayerControl : MonoBehaviour
     {
         yield return new WaitForSeconds(2f);
         hudControl.enableGameOverScreen();
-        mobileControls.SetActive(false);
+        hudControl.HideMobileControls();
     }
 
     public void JumpButtonDown()

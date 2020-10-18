@@ -16,6 +16,7 @@ public class hudControl : MonoBehaviour
     GameObject gameOverStats;
     GameObject pauseMenu;
     GameObject darkener;
+    GameObject mobileControls;
     TextMeshProUGUI highScoreDisplay;
     AdControl adControl;
     int score;
@@ -39,6 +40,8 @@ public class hudControl : MonoBehaviour
         pauseMenu = transform.Find("PauseMenu").gameObject;
         pauseMenu.SetActive(false);
         adControl = GameObject.Find("Advertisement Manager").GetComponent<AdControl>();
+        mobileControls = transform.Find("Mobile Controls").gameObject;
+
         updateBoneCount(playerBones);
     }
     void Update()
@@ -106,11 +109,13 @@ public class hudControl : MonoBehaviour
         gameOverStats.transform.Find("Score").GetComponent<TextMeshProUGUI>().text = "<color=#323866>Score: "+ score +"</color>";
     }
     public void pause() {
+        HideMobileControls();
         Time.timeScale = 0;
         darkener.SetActive(true);
         pauseMenu.SetActive(true);
     }
     public void unpause() {
+        ShowMobileControls();
         Time.timeScale = 1;
         darkener.SetActive(false);
         pauseMenu.SetActive(false);
@@ -128,5 +133,7 @@ public class hudControl : MonoBehaviour
         boneCounter.transform.Find("Out of Bones").gameObject.GetComponent<TextMeshProUGUI>().fontSize += 5;
         noBonesEmphasisTimer = noBonesEmphasisDuration;
     }
+    public void HideMobileControls() {mobileControls.SetActive(false);}
+    public void ShowMobileControls() {mobileControls.SetActive(true);}
 
 }
