@@ -22,7 +22,7 @@ public class hudControl : MonoBehaviour
     int score;
     int playerBones = 0;
     int updatedBones;
-    int highScore = ScoreKeeper.highScore;
+    int highScore;
 
     float noBonesEmphasisTimer = 0;
     float noBonesEmphasisDuration = 0.1f;
@@ -41,7 +41,8 @@ public class hudControl : MonoBehaviour
         pauseMenu.SetActive(false);
         adControl = GameObject.Find("Advertisement Manager").GetComponent<AdControl>();
         mobileControls = transform.Find("Mobile Controls").gameObject;
-
+        highScore = PlayerPrefs.GetInt("Highscore", 0);
+        highScoreDisplay.text = "<color=#EEEEEE>High Score: " + highScore.ToString()+ "</color>";
         updateBoneCount(playerBones);
     }
     void Update()
@@ -55,9 +56,7 @@ public class hudControl : MonoBehaviour
         scoreDisplay.text = "<color=#EEEEEE>Score: " + score.ToString() + "</color>";
         if (score > highScore) {
             highScoreDisplay.text = "<color=#EEEEEE>High Score: " + score.ToString() + "</color>";
-            ScoreKeeper.highScore = score;
-        } else {
-            highScoreDisplay.text = "<color=#EEEEEE>High Score: " + highScore.ToString()+ "</color>";
+            highScore = score;
         }
         
         updatedBones = pc.getBones();
@@ -107,6 +106,8 @@ public class hudControl : MonoBehaviour
         int accuracy = pc.getAccuracy();
         gameOverStats.transform.Find("Accuracy").GetComponent<TextMeshProUGUI>().text = "<color=#3A5339>Bone accuracy: "+ accuracy +"%</color>";
         gameOverStats.transform.Find("Score").GetComponent<TextMeshProUGUI>().text = "<color=#323866>Score: "+ score +"</color>";
+        if (score > PlayerPrefs.GetInt("Highscore", 0))
+            PlayerPrefs.SetInt("Highscore", highScore);
     }
     public void pause() {
         HideMobileControls();
