@@ -28,7 +28,7 @@ public class PlayerControl : MonoBehaviour
     float fallingGravity = 8f;
     float boneCd = 0.25f;
     float boneCdTimer;
-    int bones = 123;
+    int bones = 3;
     float coyoteTime = 0.3f;
     float coyoteTimeTimer;
     Animator animator;

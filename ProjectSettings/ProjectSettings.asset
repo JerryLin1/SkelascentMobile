@@ -733,10 +733,10 @@ PlayerSettings:
     m_VersionCode: 1
     m_VersionName: 
   apiCompatibilityLevel: 6
-  cloudProjectId: 
+  cloudProjectId: 9f39d68d-d3de-4e3e-890c-028c0e483c03
   framebufferDepthMemorylessMode: 0
-  projectName: 
-  organizationId: 
+  projectName: Skelascent
+  organizationId: jerrylin1
   cloudEnabled: 0
   enableNativePlatformBackendsForNewInputSystem: 0
   disableOldInputManagerSupport: 0

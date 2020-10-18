@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
- using UnityEngine.SceneManagement;
+using UnityEngine.SceneManagement;
+using UnityEngine.Advertisements;
 
 public class hudControl : MonoBehaviour
 {
@@ -16,6 +17,7 @@ public class hudControl : MonoBehaviour
     GameObject pauseMenu;
     GameObject darkener;
     TextMeshProUGUI highScoreDisplay;
+    AdControl adControl;
     int score;
     int playerBones = 0;
     int updatedBones;
@@ -36,6 +38,7 @@ public class hudControl : MonoBehaviour
         darkener = transform.Find("Darkener").gameObject;
         pauseMenu = transform.Find("PauseMenu").gameObject;
         pauseMenu.SetActive(false);
+        adControl = GameObject.Find("Advertisement Manager").GetComponent<AdControl>();
         updateBoneCount(playerBones);
     }
     void Update()
@@ -90,6 +93,8 @@ public class hudControl : MonoBehaviour
         }
     }
     public void enableGameOverScreen() {
+        // enable if u want to test ads
+        // if (Random.Range(1,10) <= 3) adControl.ShowInterstitialAd();
         gameOverScreen.SetActive(true);
         darkener.SetActive(true);
         int bonesCollected = pc.getBonesCollected();
