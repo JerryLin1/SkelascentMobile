@@ -26,7 +26,7 @@ public class FleshwallControl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (stopped == false)
+        if (stopped == false && Time.timeScale == 1)
         {
             float x = Random.Range(-1f, 1f) * xShake;
             float y = Random.Range(-1f, 1f) * yShake;
