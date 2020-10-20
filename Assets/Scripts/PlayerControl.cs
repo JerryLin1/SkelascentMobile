@@ -14,7 +14,7 @@ public class PlayerControl : MonoBehaviour
     bool isGrounded;
     Transform feetPos;
     Transform boneSourcePos;
-    float checkRadius = 0.025f;
+    float checkRadius = 0.2f;
     public LayerMask groundLayer;
     public LayerMask enemyLayer;
     public GameObject bonePrefab;
@@ -29,7 +29,7 @@ public class PlayerControl : MonoBehaviour
     float boneCd = 0.25f;
     float boneCdTimer;
     int bones = 3;
-    float coyoteTime = 0.3f;
+    float coyoteTime = 0.2f;
     float coyoteTimeTimer;
     Animator animator;
     int bonusScore = 0;
@@ -102,15 +102,18 @@ public class PlayerControl : MonoBehaviour
 
     void Move()
     {
-        isGrounded = Physics2D.OverlapCircle(feetPos.position, checkRadius, groundLayer);
+        bool isGroundBelow = Physics2D.OverlapCircle(feetPos.position, checkRadius, groundLayer);
+        if (Math.Abs(rb.velocity.y) <= 0.1f && isGroundBelow) isGrounded = true;
+        else isGrounded = false;
         if (isGrounded == true)
         {
+            coyoteTimeTimer = coyoteTime;
             rb.gravityScale = normalGravity;
             animator.SetFloat("yVelocity", 0);
         }
         else
         {
-            coyoteTimeTimer = coyoteTime;
+            Debug.Log("joe");
             animator.SetFloat("yVelocity", rb.velocity.y);
         }
 
@@ -212,7 +215,7 @@ public class PlayerControl : MonoBehaviour
 
     public void JumpButtonDown()
     {
-        if (Math.Abs(rb.velocity.y) <= 0.1f && (isGrounded == true || coyoteTimeTimer > 0))
+        if (isGrounded == true || coyoteTimeTimer > 0)
         {
             audioManager.Play("Jump");
             GameObject impactInstance = Instantiate(impactParticlePrefab, feetPos.position, Quaternion.identity);
