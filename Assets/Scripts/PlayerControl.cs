@@ -113,7 +113,6 @@ public class PlayerControl : MonoBehaviour
         }
         else
         {
-            Debug.Log("joe");
             animator.SetFloat("yVelocity", rb.velocity.y);
         }
 

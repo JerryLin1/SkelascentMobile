@@ -10,7 +10,7 @@ public class SpawnNextRoom : MonoBehaviour
     public bool spawnNextRoom = false;
 
     private float roomSize;
-    private bool spawnedNextRoom = false;
+    public bool spawnedNextRoom = false;
     private Transform player;
     private int difficulty;
     private RoomTemplates templates;
@@ -25,8 +25,6 @@ public class SpawnNextRoom : MonoBehaviour
         roomSize = transform.Find("Backdrop").GetComponent<TilemapRenderer>().bounds.size.y / 2;
         player = GameObject.Find("Player").transform;
         templates = GameObject.Find("RoomTemplates").GetComponent<RoomTemplates>();
-
-
     }
     void Spawn() {
 
@@ -47,11 +45,13 @@ public class SpawnNextRoom : MonoBehaviour
             newRoomOffset = new Vector3(0, templates.hardSize, 0);
         }
 
-        // Spawn room
-        int rand = Random.Range(0, rooms.Length);
-        newRoom = Instantiate(rooms[rand], transform.position + new Vector3(0,roomSize,0) + newRoomOffset, Quaternion.identity);
-        newRoom.transform.SetParent(GameObject.Find("Grid").transform);
+        // Spawn next rooms
         
+
+        int rand = Random.Range(0, rooms.Length);
+        newRoom = Instantiate(rooms[rand], transform.position + 2*(new Vector3(0,roomSize,0) + newRoomOffset), Quaternion.identity);
+        newRoom.transform.SetParent(GameObject.Find("Grid").transform);
+
         
     }
 
@@ -63,11 +63,11 @@ public class SpawnNextRoom : MonoBehaviour
             spawnedNextRoom = true;
         }
 
-        // Move camera to next room, spawn player on entry point, and delete old room
+        // If player has left the room, delete old rooms 
         if (player.position.y > transform.position.y + roomSize && !leftRoom) {    
             templates.offScreenRooms.Add(gameObject);
             leftRoom = true;
-            if (templates.offScreenRooms.Count > 2) {
+            if (templates.offScreenRooms.Count > 3) {
                 GameObject roomToDelete = templates.offScreenRooms[0];
                 templates.offScreenRooms.RemoveAt(0);
                 foreach (Transform spawner in roomToDelete.transform.Find("Spawners").transform) {
