@@ -14,7 +14,7 @@ public class PlayerControl : MonoBehaviour
     bool isGrounded;
     Transform feetPos;
     Transform boneSourcePos;
-    float checkRadius = 0.2f;
+    float checkRadius = 0.3f;
     public LayerMask groundLayer;
     public LayerMask enemyLayer;
     public GameObject bonePrefab;
