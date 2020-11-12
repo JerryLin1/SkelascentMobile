@@ -54,7 +54,7 @@ public class FleshwallControl : MonoBehaviour
         audioManager.sounds[0].source.volume = vol;
         Debug.Log(audioManager.sounds[0].source.volume);
         audioManager.Play("Flesh");
-        StartCoroutine(Camera.main.GetComponent<CameraControl>().cameraShake(0.5f, vol * 0.6f));
+        StartCoroutine(Camera.main.GetComponent<CameraControl>().cameraShake(0.5f, vol * 0.3f));
     }
     public void roarIfCan(float dist)
     {

@@ -166,7 +166,6 @@ public class PlayerControl : MonoBehaviour
     }
     public void addScore(int score)
     {
-        StartCoroutine(Camera.main.GetComponent<CameraControl>().cameraShake(0.1f, 0.5f));
         bonusScore += score;
     }
     public int getBonesCollected() { return bonesCollectedCount; }

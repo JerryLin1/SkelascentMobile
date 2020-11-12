@@ -5,10 +5,11 @@ using UnityEngine.UI;
 using TMPro;
 using UnityEngine.SceneManagement;
 using UnityEngine.Advertisements;
+using DG.Tweening;
 
 public class hudControl : MonoBehaviour
 {
-    public PlayerControl pc; 
+    public PlayerControl pc;
 
     TextMeshProUGUI scoreDisplay;
     GameObject boneCounter;
@@ -27,12 +28,17 @@ public class hudControl : MonoBehaviour
     float noBonesEmphasisTimer = 0;
     float noBonesEmphasisDuration = 0.1f;
 
+    Vector3 gameOverScreenpos1;
+    Vector3 gameOverScreenpos2 = new Vector3(0, 0, 0);
+
     void Start()
     {
         Time.timeScale = 1;
+
         gameOverScreen = transform.Find("GameOver").gameObject;
         gameOverStats = gameOverScreen.transform.Find("Stats").gameObject;
-        gameOverScreen.SetActive(false);
+        gameOverScreenpos1 = gameOverScreen.transform.position;
+
         scoreDisplay = transform.Find("Score").Find("Text").GetComponent<TextMeshProUGUI>();
         highScoreDisplay = transform.Find("High Score").Find("Text").GetComponent<TextMeshProUGUI>();
         boneCounter = transform.Find("Bone Counter").gameObject;
@@ -42,27 +48,32 @@ public class hudControl : MonoBehaviour
         adControl = GameObject.Find("Advertisement Manager").GetComponent<AdControl>();
         mobileControls = transform.Find("Mobile Controls").gameObject;
         highScore = PlayerPrefs.GetInt("Highscore", 0);
-        highScoreDisplay.text = "<color=#EEEEEE>High Score: " + highScore.ToString()+ "</color>";
+        highScoreDisplay.text = "<color=#EEEEEE>High Score: " + highScore.ToString() + "</color>";
         updateBoneCount(playerBones);
     }
     void Update()
     {
-        if (noBonesEmphasisTimer > 0) {
+        if (noBonesEmphasisTimer > 0)
+        {
             noBonesEmphasisTimer -= Time.deltaTime;
             if (noBonesEmphasisTimer <= 0) boneCounter.transform.Find("Out of Bones").gameObject.GetComponent<TextMeshProUGUI>().fontSize -= 5;
         }
 
         score = pc.getScore();
         scoreDisplay.text = "<color=#EEEEEE>Score: " + score.ToString() + "</color>";
-        if (score > highScore) {
+        if (score > highScore)
+        {
             highScoreDisplay.text = "<color=#EEEEEE>High Score: " + score.ToString() + "</color>";
             highScore = score;
         }
-        
+
         updatedBones = pc.getBones();
-        if (updatedBones > 0) {
+        if (updatedBones > 0)
+        {
             boneCounter.transform.Find("Out of Bones").gameObject.SetActive(false);
-        } else {
+        }
+        else
+        {
             boneCounter.transform.Find("Out of Bones").gameObject.SetActive(true);
 
         }
@@ -71,7 +82,8 @@ public class hudControl : MonoBehaviour
             updateBoneCount(updatedBones);
             playerBones = updatedBones;
         }
-        if (gameOverScreen.activeSelf == false && (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.P))) {
+        if (gameOverScreen.activeSelf == false && (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.P)))
+        {
             if (pauseMenu.activeSelf == false) pause();
             else unpause();
         }
@@ -82,59 +94,71 @@ public class hudControl : MonoBehaviour
         {
             boneCounter.transform.GetChild(i).gameObject.SetActive(false);
         }
-        
-        for (int i = 1; i < bones+1; i++)
+
+        for (int i = 1; i < bones + 1; i++)
         {
             if (i > 5)
             {
                 boneCounter.transform.GetChild(6).gameObject.SetActive(true);
                 boneCounter.transform.GetChild(6).GetComponent<TextMeshProUGUI>().text = "+" + (bones - 5);
             }
-            else 
+            else
                 boneCounter.transform.GetChild(i).gameObject.SetActive(true);
         }
     }
-    public void enableGameOverScreen() {
+    public void enableGameOverScreen()
+    {
         // enable if u want to test ads
         // if (Random.Range(1,10) <= 3) adControl.ShowInterstitialAd();
-        gameOverScreen.SetActive(true);
-        darkener.SetActive(true);
+        gameOverScreen.transform.DOLocalMove(gameOverScreenpos2, 0.3f);
+        Darken(true);
         int bonesCollected = pc.getBonesCollected();
-        gameOverStats.transform.Find("BonesCollected").GetComponent<TextMeshProUGUI>().text = "<color=#616161>Bones collected: "+ bonesCollected +"</color>";
+        gameOverStats.transform.Find("BonesCollected").GetComponent<TextMeshProUGUI>().text = "<color=#616161>Bones collected: " + bonesCollected + "</color>";
         int killCount = pc.getKillCount();
-        gameOverStats.transform.Find("KillCount").GetComponent<TextMeshProUGUI>().text = "<color=#44212F>Enemies defeated: "+ killCount +"</color>";
+        gameOverStats.transform.Find("KillCount").GetComponent<TextMeshProUGUI>().text = "<color=#44212F>Enemies defeated: " + killCount + "</color>";
         int accuracy = pc.getAccuracy();
-        gameOverStats.transform.Find("Accuracy").GetComponent<TextMeshProUGUI>().text = "<color=#3A5339>Bone accuracy: "+ accuracy +"%</color>";
-        gameOverStats.transform.Find("Score").GetComponent<TextMeshProUGUI>().text = "<color=#323866>Score: "+ score +"</color>";
+        gameOverStats.transform.Find("Accuracy").GetComponent<TextMeshProUGUI>().text = "<color=#3A5339>Bone accuracy: " + accuracy + "%</color>";
+        gameOverStats.transform.Find("Score").GetComponent<TextMeshProUGUI>().text = "<color=#323866>Score: " + score + "</color>";
         if (score > PlayerPrefs.GetInt("Highscore", 0))
             PlayerPrefs.SetInt("Highscore", highScore);
     }
-    public void pause() {
+    public void pause()
+    {
         HideMobileControls();
+        Darken(true);
         Time.timeScale = 0;
-        darkener.SetActive(true);
         pauseMenu.SetActive(true);
     }
-    public void unpause() {
+    public void unpause()
+    {
         ShowMobileControls();
+        Darken(false);
         Time.timeScale = 1;
-        darkener.SetActive(false);
         pauseMenu.SetActive(false);
     }
-    public void restart() {
+    public void restart()
+    {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
 
     }
-    public void returnToMenu() {
+    public void returnToMenu()
+    {
         Time.timeScale = 1;
         SceneManager.LoadScene("MainMenu");
     }
 
-    public void outOfBones() {
+    public void outOfBones()
+    {
         boneCounter.transform.Find("Out of Bones").gameObject.GetComponent<TextMeshProUGUI>().fontSize += 5;
         noBonesEmphasisTimer = noBonesEmphasisDuration;
     }
-    public void HideMobileControls() {mobileControls.SetActive(false);}
-    public void ShowMobileControls() {mobileControls.SetActive(true);}
+    public void Darken(bool darken) {
+        if (darken == true) 
+            darkener.GetComponent<Image>().DOColor(new Color(0, 0, 0, 0.39f), 0.2f).SetUpdate(true);
+        else 
+            darkener.GetComponent<Image>().DOColor(new Color(0, 0, 0, 0), 0.2f).SetUpdate(true);
+    }
+    public void HideMobileControls() { mobileControls.SetActive(false); }
+    public void ShowMobileControls() { mobileControls.SetActive(true); }
 
 }

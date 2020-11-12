@@ -24,8 +24,8 @@ public class CameraControl : MonoBehaviour
             {
                 fleshWall.GetComponent<FleshwallControl>().roarIfCan(playerFleshDist);
                 float magnitude;
-                if (playerFleshDist >= 1) magnitude = 1 / playerFleshDist;
-                else magnitude = 1;
+                if (playerFleshDist >= 1) magnitude = 0.3f / playerFleshDist;
+                else magnitude = 0.3f;
                 float x = Random.Range(-1f, 1f) * magnitude;
                 float y = Random.Range(-1f, 1f) * magnitude;
 
