@@ -20,6 +20,7 @@ public class hudControl : MonoBehaviour
     GameObject mobileControls;
     TextMeshProUGUI highScoreDisplay;
     AdControl adControl;
+    SocialControl socialControl;
     int score;
     int playerBones = 0;
     int updatedBones;
@@ -46,6 +47,7 @@ public class hudControl : MonoBehaviour
         pauseMenu = transform.Find("PauseMenu").gameObject;
         pauseMenu.SetActive(false);
         adControl = GameObject.Find("Advertisement Manager").GetComponent<AdControl>();
+        socialControl = GameObject.Find("Social").GetComponent<SocialControl>();
         mobileControls = transform.Find("Mobile Controls").gameObject;
         highScore = PlayerPrefs.GetInt("Highscore", 0);
         highScoreDisplay.text = "<color=#EEEEEE>High Score: " + highScore.ToString() + "</color>";
@@ -119,6 +121,7 @@ public class hudControl : MonoBehaviour
         int accuracy = pc.getAccuracy();
         gameOverStats.transform.Find("Accuracy").GetComponent<TextMeshProUGUI>().text = "<color=#3A5339>Bone accuracy: " + accuracy + "%</color>";
         gameOverStats.transform.Find("Score").GetComponent<TextMeshProUGUI>().text = "<color=#323866>Score: " + score + "</color>";
+        socialControl.ReportScore(score);
         if (score > PlayerPrefs.GetInt("Highscore", 0))
             PlayerPrefs.SetInt("Highscore", highScore);
     }
