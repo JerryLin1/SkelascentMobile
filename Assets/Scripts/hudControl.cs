@@ -111,7 +111,10 @@ public class hudControl : MonoBehaviour
     public void enableGameOverScreen()
     {
         // enable if u want to test ads
-        // if (Random.Range(1,10) <= 3) adControl.ShowInterstitialAd();
+        if (PlayerPrefs.GetInt("AdsEnabled", 0) == 0)
+        {
+            if (Random.Range(1, 10) <= 3) adControl.ShowInterstitialAd();
+        }
         gameOverScreen.transform.DOLocalMove(gameOverScreenpos2, 0.3f);
         Darken(true);
         int bonesCollected = pc.getBonesCollected();
@@ -155,10 +158,11 @@ public class hudControl : MonoBehaviour
         boneCounter.transform.Find("Out of Bones").gameObject.GetComponent<TextMeshProUGUI>().fontSize += 5;
         noBonesEmphasisTimer = noBonesEmphasisDuration;
     }
-    public void Darken(bool darken) {
-        if (darken == true) 
+    public void Darken(bool darken)
+    {
+        if (darken == true)
             darkener.GetComponent<Image>().DOColor(new Color(0, 0, 0, 0.39f), 0.2f).SetUpdate(true);
-        else 
+        else
             darkener.GetComponent<Image>().DOColor(new Color(0, 0, 0, 0), 0.2f).SetUpdate(true);
     }
     public void HideMobileControls() { mobileControls.SetActive(false); }
