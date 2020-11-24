@@ -164,5 +164,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5eb3b2234d5a514aa0f4fc607413c49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  deathParticlePrefab: {fileID: 2764721609776275128, guid: 28dc7b745ff5edc41b3cda930851a216,
+  deathParticlePrefab: {fileID: 2764721609776275128, guid: 0af3dd70a9784e3408ee63541452f7b5,
     type: 3}
