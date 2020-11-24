@@ -318,6 +318,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnNextRoom: 0
+  spawnedNextRoom: 0
   leavingRoom: 0
 --- !u!1 &3393819829159715292
 GameObject:
@@ -3074,7 +3075,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f7a9aec34f016b4784e69264d474ef9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnsEnemies: 1
+  spawnsEnemies: 0
   spawnsPickups: 1
   possibleEnemySpawns:
   - {fileID: 9032400983817351945, guid: 88c8530853c70154588fdc6cedaa18fb, type: 3}

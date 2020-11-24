@@ -3279,6 +3279,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnNextRoom: 0
+  spawnedNextRoom: 0
   leavingRoom: 0
 --- !u!1001 &5173883144289066794
 PrefabInstance:
@@ -3362,6 +3363,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1515393665045314998}
     m_Modifications:
+    - target: {fileID: 4965300169118492039, guid: 3c3291e93f708d1479e4722b339541a1,
+        type: 3}
+      propertyPath: possibleEnemySpawns.Array.size
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4965300169118492040, guid: 3c3291e93f708d1479e4722b339541a1,
         type: 3}
       propertyPath: m_LocalPosition.x
