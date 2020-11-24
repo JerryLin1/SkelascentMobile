@@ -3080,8 +3080,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_AssetsPPU: 8
-  m_RefResolutionX: 128
-  m_RefResolutionY: 80
+  m_RefResolutionX: 80
+  m_RefResolutionY: 192
   m_UpscaleRT: 0
   m_PixelSnapping: 0
   m_CropFrameX: 1
@@ -7300,7 +7300,7 @@ PrefabInstance:
     - target: {fileID: 6147800284653531113, guid: 6a29c269a37339b44815570d9f44b169,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6a29c269a37339b44815570d9f44b169, type: 3}
