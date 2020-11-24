@@ -41,7 +41,7 @@ public class DemonControl : MonoBehaviour
     }
     void OnCollisionEnter2D(Collision2D other) {
         if (other.collider.gameObject.tag == "Bone") {
-            GameObject.Find("Player").GetComponent<PlayerControl>().demonKilled();
+            GameObject.Find("Player").GetComponent<PlayerControl>().demonKilled(transform);
             die();
         }
     }

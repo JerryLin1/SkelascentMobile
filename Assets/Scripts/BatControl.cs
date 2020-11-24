@@ -53,7 +53,7 @@ public class BatControl : MonoBehaviour
             other.gameObject.GetComponent<PlayerControl>().Die();
         }
         if (other.collider.gameObject.tag == "Bone") {
-            GameObject.Find("Player").GetComponent<PlayerControl>().demonKilled();
+            GameObject.Find("Player").GetComponent<PlayerControl>().demonKilled(transform);
             die();
         }
     }
