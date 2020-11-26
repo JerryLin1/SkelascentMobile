@@ -168,7 +168,7 @@ ParticleSystem:
     startSpeed:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 50
+      scalar: 100
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -225,8 +225,8 @@ ParticleSystem:
       maxColor: {r: 0.6037736, g: 0.45004562, b: 0.16233535, a: 1}
       maxGradient:
         serializedVersion: 2
-        key0: {r: 0.6, g: 0.18431373, b: 0.34509805, a: 1}
-        key1: {r: 0.43529415, g: 0.1254902, b: 0.24313727, a: 1}
+        key0: {r: 0.43529415, g: 0.1254902, b: 0.24313727, a: 1}
+        key1: {r: 0.6, g: 0.18431373, b: 0.34509805, a: 1}
         key2: {r: 0.7411765, g: 0.7411765, b: 0.7411765, a: 1}
         key3: {r: 0.3803922, g: 0.3803922, b: 0.3803922, a: 1}
         key4: {r: 0.8018868, g: 0.8018868, b: 0.8018868, a: 1}
@@ -234,7 +234,7 @@ ParticleSystem:
         key6: {r: 0, g: 0, b: 0, a: 1}
         key7: {r: 0, g: 0, b: 0, a: 0}
         ctime0: 32768
-        ctime1: 43690
+        ctime1: 44140
         ctime2: 44718
         ctime3: 65535
         ctime4: 65535
@@ -600,7 +600,7 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     randomizeRotationDirection: 0
-    maxNumParticles: 15
+    maxNumParticles: 30
     size3D: 0
     rotation3D: 0
     gravityModifier:
@@ -865,7 +865,7 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 30
+      scalar: 50
       minScalar: 10
       maxCurve:
         serializedVersion: 2
@@ -975,7 +975,7 @@ ParticleSystem:
       countCurve:
         serializedVersion: 2
         minMaxState: 0
-        scalar: 30
+        scalar: 50
         minScalar: 30
         maxCurve:
           serializedVersion: 2
@@ -1026,7 +1026,7 @@ ParticleSystem:
           m_PostInfinity: 2
           m_RotationOrder: 4
       cycleCount: 1
-      repeatInterval: 1
+      repeatInterval: 10
       probability: 1
   SizeModule:
     enabled: 1
@@ -1039,7 +1039,7 @@ ParticleSystem:
         serializedVersion: 2
         m_Curve:
         - serializedVersion: 3
-          time: 0.25352237
+          time: 0.5969732
           value: 1
           inSlope: 0
           outSlope: 0
@@ -2408,7 +2408,7 @@ ParticleSystem:
       m_Bits: 4294967295
     influenceList: []
   ClampVelocityModule:
-    enabled: 1
+    enabled: 0
     x:
       serializedVersion: 2
       minMaxState: 0
@@ -2586,8 +2586,8 @@ ParticleSystem:
           inWeight: 0.33333334
           outWeight: 0.33333334
         - serializedVersion: 3
-          time: 1
-          value: 1
+          time: 0.33644435
+          value: 0.115385555
           inSlope: 0
           outSlope: 0
           tangentMode: 0

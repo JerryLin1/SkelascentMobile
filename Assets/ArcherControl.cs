@@ -5,6 +5,7 @@ using UnityEngine;
 public class ArcherControl : MonoBehaviour
 {
     public GameObject arrowPrefab;
+    public GameObject deathParticlePrefab;
     Rigidbody2D rb;
     Animator animator;
     Transform player;
@@ -42,7 +43,8 @@ public class ArcherControl : MonoBehaviour
             die();
         }
     }
-    public void die () {        
+    public void die () {  
+        Instantiate (deathParticlePrefab, transform.position, Quaternion.identity);      
         Destroy(gameObject);
     }
 

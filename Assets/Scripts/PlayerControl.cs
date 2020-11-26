@@ -151,6 +151,7 @@ public class PlayerControl : MonoBehaviour
     {
         bonesCollectedCount++;
         audioManager.Play("PickupBone");
+        Instantiate (deathParticlePrefab, transform.position, Quaternion.identity);
         bones++;
         CreateFloatingText(transform, 20);
         addScore(20);
