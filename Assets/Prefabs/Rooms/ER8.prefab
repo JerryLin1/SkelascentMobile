@@ -3129,7 +3129,9 @@ MonoBehaviour:
   spawnsEnemies: 1
   spawnsPickups: 1
   possibleEnemySpawns:
+  - {fileID: 9032400983817351945, guid: 88c8530853c70154588fdc6cedaa18fb, type: 3}
   - {fileID: 7404152082597604260, guid: 8836432c337d6b54c9007fa34770ad29, type: 3}
+  - {fileID: 8962585470761078173, guid: 7ead5160a8a791348907e4077072b41d, type: 3}
   possiblePickupSpawns:
   - {fileID: 4451797978316680509, guid: 42968077bc31b0843b06161854d05157, type: 3}
   entity: {fileID: 0}
