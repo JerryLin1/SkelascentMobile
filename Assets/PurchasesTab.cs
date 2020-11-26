@@ -12,6 +12,10 @@ public class PurchasesTab : MonoBehaviour
     {
         tab = transform.Find("Tab");
         purchasesScreen = transform.Find("Purchases");
+        
+        #if UNITY_ANDROID
+        purchasesScreen.Find("Restore Purchases").gameObject.SetActive(false);
+        #endif
     }
     public void TogglePurchases()
     {
