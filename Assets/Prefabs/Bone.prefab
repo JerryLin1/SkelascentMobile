@@ -46,7 +46,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b58a97c9401dd23409693cb366a5b636, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  deathParticlePrefab: {fileID: 2764721609776275128, guid: 28dc7b745ff5edc41b3cda930851a216,
+  deathParticlePrefab: {fileID: 3690958430712913856, guid: e8bd714a78c8ed44799ef5b3187e69f4,
     type: 3}
 --- !u!212 &2526942072201926332
 SpriteRenderer:

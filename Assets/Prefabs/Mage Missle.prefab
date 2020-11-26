@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 4355142641230092023}
   - component: {fileID: -4267385572653861896}
   m_Layer: 13
-  m_Name: arrow
+  m_Name: Mage Missle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -30,7 +30,8 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -1.8, y: 2.93, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 4936394613105566915}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -143,3 +144,93 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f4d5a96be2db114484da07c210daf64, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1001 &4872262747564909670
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 6953209693789861503}
+    m_Modifications:
+    - target: {fileID: 512382969293734053, guid: a74b3a6a4ed3b994aa65f69ddb9ba4d9,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.24
+      objectReference: {fileID: 0}
+    - target: {fileID: 512382969293734053, guid: a74b3a6a4ed3b994aa65f69ddb9ba4d9,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 512382969293734053, guid: a74b3a6a4ed3b994aa65f69ddb9ba4d9,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 512382969293734053, guid: a74b3a6a4ed3b994aa65f69ddb9ba4d9,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 512382969293734053, guid: a74b3a6a4ed3b994aa65f69ddb9ba4d9,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 512382969293734053, guid: a74b3a6a4ed3b994aa65f69ddb9ba4d9,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 512382969293734053, guid: a74b3a6a4ed3b994aa65f69ddb9ba4d9,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 512382969293734053, guid: a74b3a6a4ed3b994aa65f69ddb9ba4d9,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 512382969293734053, guid: a74b3a6a4ed3b994aa65f69ddb9ba4d9,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 512382969293734053, guid: a74b3a6a4ed3b994aa65f69ddb9ba4d9,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 512382969293734053, guid: a74b3a6a4ed3b994aa65f69ddb9ba4d9,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 807301571619620829, guid: a74b3a6a4ed3b994aa65f69ddb9ba4d9,
+        type: 3}
+      propertyPath: m_Name
+      value: Mage Missle Particles
+      objectReference: {fileID: 0}
+    - target: {fileID: 2471734090273659124, guid: a74b3a6a4ed3b994aa65f69ddb9ba4d9,
+        type: 3}
+      propertyPath: EmissionModule.rateOverTime.scalar
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 2471734090273659124, guid: a74b3a6a4ed3b994aa65f69ddb9ba4d9,
+        type: 3}
+      propertyPath: InitialModule.startSpeed.scalar
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 2471734090273659124, guid: a74b3a6a4ed3b994aa65f69ddb9ba4d9,
+        type: 3}
+      propertyPath: VelocityModule.x.scalar
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: a74b3a6a4ed3b994aa65f69ddb9ba4d9, type: 3}
+--- !u!4 &4936394613105566915 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 512382969293734053, guid: a74b3a6a4ed3b994aa65f69ddb9ba4d9,
+    type: 3}
+  m_PrefabInstance: {fileID: 4872262747564909670}
+  m_PrefabAsset: {fileID: 0}

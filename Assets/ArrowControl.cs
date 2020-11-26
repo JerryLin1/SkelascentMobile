@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 public class ArrowControl : MonoBehaviour
 {
@@ -18,8 +19,10 @@ public class ArrowControl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // if too far away, shrink and dissapate
         if (Vector2.Distance(position, transform.position)> 7f) {
-            Destroy(gameObject);
+            transform.DOScale(Vector3.zero, 1);
+            if (transform.localScale.x <= 0.1f) Destroy(gameObject);
         }
     }
 
@@ -30,6 +33,5 @@ public class ArrowControl : MonoBehaviour
             
         }
         Destroy(gameObject);
-
     }
 }
