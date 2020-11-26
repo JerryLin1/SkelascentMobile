@@ -27,9 +27,9 @@ public class ArrowControl : MonoBehaviour
         if (other.gameObject.tag == "Player")
         {
             other.transform.GetComponent<PlayerControl>().Die();
-            Destroy(gameObject);
-
+            
         }
+        Destroy(gameObject);
 
     }
 }
