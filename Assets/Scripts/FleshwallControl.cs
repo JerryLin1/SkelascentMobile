@@ -5,8 +5,8 @@ using UnityEngine;
 public class FleshwallControl : MonoBehaviour
 {
     Transform sprite;
-    public float xShake = 0.25f;
-    public float yShake = 0.25f;
+    float xShake = 0.25f;
+    float yShake = 0.1f;
     public float rbSpeed = 5f;
     public float acceleration = 0.5f;
     public float maxSpeed = 5f;
@@ -30,7 +30,6 @@ public class FleshwallControl : MonoBehaviour
         {
             float x = Random.Range(-1f, 1f) * xShake;
             float y = Random.Range(-1f, 1f) * yShake;
-
             sprite.position = new Vector3(transform.position.x + x, transform.position.y + y, transform.position.z);
 
             rb.velocity = new Vector2(0, rbSpeed);
