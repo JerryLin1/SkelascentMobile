@@ -20,6 +20,7 @@ public class PlayerControl : MonoBehaviour
     public GameObject bonePrefab;
     public GameObject impactParticlePrefab;
     public GameObject deathParticlePrefab;
+    public GameObject floatingTextPrefab;
     private float jumpTimeCounter;
     private bool isJumping;
     float jumpTime = 0.2f;
@@ -151,18 +152,27 @@ public class PlayerControl : MonoBehaviour
         bonesCollectedCount++;
         audioManager.Play("PickupBone");
         bones++;
+        CreateFloatingText(transform, 20);
         addScore(20);
     }
     public int getBones() { return bones; }
-    public void demonKilled()
+    public void demonKilled(Transform demonTranform)
     {
         audioManager.Play("KillDemon");
         killCount++;
+        CreateFloatingText(demonTranform, 50);
         addScore(50);
     }
     public void boneImpact()
     {
         audioManager.Play("BoneImpact");
+    }
+    public void CreateFloatingText(Transform transformPos, int score)
+    {
+        Debug.Log(transformPos.position);
+        Vector3 withOffset = new Vector3(transformPos.position.x, transformPos.position.y + 0.2f, transformPos.position.z);
+        GameObject IfloatingText = Instantiate(floatingTextPrefab, withOffset, Quaternion.identity);
+        IfloatingText.GetComponentInChildren<FloatingText>().SetText(score);
     }
     public void addScore(int score)
     {
@@ -230,7 +240,8 @@ public class PlayerControl : MonoBehaviour
         rb.gravityScale = fallingGravity;
     }
 
-    public void StartAimBone() {
+    public void StartAimBone()
+    {
         // enable line?
         // line.positionCount = 1;
         // line.SetPosition(0, boneSourcePos.position);
@@ -239,17 +250,19 @@ public class PlayerControl : MonoBehaviour
         // line.positionCount++;
         // line.SetPosition(line.positionCount-1, rayInfo.point);
     }
-    
+
     // this function being called while joystick is being used
-    public void AimBone() {
+    public void AimBone()
+    {
         // update line/raycast
         // line.positionCount = 2;
         Vector2 direction = joystickAim.ScaledValue.normalized;
         transform.Find("BoneSource").transform.up = direction;
 
-        line.SetPosition(1, direction*7);
+        line.SetPosition(1, direction * 7);
     }
-    public void FireBone() {
+    public void FireBone()
+    {
         // disable line
         if (boneCdTimer <= 0 && bones > 0 && Time.timeScale == 1)
         {

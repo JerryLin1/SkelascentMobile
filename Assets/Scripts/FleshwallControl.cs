@@ -48,7 +48,6 @@ public class FleshwallControl : MonoBehaviour
     }
     public void roar(float dist)
     {
-        Debug.Log("Roar");
         float vol;
         if (dist / 10 > 1) vol = 1;
         else vol = dist / 10;
