@@ -104,7 +104,11 @@ public class PlayerControl : MonoBehaviour
     void Move()
     {
         bool isGroundBelow = Physics2D.OverlapCircle(feetPos.position, checkRadius, groundLayer);
-        if (Math.Abs(rb.velocity.y) <= 0.1f && isGroundBelow) isGrounded = true;
+        if (Math.Abs(rb.velocity.y) <= 0.1f && isGroundBelow)
+        {
+            if (!isGrounded) Instantiate(impactParticlePrefab, feetPos.position, Quaternion.identity);
+            isGrounded = true;
+        }
         else isGrounded = false;
         if (isGrounded == true)
         {
@@ -140,18 +144,12 @@ public class PlayerControl : MonoBehaviour
         {
             Die();
         }
-
-        if (col.gameObject.tag == "Platform")
-        {
-            Instantiate(impactParticlePrefab, feetPos.position, Quaternion.identity);
-
-        }
     }
     public void addBone()
     {
         bonesCollectedCount++;
         audioManager.Play("PickupBone");
-        Instantiate (deathParticlePrefab, transform.position, Quaternion.identity);
+        Instantiate(deathParticlePrefab, transform.position, Quaternion.identity);
         bones++;
         CreateFloatingText(transform, 20);
         addScore(20);
@@ -227,7 +225,6 @@ public class PlayerControl : MonoBehaviour
         {
             audioManager.Play("Jump");
             GameObject impactInstance = Instantiate(impactParticlePrefab, feetPos.position, Quaternion.identity);
-            impactInstance.transform.Rotate(10f, 0, 0, Space.Self);
             isJumping = true;
             jumpTimeCounter = jumpTime;
             rb.velocity = Vector2.up * jumpForce;
