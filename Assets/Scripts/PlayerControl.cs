@@ -158,6 +158,7 @@ public class PlayerControl : MonoBehaviour
     public void demonKilled(Transform demonTranform)
     {
         audioManager.Play("KillDemon");
+        StartCoroutine(Camera.main.GetComponent<CameraControl>().cameraShake(0.05f, 0.5f));
         killCount++;
         CreateFloatingText(demonTranform, 50);
         addScore(50);
@@ -200,7 +201,6 @@ public class PlayerControl : MonoBehaviour
     }
     public void Die()
     {
-        FireBone();
         line.enabled = false;
         hudControl.HideMobileControls();
         audioManager.Play("GameOver");

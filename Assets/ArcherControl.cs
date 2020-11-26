@@ -34,7 +34,7 @@ public class ArcherControl : MonoBehaviour
         Vector2 direction = (player.position-transform.position).normalized;
         GameObject arrow = Instantiate(arrowPrefab, transform.position, Quaternion.identity);
         arrow.transform.right = -direction;
-        arrow.GetComponent<Rigidbody2D>().AddForce(direction*350f);
+        arrow.GetComponent<Rigidbody2D>().AddForce(direction*300f);
     }
 
     void OnCollisionEnter2D(Collision2D other) {
