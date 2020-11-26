@@ -169,8 +169,7 @@ public class PlayerControl : MonoBehaviour
     }
     public void CreateFloatingText(Transform transformPos, int score)
     {
-        Debug.Log(transformPos.position);
-        Vector3 withOffset = new Vector3(transformPos.position.x, transformPos.position.y + 0.2f, transformPos.position.z);
+        Vector3 withOffset = new Vector3(transformPos.position.x, transformPos.position.y + 0.5f, transformPos.position.z);
         GameObject IfloatingText = Instantiate(floatingTextPrefab, withOffset, Quaternion.identity);
         IfloatingText.GetComponentInChildren<FloatingText>().SetText(score);
     }
