@@ -200,6 +200,9 @@ public class PlayerControl : MonoBehaviour
     }
     public void Die()
     {
+        FireBone();
+        line.enabled = false;
+        hudControl.HideMobileControls();
         audioManager.Play("GameOver");
         StartCoroutine(Camera.main.GetComponent<CameraControl>().cameraShake(0.2f, 1f));
         Instantiate(deathParticlePrefab, transform.position, Quaternion.identity);
@@ -216,7 +219,6 @@ public class PlayerControl : MonoBehaviour
     {
         yield return new WaitForSeconds(2f);
         hudControl.enableGameOverScreen();
-        hudControl.HideMobileControls();
     }
 
     public void JumpButtonDown()
