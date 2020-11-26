@@ -20,12 +20,12 @@ public class CameraControl : MonoBehaviour
         {
             Camera.main.transform.position = new Vector3(player.transform.position.x, player.transform.position.y, transform.position.z);
             playerFleshDist = player.transform.position.y - fleshWall.transform.position.y;
-            if (playerFleshDist - 5 <= 10)
+            if (playerFleshDist <= 15)
             {
                 fleshWall.GetComponent<FleshwallControl>().roarIfCan(playerFleshDist);
                 float magnitude;
-                if (playerFleshDist >= 1) magnitude = 0.3f / playerFleshDist;
-                else magnitude = 0.3f;
+                if (playerFleshDist >= 1) magnitude = 0.1f / playerFleshDist;
+                else magnitude = 0.1f;
                 float x = Random.Range(-1f, 1f) * magnitude;
                 float y = Random.Range(-1f, 1f) * magnitude;
 

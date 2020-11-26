@@ -5,8 +5,8 @@ using UnityEngine;
 public class FleshwallControl : MonoBehaviour
 {
     Transform sprite;
-    public float xShake = 0.005f;
-    public float yShake = 0.005f;
+    public float xShake = 0.25f;
+    public float yShake = 0.25f;
     public float rbSpeed = 5f;
     public float acceleration = 0.5f;
     public float maxSpeed = 5f;
@@ -53,7 +53,7 @@ public class FleshwallControl : MonoBehaviour
         else vol = dist / 10;
         audioManager.sounds[0].source.volume = vol;
         audioManager.Play("Flesh");
-        StartCoroutine(Camera.main.GetComponent<CameraControl>().cameraShake(0.25f, vol * 0.05f));
+        StartCoroutine(Camera.main.GetComponent<CameraControl>().cameraShake(0.15f, vol * 0.25f));
     }
     public void roarIfCan(float dist)
     {
