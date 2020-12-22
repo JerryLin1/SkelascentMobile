@@ -52,7 +52,10 @@ public class SpawnNextRoom : MonoBehaviour
         newRoom = Instantiate(rooms[rand], transform.position + 2*(new Vector3(0,roomSize,0) + newRoomOffset), Quaternion.identity);
         newRoom.transform.SetParent(GameObject.Find("Grid").transform);
 
-        
+        float num = Random.value;
+        if (num<0.5) {
+            newRoom.transform.localScale = new Vector3(-1, 1, 1);
+        }
     }
 
     void Update()
