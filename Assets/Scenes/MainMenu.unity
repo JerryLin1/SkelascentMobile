@@ -2831,7 +2831,7 @@ MonoBehaviour:
   - name: Click
     clip: {fileID: 8300000, guid: 08b948602c80da84e903682d03b93758, type: 3}
     volume: 1
-    pitch: 1
+    pitch: 2
     loop: 0
     source: {fileID: 0}
   isGameAM: 0
@@ -5199,18 +5199,18 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1553668910}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6a160d838ff8b4b4693ac20007e008c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_AssetsPPU: 8
-  m_RefResolutionX: 128
-  m_RefResolutionY: 80
+  m_RefResolutionX: 80
+  m_RefResolutionY: 152
   m_UpscaleRT: 0
   m_PixelSnapping: 0
-  m_CropFrameX: 1
-  m_CropFrameY: 1
+  m_CropFrameX: 0
+  m_CropFrameY: 0
   m_StretchFill: 0
 --- !u!1 &1603610634
 GameObject:
