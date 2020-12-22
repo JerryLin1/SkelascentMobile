@@ -15,6 +15,7 @@ public class ArcherControl : MonoBehaviour
     void Start()
     {
         animator = GetComponent<Animator>();
+        audioManager = GetComponent<AudioManager>();
         player = GameObject.Find("Player").transform;
     }
 
@@ -35,6 +36,7 @@ public class ArcherControl : MonoBehaviour
         GameObject arrow = Instantiate(arrowPrefab, transform.position, Quaternion.identity);
         arrow.transform.right = -direction;
         arrow.GetComponent<Rigidbody2D>().AddForce(direction*300f);
+        audioManager.Play("FireMissile");
     }
 
     void OnCollisionEnter2D(Collision2D other) {

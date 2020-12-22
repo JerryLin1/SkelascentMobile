@@ -14,8 +14,9 @@ GameObject:
   - component: {fileID: 8962585470761078150}
   - component: {fileID: 8962585470761078169}
   - component: {fileID: 8121047703918879418}
+  - component: {fileID: -4859689499862728460}
   m_Layer: 9
-  m_Name: Demon Archer
+  m_Name: Demon Mage
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -168,3 +169,23 @@ MonoBehaviour:
     type: 3}
   deathParticlePrefab: {fileID: 2764721609776275128, guid: 2a68eec99eb0ac54eadfccae57ab7c92,
     type: 3}
+--- !u!114 &-4859689499862728460
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8962585470761078173}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b4ad1b6012d70048b733236544e4f27, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sounds:
+  - name: FireMissile
+    clip: {fileID: 8300000, guid: 08b948602c80da84e903682d03b93758, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  isGameAM: 0
