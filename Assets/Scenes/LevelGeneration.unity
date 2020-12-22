@@ -7074,7 +7074,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 897ec7745c3ef044b983bb264b4c2eb7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  usingAimJoystick: 0
   pc: {fileID: 339369589}
 --- !u!1001 &1912010292
 PrefabInstance:
@@ -7146,7 +7145,7 @@ PrefabInstance:
     - target: {fileID: 6147800284653531113, guid: 6a29c269a37339b44815570d9f44b169,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6147800284962943031, guid: 6a29c269a37339b44815570d9f44b169,
         type: 3}

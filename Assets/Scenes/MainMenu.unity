@@ -3168,7 +3168,7 @@ MonoBehaviour:
   sounds:
   - name: Click
     clip: {fileID: 8300000, guid: 08b948602c80da84e903682d03b93758, type: 3}
-    volume: 1
+    volume: 0.8
     pitch: 2
     loop: 0
     source: {fileID: 0}
