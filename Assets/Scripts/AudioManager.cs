@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class AudioManager : MonoBehaviour
 {
+    private Sound theme;
+    private int oldValue;
     public Sound[] sounds;
     public bool isGameAM = false;
     public static AudioManager instance;
@@ -27,12 +29,27 @@ public class AudioManager : MonoBehaviour
         }
     }
     void Start() {
+        theme = Array.Find(sounds, sound => sound.name == "Theme");
         if (isGameAM == true) {
-            Play("Theme");
+            theme.source.Play();
         }
     }
+
+    void Update() {
+        if (isGameAM == true && PlayerPrefs.GetInt("muteMusic") != oldValue) {
+            if (PlayerPrefs.GetInt("muteMusic") == 1) {
+                theme.source.Pause(); 
+            } else {
+                theme.source.Play();
+            }
+            oldValue = PlayerPrefs.GetInt("muteMusic");
+        } 
+    }
+
+
     public void Play(string name)
     {
+        if (name != "Theme" && PlayerPrefs.GetInt("muteSounds") == 1) return; 
         Sound s = Array.Find(sounds, sound => sound.name == name);
         if (s == null)
         {
@@ -40,5 +57,7 @@ public class AudioManager : MonoBehaviour
             return;
         }
         s.source.Play();
+        
     }
+
 }
