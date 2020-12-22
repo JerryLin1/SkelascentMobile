@@ -9,6 +9,7 @@ using DG.Tweening;
 
 public class hudControl : MonoBehaviour
 {
+    public bool usingAimJoystick = false;
     public PlayerControl pc;
 
     TextMeshProUGUI scoreDisplay;
@@ -49,6 +50,15 @@ public class hudControl : MonoBehaviour
         adControl = GameObject.Find("Advertisement Manager").GetComponent<AdControl>();
         socialControl = GameObject.Find("Social").GetComponent<SocialControl>();
         mobileControls = transform.Find("Mobile Controls").gameObject;
+        
+        if (usingAimJoystick == false) {
+            GameObject aimJoystick = mobileControls.transform.Find("Aim Joystick").gameObject;
+            aimJoystick.transform.position = Vector3.zero;
+            aimJoystick.transform.localScale = new Vector3(6, 6, 1);
+            aimJoystick.transform.Find("Visual").GetComponent<Image>().enabled = false;
+            aimJoystick.transform.Find("Handle").GetComponent<Image>().enabled = false;
+        }
+
         highScore = PlayerPrefs.GetInt("Highscore", 0);
         highScoreDisplay.text = "<color=#EEEEEE>High Score: " + highScore.ToString() + "</color>";
         updateBoneCount(playerBones);
