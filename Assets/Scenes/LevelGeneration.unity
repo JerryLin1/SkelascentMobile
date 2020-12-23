@@ -2096,7 +2096,7 @@ PrefabInstance:
     - target: {fileID: 7173213619296683099, guid: 3506552df9758ee40a167c3251db9bae,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 0.25
       objectReference: {fileID: 0}
     - target: {fileID: 7173213619296683099, guid: 3506552df9758ee40a167c3251db9bae,
         type: 3}
@@ -2487,6 +2487,11 @@ MonoBehaviour:
   - {fileID: 3393819828835428328, guid: 3d560cf965d486346902515198e002db, type: 3}
   - {fileID: 8769759275459681329, guid: 6a8af95d56d94dc4eb7fc9e324dee54d, type: 3}
   - {fileID: 4935596776070646643, guid: 2d88657cf294e104599ca7cbfdd851e3, type: 3}
+  - {fileID: 5368101351836855410, guid: fda58ab79a01e224fbfc2d81523b92b8, type: 3}
+  - {fileID: 3593525067041123329, guid: 63bb67168df1858419733ba9a6def6c3, type: 3}
+  - {fileID: 8498057977709265976, guid: 833661b83e07c984c9586e8145ede123, type: 3}
+  - {fileID: 2818091059613517044, guid: dbc4a03a79427274c85b840491b71de5, type: 3}
+  - {fileID: 2272786639178493059, guid: 1f8384e68ffb3bb498e7f8c7dd6b7455, type: 3}
   mediumRooms: []
   hardRooms: []
   easySize: 5
