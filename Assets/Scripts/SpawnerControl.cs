@@ -24,13 +24,10 @@ public class SpawnerControl : MonoBehaviour
         }
         if (totalSpawns.Count != 0) {
             int rand = Random.Range (0, totalSpawns.Count + 2);
-            if (rand == totalSpawns.Count + 1) {
-                Destroy(entity);
-            } else {
+            if (rand != totalSpawns.Count + 1) {
                 entity = Instantiate(totalSpawns[Random.Range (0, totalSpawns.Count)], transform.position, Quaternion.identity);
 
-            }
-            // else Destroy(entity);
+            } 
         }
     }
 }

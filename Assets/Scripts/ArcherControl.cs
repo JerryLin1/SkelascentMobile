@@ -40,7 +40,7 @@ public class ArcherControl : MonoBehaviour
         Vector2 direction = (player.position - transform.position).normalized;
         GameObject arrow = Instantiate(arrowPrefab, transform.position, Quaternion.identity);
         arrow.transform.right = -direction;
-        arrow.GetComponent<Rigidbody2D>().AddForce(direction*300f);
+        arrow.GetComponent<Rigidbody2D>().AddForce(direction*225f);
         if (SceneManager.GetActiveScene().name == "LevelGeneration") audioManager.Play("FireMissile");
     }
 
